@@ -152,6 +152,7 @@ textarea.input{min-height:110px;resize:vertical;line-height:1.5}
 .err{color:#FF8A8A;font-size:14px}
 html[data-theme="light"] .err{color:#B3261E}
 .note{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+.legal{max-width:760px;margin:0 auto;padding:12px 0 60px}.legal h2{font-size:20px;margin:34px 0 8px}.legal p{font-size:16px;line-height:1.7;color:var(--soft);margin:0 0 12px}.legal .lead{color:var(--text);font-size:17px}.legal a,.check-row a{color:inherit;text-decoration:underline}
 .check-row{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--soft);line-height:1.5;cursor:pointer}
 .check-row input,.cb{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--c,#4A7DFF)}
 
@@ -514,7 +515,7 @@ textarea.input{font-family:inherit}
   <footer>
     <div class="container foot">
       <span class="foot-brand"><svg viewBox="40 80 432 420" aria-hidden="true" focusable="false"><path d="M58 178 Q58 152 82 158 L250 214 Q276 222 276 248 L276 404 Q276 420 260 420 L240 420 C130 420 58 360 58 270 Z" fill="#4A7DFF"/><path d="M454 178 Q454 152 430 158 L262 214 Q236 222 236 248 L236 468 Q236 488 250 474 L304 420 C396 414 454 356 454 270 Z" fill="#22C3A6"/><path d="M218 98 L244 124 L218 150 L192 124 Z M294 98 L320 124 L294 150 L268 124 Z" fill="var(--text)"/></svg><span data-t="copy">© 2026 Tadriis</span></span>
-      <div><a href="#teach" data-t="teach">Teach on Tadriis</a><a href="#" data-t="terms">Terms</a><a href="#" data-t="privacy">Privacy</a><a href="#" data-t="contact">Contact</a></div>
+      <div><a href="#teach" data-t="teach">Teach on Tadriis</a><a href="#terms" data-t="terms">Terms</a><a href="#privacy" data-t="privacy">Privacy</a><a href="#" data-t="contact">Contact</a></div>
     </div>
   </footer>
 </div>
@@ -554,7 +555,7 @@ textarea.input{font-family:inherit}
       roleStudent: 'I’m learning', roleParent: 'I’m a parent',
       fName: 'Full name', fEmail: 'Email', fPw: 'Password', pwHint: 'At least 10 characters', show: 'Show', hide: 'Hide', fCountry: 'Country',
       childH: 'Your child', childName: 'Child’s first name', childAge: 'Child’s age', childNote: 'You can add more children after sign-up.',
-      agree: 'I agree to the Terms and Privacy Policy, including the recording of lessons.',
+      agree: 'I agree to the Terms and Privacy Policy, including the recording of lessons.', agreePre: 'I have read and agree to the ', agreeAnd: 'and', agreePost: ' Policy. I understand Tadriis is a platform that connects students with independent teachers, and I agree to the recording of lessons.',
       create: 'Create account', or: 'or', google: 'Continue with Google', apple: 'Continue with Apple',
       haveAcc: 'Already have an account?', newHere: 'New to Tadriis?', wantTeach: 'Want to teach?', applyHere: 'Apply here',
       errName: 'Enter your name', errEmail: 'Enter a valid email address', errPw: 'Use at least 10 characters', errPwLogin: 'Enter your password',
@@ -632,7 +633,7 @@ textarea.input{font-family:inherit}
       roleStudent: 'أنا متعلّم', roleParent: 'أنا وليّ أمر',
       fName: 'الاسم الكامل', fEmail: 'البريد الإلكتروني', fPw: 'كلمة المرور', pwHint: '10 أحرف على الأقل', show: 'إظهار', hide: 'إخفاء', fCountry: 'الدولة',
       childH: 'طفلك', childName: 'الاسم الأول للطفل', childAge: 'عمر الطفل', childNote: 'يمكنك إضافة أطفال آخرين بعد التسجيل.',
-      agree: 'أوافق على الشروط وسياسة الخصوصية، بما في ذلك تسجيل الدروس.',
+      agree: 'أوافق على الشروط وسياسة الخصوصية، بما في ذلك تسجيل الدروس.', agreePre: 'قرأتُ وأوافق على ', agreeAnd: 'و', agreePost: '. وأفهم أن تدريس منصّة تربط الطلاب بمعلّمين مستقلين، وأوافق على تسجيل الدروس.',
       create: 'إنشاء الحساب', or: 'أو', google: 'المتابعة عبر Google', apple: 'المتابعة عبر Apple',
       haveAcc: 'لديك حساب بالفعل؟', newHere: 'جديد على تدريس؟', wantTeach: 'تريد التدريس؟', applyHere: 'قدّم من هنا',
       errName: 'أدخل اسمك', errEmail: 'أدخل بريداً إلكترونياً صحيحاً', errPw: 'استخدم 10 أحرف على الأقل', errPwLogin: 'أدخل كلمة المرور',
@@ -1219,7 +1220,7 @@ textarea.input{font-family:inherit}
     } else {
       q = s.qFinish;
       body = '<div style="max-width:420px">' + dd('su-country', s.fCountry, s.countries.map(function (c) { return { v: c, l: c }; }), su.country || s.countries[0]) + '</div>'
-        + '<label class="check-row"><input type="checkbox" id="suAgree"' + (su.agree ? ' checked' : '') + '><span>' + esc(s.agree) + '</span></label><span class="err" id="suAgree-e" hidden></span>';
+        + '<label class="check-row"><input type="checkbox" id="suAgree"' + (su.agree ? ' checked' : '') + '><span>' + agreeHtml() + '</span></label><span class="err" id="suAgree-e" hidden></span>';
     }
     var html = '<section class="ask" data-k="all"><div class="segs" role="img" aria-label="' + esc(f(s.stepOf, { n: su.step + 1, t: steps.length })) + '">' + steps.map(function (x, i) { return '<span class="' + (i <= su.step ? 'on' : '') + '"></span>'; }).join('') + '</div>'
       + '<form id="suForm" novalidate>' + (pt && su.step === 0 ? '<p class="banner" style="max-width:560px">' + esc(f(s.needAccount, { name: pt.name[l] })) + '</p>' : '')
@@ -1344,7 +1345,8 @@ textarea.input{font-family:inherit}
               + '<span class="you-get" data-you="' + len + '">' + esc(f(s.wYouGet, { p: you })) + '</span></div>';
           }).join('') + '</div><span class="err" id="wRate-e" hidden></span>'
           + '<label class="check-row"><input type="checkbox" id="wPkg"' + (d.pkg ? ' checked' : '') + '><span><strong style="color:var(--text)">' + esc(s.wPkg) + '</strong><br>' + esc(s.wPkgHint) + '</span></label>'
-          + '<div class="field" style="max-width:220px"><label for="wDisc">' + esc(s.wDiscount) + '</label><select class="input" id="wDisc"' + (d.pkg ? '' : ' disabled') + '>' + ['5', '10', '15', '20'].map(function (v) { return '<option value="' + v + '"' + (d.disc === v ? ' selected' : '') + '>' + v + '%</option>'; }).join('') + '</select></div>';
+          + '<div class="field" style="max-width:220px"><label for="wDisc">' + esc(s.wDiscount) + '</label><select class="input" id="wDisc"' + (d.pkg ? '' : ' disabled') + '>' + ['5', '10', '15', '20'].map(function (v) { return '<option value="' + v + '"' + (d.disc === v ? ' selected' : '') + '>' + v + '%</option>'; }).join('') + '</select></div>'
+          + '<label class="check-row"><input type="checkbox" id="wAgree"' + (d.agree ? ' checked' : '') + '><span>' + agreeHtml() + '</span></label><span class="err" id="wAgree-e" hidden></span>';
       }
       html += '<div class="wiz-nav">' + (w.step > 0 ? '<button type="button" class="btn btn-ghost" data-act="wprev">' + esc(s.prev) + '</button>' : '<span></span>') + '<button type="submit" class="btn btn-primary">' + esc(w.step === 2 ? s.submit : s.next) + '</button></div></form>';
     }
@@ -1353,6 +1355,84 @@ textarea.input{font-family:inherit}
   }
 
   /* ================= Router ================= */
+  /* ================= Terms and Privacy ================= */
+  var LEGAL = {
+    en: {
+      updated: 'Version of 22 November 2026',
+      terms: { title: 'Terms of use', intro: 'These Terms apply when you use Tadriis (tadriis.com and teacher.tadriis.com). By ticking the box when you sign up, or by using Tadriis, you agree to them. If you do not agree, please do not use Tadriis.', s: [
+        ['1. Who we are', ['Tadriis is an online platform that helps students and parents find and arrange lessons with independent teachers of Arabic, Quran and Islamic studies, and Math.', 'Tadriis operates from the Sharjah Media City Free Zone (Shams), Sharjah, United Arab Emirates, under a licence issued by the Sharjah Media City Free Zone Authority. You can reach us at master@tadriis.com.']],
+        ['2. What Tadriis is, and is not', ['Tadriis is a facilitator. We provide the technology that lists teachers, shows their lessons and connects students and parents with them.', 'Teachers are independent professionals. They are not our employees, agents or partners. They decide what they teach and how, and they set their own rates.', 'A lesson is an agreement between the student (or parent) and the teacher. Tadriis is not a school or licensed educational institution and does not issue accredited qualifications.', 'We review teacher applications before a teacher is listed. A review is not a guarantee of quality, results or suitability, and we cannot check everything a teacher tells us. Please use your own judgement. Parents stay responsible for supervising their children.']],
+        ['3. Accounts and who can join', ['Give accurate information, keep your password safe, and tell us if you think someone else is using your account. You are responsible for what happens under your account.', 'Students of any age can learn on Tadriis. If the student is under 18, a parent or legal guardian must agree to these Terms for them and stay involved. Parents can create accounts for children aged 3 to 17.', 'Teachers must be at least 18, legally able to offer teaching services, and hold any permits or licences that UAE law or the law where they live requires.', 'Each person may have one account. We may disable accounts that break these Terms or the law.']],
+        ['4. Teachers', ['You confirm that your identity, qualifications, experience and lesson descriptions are true and that you have the right to use any photos or material you upload.', 'You work for yourself. You are responsible for your own taxes, licences, insurance, work or residence permits and for following the laws that apply to you.', 'Treat every student with respect and professionalism. Keep communication about learning, never ask a child for personal information you do not need, and tell us at once if you have a safety concern.', 'Tadriis charges a service commission of 15% of the lesson price on lessons arranged through Tadriis. The calculator in the application shows what you keep. You agree not to move lessons first arranged through Tadriis outside the platform to avoid the commission.']],
+        ['5. Lessons, prices and refunds', ['Where you book or pay for a lesson through Tadriis, the price, currency, any fees and the cancellation and refund rules are shown before you confirm.', 'Nothing in those rules limits the rights you have under UAE consumer protection law.']],
+        ['6. Recording of lessons', ['To keep lessons safe and to settle complaints, lessons held through Tadriis may be recorded. By agreeing to these Terms you consent to this, as explained in the Privacy Policy.', 'Do not record, copy or share a lesson yourself without the permission of everyone in it.']],
+        ['7. Acceptable use', ['Use Tadriis lawfully and respectfully, in line with UAE law, public order and morals, and the religious and cultural values of the UAE.', 'Do not post anything unlawful, hateful, defamatory, sexual or threatening. Do not harass anyone, pretend to be someone else, send spam, scrape the site, or try to break or bypass its security.']],
+        ['8. Content and intellectual property', ['You keep ownership of what you post. You give Tadriis a limited licence to display it on the platform so that we can run the service, for example your teacher profile, lessons and photos.', 'Tadriis, its name, logo and software belong to us. Do not copy material that belongs to someone else, including books, recitations and course content.']],
+        ['9. Our responsibility', ['We provide Tadriis as a platform. We do not guarantee any teacher’s quality or availability or any learning result, and to the extent UAE law allows we are not responsible for what teachers or students say or do, or for the content of lessons.', 'We remain responsible for our own duties as a platform operator under UAE law, including the e-commerce and consumer protection laws. That includes handling complaints and removing content or accounts that break the law or these Terms.', 'Nothing in these Terms removes or limits any right or liability that cannot be removed or limited under UAE law. Any term that tries to do so does not apply.']],
+        ['10. Complaints, removal and suspension', ['Tell us about problems or concerns at master@tadriis.com. We will look into them and reply.', 'We may remove a lesson, suspend an account or ask for more information when needed for safety, to follow the law or to enforce these Terms. We will explain why when we can.']],
+        ['11. Your data', ['How we handle personal data is explained in the Privacy Policy, which is part of these Terms.']],
+        ['12. Changes to these Terms', ['We may update these Terms. The version date at the top shows when. If a change matters to you, we will tell you, and we may ask you to agree again. Continuing to use Tadriis after a change means you accept it.']],
+        ['13. Governing law and disputes', ['These Terms are governed by the laws of the Emirate of Sharjah and the federal laws of the United Arab Emirates. Please contact us first so we can try to solve any dispute together.', 'The courts of the Emirate of Sharjah can hear disputes, without affecting any consumer right to use another forum that UAE law gives you.']]
+      ] },
+      privacy: { title: 'Privacy policy', intro: 'This policy explains what personal data Tadriis collects, why, and the choices you have. We follow UAE Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data and other applicable UAE laws.', s: [
+        ['1. Who is responsible', ['Tadriis, operating from the Sharjah Media City Free Zone (Shams), Sharjah, United Arab Emirates, decides how and why your data is used. Contact: master@tadriis.com.']],
+        ['2. What we collect', ['Account details: name, email address and a securely scrambled form of your password (we never store it in plain text), country, and optionally your phone number, a short about text and a photo.', 'For parents: your child’s name and age. For students: your age.', 'For teachers: subjects, qualifications, bio, experience, languages, rates, lessons and photos you upload, and any documents you choose to give us to support your application.', 'Messages you send us, such as support requests.', 'Technical data: IP address and sign-in records used for security and to prevent abuse.', 'Recordings of lessons held through Tadriis, where recording is used.']],
+        ['3. Why we use it', ['To create and run your account and provide the service.', 'To review teachers and keep lessons safe, including recording and settling complaints.', 'To send service emails such as your welcome message and password reset links.', 'To protect the platform and to meet legal duties.', 'Our basis is your consent, which you give by ticking the box at sign-up and can withdraw at any time, together with the need to run the service you asked for and to follow the law.']],
+        ['4. Children', ['We collect only what is needed for a child to learn on Tadriis, and only with a parent or guardian’s agreement. We do not use children’s data for advertising. We follow UAE rules on child digital safety.']],
+        ['5. Who we share it with', ['Teachers see the details students and parents give so that lessons can be arranged. Public teacher profiles never show email addresses.', 'We use trusted providers to run Tadriis: Cloudflare for hosting and security, and Hostinger for email. They may only use data to provide their service to us.', 'We share data with UAE authorities when the law requires it. We never sell personal data.']],
+        ['6. Data outside the UAE', ['Our hosting provider works across many countries, so your data may be processed outside the UAE. We choose providers that protect data and we follow the transfer rules of UAE data protection law.']],
+        ['7. How long we keep it', ['We keep your data while your account is active. When you ask us to delete your account we delete or anonymise your data, except what the law requires us to keep. Recordings are kept only as long as needed for safety and complaints.']],
+        ['8. Your rights', ['You can ask us to give you access to your data, correct it, delete it, restrict or object to how we use it, or withdraw your consent. Write to master@tadriis.com and we will reply within a reasonable time. You can edit most details yourself in your profile.', 'You may also complain to the UAE Data Office.']],
+        ['9. Security', ['We use encrypted connections, secured passwords and restricted access to protect data. No system is perfectly safe, so please use a strong password and tell us if you notice anything wrong.']],
+        ['10. Cookies', ['We use only the cookies needed to keep you signed in safely and to remember choices such as your language and light or dark mode. We do not use advertising cookies.']],
+        ['11. Changes', ['We may update this policy. The version date at the top shows when. If a change matters to you, we will tell you.']],
+        ['12. Contact', ['Questions or requests about your data: master@tadriis.com.']]
+      ] }
+    },
+    ar: {
+      updated: 'إصدار 22 نوفمبر 2026',
+      terms: { title: 'شروط الاستخدام', intro: 'تسري هذه الشروط عند استخدامك تدريس (tadriis.com وteacher.tadriis.com). بوضع علامة في المربع عند التسجيل أو باستخدامك تدريس فإنك توافق عليها. وإن لم توافق فيُرجى عدم استخدام تدريس.', s: [
+        ['1. من نحن', ['تدريس منصّة إلكترونية تساعد الطلاب وأولياء الأمور على إيجاد دروس وترتيبها مع معلّمين مستقلين في اللغة العربية والقرآن والعلوم الإسلامية والرياضيات.', 'تعمل تدريس من مدينة الشارقة للإعلام - المنطقة الحرة (شمس) في الشارقة بدولة الإمارات العربية المتحدة، بموجب رخصة صادرة عن هيئة مدينة الشارقة للإعلام - المنطقة الحرة. يمكنك مراسلتنا على master@tadriis.com.']],
+        ['2. ما هي تدريس وما ليست كذلك', ['تدريس منصّة تيسير. نوفّر التقنية التي تعرض المعلّمين ودروسهم وتصل الطلاب وأولياء الأمور بهم.', 'المعلّمون مهنيون مستقلون، وليسوا موظفين لدينا ولا وكلاء ولا شركاء. هم من يقرّر ما يدرّسونه وكيف، ويحدّدون أسعارهم بأنفسهم.', 'الدرس اتفاق بين الطالب (أو وليّ أمره) والمعلّم. تدريس ليست مدرسة ولا مؤسسة تعليمية مرخّصة ولا تصدر مؤهلات معتمدة.', 'نراجع طلبات المعلّمين قبل إدراجهم. والمراجعة ليست ضماناً للجودة أو النتائج أو الملاءمة، ولا نستطيع التحقق من كل ما يذكره المعلّم. يُرجى استخدام تقديرك الخاص، ويبقى أولياء الأمور مسؤولين عن الإشراف على أبنائهم.']],
+        ['3. الحسابات ومن يحق له الانضمام', ['قدّم معلومات صحيحة، وحافظ على كلمة مرورك، وأخبرنا إن ظننت أن أحداً يستخدم حسابك. أنت مسؤول عمّا يجري في حسابك.', 'يمكن للطلاب من أي عمر التعلّم على تدريس. وإن كان الطالب دون 18 عاماً فيجب أن يوافق وليّ أمره على هذه الشروط نيابةً عنه وأن يبقى متابعاً له. ويمكن لأولياء الأمور إنشاء حسابات للأبناء من عمر 3 إلى 17 عاماً.', 'يجب أن يكون المعلّم بعمر 18 عاماً على الأقل، ومؤهلاً قانونياً لتقديم خدمات التدريس، وحاصلاً على أي تصاريح أو تراخيص يشترطها القانون الإماراتي أو قانون بلد إقامته.', 'لكل شخص حساب واحد. ويحق لنا تعطيل الحسابات التي تخالف هذه الشروط أو القانون.']],
+        ['4. المعلّمون', ['تؤكد أن هويتك ومؤهلاتك وخبرتك ووصف دروسك صحيحة، وأن لك الحق في استخدام أي صور أو مواد ترفعها.', 'أنت تعمل لحسابك. وتتحمل مسؤولية ضرائبك وتراخيصك وتأمينك وتصاريح العمل أو الإقامة، والتزامك بالقوانين المطبّقة عليك.', 'عامل كل طالب باحترام ومهنية. اجعل التواصل في أمور التعلّم، ولا تطلب من طفل معلومات شخصية لا حاجة لها، وأبلغنا فوراً عن أي مخاوف تتعلق بالسلامة.', 'تتقاضى تدريس عمولة خدمة قدرها 15% من سعر الدرس عن الدروس التي تُرتَّب عبر تدريس. وتُظهر الحاسبة في طلب الانضمام ما ستحصل عليه. وتوافق على عدم نقل دروس بدأ ترتيبها عبر تدريس إلى خارج المنصّة لتجنّب العمولة.']],
+        ['5. الدروس والأسعار والاسترداد', ['عند حجز درس أو دفع ثمنه عبر تدريس، يُعرض السعر والعملة وأي رسوم وقواعد الإلغاء والاسترداد قبل التأكيد.', 'لا تحدّ هذه القواعد من حقوقك بموجب قانون حماية المستهلك في الإمارات.']],
+        ['6. تسجيل الدروس', ['للحفاظ على سلامة الدروس ولحل الشكاوى، قد تُسجَّل الدروس التي تُعقد عبر تدريس. وبموافقتك على هذه الشروط فإنك توافق على ذلك كما هو موضح في سياسة الخصوصية.', 'لا تسجّل الدرس ولا تنسخه ولا تشاركه بنفسك دون إذن جميع المشاركين فيه.']],
+        ['7. الاستخدام المقبول', ['استخدم تدريس بصورة قانونية ومحترمة، بما يتوافق مع القانون الإماراتي والنظام العام والآداب العامة والقيم الدينية والثقافية للدولة.', 'لا تنشر أي محتوى مخالف للقانون أو يحضّ على الكراهية أو يتضمن تشهيراً أو محتوى جنسياً أو تهديداً. ولا تضايق أحداً، ولا تنتحل شخصية غيرك، ولا ترسل رسائل مزعجة، ولا تسحب بيانات الموقع آلياً، ولا تحاول اختراق حمايته أو تجاوزها.']],
+        ['8. المحتوى والملكية الفكرية', ['تبقى ملكية ما تنشره لك. وتمنح تدريس ترخيصاً محدوداً بعرضه على المنصّة لنتمكن من تشغيل الخدمة، مثل ملفك كمعلّم ودروسك وصورك.', 'تدريس واسمها وشعارها وبرمجياتها مملوكة لنا. لا تنسخ مواد تخص غيرك، بما فيها الكتب والتلاوات والمحتوى التعليمي.']],
+        ['9. مسؤوليتنا', ['نقدّم تدريس كمنصّة. ولا نضمن جودة أي معلّم أو توفّره أو أي نتيجة تعليمية، وبالقدر الذي يسمح به القانون الإماراتي لا نتحمل مسؤولية ما يقوله المعلّمون أو الطلاب أو يفعلونه، ولا محتوى الدروس.', 'ونبقى مسؤولين عن واجباتنا كمشغّل منصّة بموجب القانون الإماراتي، ومنها قوانين التجارة الإلكترونية وحماية المستهلك. ويشمل ذلك معالجة الشكاوى وإزالة المحتوى أو الحسابات المخالفة للقانون أو لهذه الشروط.', 'لا يلغي شيء في هذه الشروط أو يحدّ من أي حق أو مسؤولية لا يجوز إلغاؤها أو الحد منها بموجب القانون الإماراتي، وأي بند يحاول ذلك لا يسري.']],
+        ['10. الشكاوى والإزالة والإيقاف', ['أخبرنا بأي مشكلة أو مخاوف على master@tadriis.com. سننظر فيها ونرد عليك.', 'يجوز لنا إزالة درس أو إيقاف حساب أو طلب معلومات إضافية عند الحاجة للسلامة أو لالتزام القانون أو لتطبيق هذه الشروط، وسنوضح السبب متى أمكن.']],
+        ['11. بياناتك', ['تشرح سياسة الخصوصية كيف نتعامل مع البيانات الشخصية، وهي جزء من هذه الشروط.']],
+        ['12. تغيير هذه الشروط', ['قد نحدّث هذه الشروط، ويبيّن تاريخ الإصدار في الأعلى وقت ذلك. وإن كان التغيير مهماً لك فسنخبرك وقد نطلب موافقتك من جديد. واستمرارك في استخدام تدريس بعد التغيير يعني قبولك له.']],
+        ['13. القانون الحاكم وحل النزاعات', ['تخضع هذه الشروط لقوانين إمارة الشارقة والقوانين الاتحادية لدولة الإمارات العربية المتحدة. يُرجى التواصل معنا أولاً لنحاول حل أي خلاف معاً.', 'تختص محاكم إمارة الشارقة بنظر النزاعات، دون المساس بأي حق للمستهلك في اللجوء إلى جهة أخرى يكفلها له القانون الإماراتي.']]
+      ] },
+      privacy: { title: 'سياسة الخصوصية', intro: 'توضح هذه السياسة البيانات الشخصية التي تجمعها تدريس ولماذا، وخياراتك بشأنها. نلتزم بالمرسوم بقانون اتحادي رقم 45 لسنة 2021 في شأن حماية البيانات الشخصية وغيره من القوانين الإماراتية المطبّقة.', s: [
+        ['1. الجهة المسؤولة', ['تدريس، وتعمل من مدينة الشارقة للإعلام - المنطقة الحرة (شمس) في الشارقة بدولة الإمارات العربية المتحدة، هي من يحدّد كيف ولماذا تُستخدم بياناتك. للتواصل: master@tadriis.com.']],
+        ['2. ما الذي نجمعه', ['بيانات الحساب: الاسم والبريد الإلكتروني وصيغة مشفّرة من كلمة المرور (لا نحفظها نصاً صريحاً)، والدولة، واختيارياً رقم الهاتف ونبذة قصيرة وصورة.', 'لأولياء الأمور: اسم الطفل وعمره. وللطلاب: العمر.', 'للمعلّمين: المواد والمؤهلات والنبذة والخبرة واللغات والأسعار والدروس والصور التي ترفعها وأي مستندات تختار تقديمها لدعم طلبك.', 'الرسائل التي ترسلها إلينا، مثل طلبات الدعم.', 'بيانات تقنية: عنوان IP وسجلات الدخول لأغراض الأمان ومنع إساءة الاستخدام.', 'تسجيلات الدروس التي تُعقد عبر تدريس حيثما استُخدم التسجيل.']],
+        ['3. لماذا نستخدمها', ['لإنشاء حسابك وتشغيله وتقديم الخدمة.', 'لمراجعة المعلّمين والحفاظ على سلامة الدروس، بما في ذلك التسجيل وحل الشكاوى.', 'لإرسال رسائل الخدمة مثل رسالة الترحيب وروابط إعادة تعيين كلمة المرور.', 'لحماية المنصّة والوفاء بالتزاماتنا القانونية.', 'أساسنا هو موافقتك التي تمنحها بوضع علامة في المربع عند التسجيل ويمكنك سحبها في أي وقت، إضافة إلى ضرورة تشغيل الخدمة التي طلبتها والالتزام بالقانون.']],
+        ['4. الأطفال', ['نجمع فقط ما يلزم لتعلّم الطفل على تدريس، وبموافقة أحد الوالدين أو الوصي فقط. ولا نستخدم بيانات الأطفال للإعلانات. ونلتزم بالقواعد الإماراتية للسلامة الرقمية للأطفال.']],
+        ['5. مع من نشاركها', ['يطّلع المعلّمون على البيانات التي يقدّمها الطلاب وأولياء الأمور لترتيب الدروس. ولا تُظهر ملفات المعلّمين العامة عناوين البريد الإلكتروني.', 'نستعين بمزوّدين موثوقين لتشغيل تدريس: Cloudflare للاستضافة والحماية، وHostinger للبريد الإلكتروني. ولا يجوز لهم استخدام البيانات إلا لتقديم خدمتهم لنا.', 'نشارك البيانات مع الجهات الرسمية في الإمارات عندما يوجب القانون ذلك. ولا نبيع البيانات الشخصية أبداً.']],
+        ['6. البيانات خارج الإمارات', ['يعمل مزوّد الاستضافة لدينا في دول عدة، لذا قد تُعالَج بياناتك خارج الإمارات. نختار مزوّدين يحمون البيانات، ونلتزم بقواعد نقل البيانات في قانون حماية البيانات الإماراتي.']],
+        ['7. مدة الاحتفاظ', ['نحتفظ ببياناتك ما دام حسابك نشطاً. وعند طلبك حذف حسابك نحذف بياناتك أو نجعلها مجهولة الهوية، باستثناء ما يوجب القانون الاحتفاظ به. وتُحفظ التسجيلات فقط للمدة اللازمة للسلامة والشكاوى.']],
+        ['8. حقوقك', ['يمكنك أن تطلب الاطلاع على بياناتك أو تصحيحها أو حذفها أو تقييد استخدامنا لها أو الاعتراض عليه أو سحب موافقتك. راسلنا على master@tadriis.com وسنرد خلال مدة معقولة. ويمكنك تعديل معظم بياناتك بنفسك من ملفك الشخصي.', 'ويحق لك أيضاً تقديم شكوى إلى مكتب الإمارات للبيانات.']],
+        ['9. الأمان', ['نستخدم اتصالات مشفّرة وكلمات مرور محمية وصلاحيات وصول محدودة لحماية البيانات. لا يوجد نظام آمن تماماً، فاستخدم كلمة مرور قوية وأخبرنا إن لاحظت أي خلل.']],
+        ['10. ملفات تعريف الارتباط', ['نستخدم فقط ملفات تعريف الارتباط اللازمة لإبقائك مسجّلاً بأمان ولتذكّر خياراتك مثل اللغة والوضع الفاتح أو الداكن. ولا نستخدم ملفات إعلانية.']],
+        ['11. التغييرات', ['قد نحدّث هذه السياسة، ويبيّن تاريخ الإصدار في الأعلى وقت ذلك. وإن كان التغيير مهماً لك فسنخبرك.']],
+        ['12. التواصل', ['للأسئلة أو الطلبات المتعلقة ببياناتك: master@tadriis.com.']]
+      ] }
+    }
+  };
+  function viewLegal(k) {
+    var L = LEGAL[state.lang] || LEGAL.en, d = L[k] || L.terms, other = k === 'terms' ? 'privacy' : 'terms';
+    return '<article class="legal"><h1 class="q">' + esc(d.title) + '</h1><p class="note">' + esc(L.updated) + '</p><p class="lead">' + esc(d.intro) + '</p>'
+      + d.s.map(function (x) { return '<h2>' + esc(x[0]) + '</h2>' + x[1].map(function (p) { return '<p>' + esc(p) + '</p>'; }).join(''); }).join('')
+      + '<p class="note"><a href="#' + other + '">' + esc(S()[other]) + '</a></p></article>';
+  }
+  function agreeHtml() {
+    var s = S();
+    return esc(s.agreePre) + '<a href="#terms" target="_blank" rel="noopener">' + esc(s.terms) + '</a> ' + esc(s.agreeAnd) + ' <a href="#privacy" target="_blank" rel="noopener">' + esc(s.privacy) + '</a>' + esc(s.agreePost);
+  }
+
   function route() {
     var h = (location.hash || '').replace(/^#/, ''), m;
     if (!h || h === 'home') return { v: 'home' };
@@ -1364,6 +1444,7 @@ textarea.input{font-family:inherit}
     if ((m = h.match(/^teacher-([a-z0-9]+)$/))) { if (teacher(m[1])) return { v: 'teacher', t: teacher(m[1]) }; return tState === 'loading' ? { v: 'loading' } : { v: 'home' }; }
     if ((m = h.match(/^reset=([A-Za-z0-9_-]{20,100})$/))) return { v: 'reset', token: m[1] };
     if (h === 'reset-done' && state.rs.done) return { v: 'reset' };
+    if (h === 'terms' || h === 'privacy') return { v: 'legal', k: h };
     if (h === 'signup' || h === 'login' || h === 'teach' || h === 'profile') return { v: h };
     if (h === 'apply' || h === 'join') return { v: 'teach', scroll: h };
     return { v: 'home' };
@@ -1380,6 +1461,7 @@ textarea.input{font-family:inherit}
     else if (r.v === 'login') html = viewLogin();
     else if (r.v === 'reset') html = viewReset();
     else if (r.v === 'profile') html = viewProfile();
+    else if (r.v === 'legal') html = viewLegal(r.k);
     else if (r.v === 'loading') html = '<p class="empty">' + esc(S().loadingT) + '</p>';
     else html = viewTeach();
     app.className = 'container' + (!keep && r.v !== 'home' ? ' enter' : '');
@@ -1474,7 +1556,7 @@ textarea.input{font-family:inherit}
     else { su.agree = document.getElementById('suAgree').checked; if (!setErr('suAgree', su.agree ? '' : s.errAgree)) return document.getElementById('suAgree').focus(); }
     if (su.step < steps.length - 1) { su.step++; render(); return; }
     var btn = document.querySelector('#suForm button[type=submit]'); if (btn) btn.disabled = true;
-    api('POST', '/api/signup', { name: d.name, email: d.email, password: su.pw, role: su.parent ? 'parent' : 'student', country: su.country || s.countries[0], childName: su.parent ? d.child : '', childAge: su.parent ? su.age : '', lang: state.lang }).then(function (j) {
+    api('POST', '/api/signup', { name: d.name, email: d.email, password: su.pw, role: su.parent ? 'parent' : 'student', country: su.country || s.countries[0], childName: su.parent ? d.child : '', childAge: su.parent ? su.age : '', lang: state.lang, agreedTerms: true }).then(function (j) {
       state.me = j.user; state.user = firstName(j.user.name); su.pw = ''; su.done = true; render();
     }).catch(function (e) { if (btn) btn.disabled = false; setErr('suAgree', apiMsg(e)); });
   }
@@ -1505,7 +1587,7 @@ textarea.input{font-family:inherit}
     var base = lens.indexOf(60) !== -1 ? 60 : lens[0], rate = Math.round(parseFloat(r[base].p) * 60 / base);
     var subj = KEYS.filter(function (k) { return d.subjects[k]; });
     var body = { subjects: subj, offers: d.subjects, lengths: lens, rate: rate, currency: 'USD', country: d.country, langs: d.langs || '', years: d.years || 0, bio: (d.bio || '').trim(), qualifications: (d.quals || '').trim(), levels: subjLines().join('; ').slice(0, 300) };
-    if (!state.me) { body.lang = state.lang; body.name = (d.name || '').trim(); body.email = (d.email || '').trim(); body.password = d.pw || ''; body.role = 'teacher'; }
+    if (!state.me) { body.agreedTerms = true; body.lang = state.lang; body.name = (d.name || '').trim(); body.email = (d.email || '').trim(); body.password = d.pw || ''; body.role = 'teacher'; }
     return body;
   }
   function submitWiz() {
@@ -1519,7 +1601,7 @@ textarea.input{font-family:inherit}
       chk('wBio', (d.bio || '').trim().length >= 40, s.errBio);
       chk('wSubj', KEYS.some(function (k) { return d.subjects[k] && d.subjects[k].length; }), s.errSubject);
     } else if (w.step === 1) chk('wQual', (d.quals || '').trim().length >= 10, s.errQual);
-    else chk('wRate', [30, 45, 60, 90].some(function (len) { return d.rates[len].on && parseFloat(d.rates[len].p) > 0; }), s.errRate);
+    else { chk('wRate', [30, 45, 60, 90].some(function (len) { return d.rates[len].on && parseFloat(d.rates[len].p) > 0; }), s.errRate); chk('wAgree', !!d.agree, s.errAgree); }
     if (!ok) { var el = document.getElementById(first); if (el && el.focus) el.focus(); return; }
     if (w.step < 2) { w.step++; render(true); var a = document.getElementById('apply'); if (a) a.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
     var btn = document.querySelector('#wizForm button[type=submit]'); if (btn) { btn.disabled = true; btn.textContent = s.wSubmitting; }
@@ -1720,6 +1802,7 @@ textarea.input{font-family:inherit}
     var t = e.target, d = state.wiz.data;
     if (t.id === 'suParent') { state.su.parent = t.checked; render(true); var n = document.getElementById('suParent'); if (n) n.focus(); return; }
     if (t.id === 'suAgree') { state.su.agree = t.checked; return; }
+    if (t.id === 'wAgree') { state.wiz.data.agree = t.checked; return; }
     if (t.hasAttribute('data-subj')) { var k = t.getAttribute('data-subj'); if (t.checked) d.subjects[k] = []; else delete d.subjects[k]; render(true); return; }
     if (t.hasAttribute('data-sub')) {
       var k2 = t.getAttribute('data-sub'), arr = d.subjects[k2] || (d.subjects[k2] = []), v = t.value, ix = arr.indexOf(v);
