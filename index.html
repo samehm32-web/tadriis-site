@@ -562,7 +562,7 @@ textarea.input{font-family:inherit}
       suDone: 'Account created', suDoneText: 'Welcome to Tadriis, {name}.', demo: '',
       findTeacher: 'Find a teacher', backTo: 'Back to {name}',
       liH: 'Welcome back', liSub: 'Log in to see your lessons and messages.', forgot: 'Forgot password?', liBtn: 'Log in',
-      liDone: 'You’re logged in', forgotMsg: 'Request sent. Our team will email you a link to reset your password.',
+      liDone: 'You’re logged in', forgotMsg: 'If there is an account for that email, we have just sent a link to reset your password. Check your inbox and spam folder.',
       tH: 'Teach on Tadriis. Keep 85% of every lesson.',
       tSub: 'Set your own rates, lesson lengths and packages. Students find you; we handle bookings, payments and the classroom.',
       tApply: 'Start your application', tHow: 'How to join',
@@ -640,7 +640,7 @@ textarea.input{font-family:inherit}
       suDone: 'تم إنشاء الحساب', suDoneText: 'أهلاً بك في تدريس يا {name}.', demo: '',
       findTeacher: 'ابحث عن معلّم', backTo: 'العودة إلى {name}',
       liH: 'مرحباً بعودتك', liSub: 'سجّل الدخول لرؤية دروسك ورسائلك.', forgot: 'نسيت كلمة المرور؟', liBtn: 'تسجيل الدخول',
-      liDone: 'تم تسجيل الدخول', forgotMsg: 'تم إرسال الطلب. سيراسلك فريقنا برابط لإعادة تعيين كلمة المرور.',
+      liDone: 'تم تسجيل الدخول', forgotMsg: 'إذا كان هناك حساب بهذا البريد، فقد أرسلنا إليه رابطًا لإعادة تعيين كلمة المرور. تحقق من البريد الوارد ومجلد الرسائل غير المرغوب فيها.',
       tH: 'علّم على تدريس واحتفظ بـ85% من كل درس.',
       tSub: 'حدّد أسعارك ومدة دروسك وباقاتك. يجدك الطلاب، ونتولّى نحن الحجوزات والمدفوعات والفصل الدراسي.',
       tApply: 'ابدأ طلبك', tHow: 'خطوات الانضمام',
@@ -1474,7 +1474,7 @@ textarea.input{font-family:inherit}
     else { su.agree = document.getElementById('suAgree').checked; if (!setErr('suAgree', su.agree ? '' : s.errAgree)) return document.getElementById('suAgree').focus(); }
     if (su.step < steps.length - 1) { su.step++; render(); return; }
     var btn = document.querySelector('#suForm button[type=submit]'); if (btn) btn.disabled = true;
-    api('POST', '/api/signup', { name: d.name, email: d.email, password: su.pw, role: su.parent ? 'parent' : 'student', country: su.country || s.countries[0], childName: su.parent ? d.child : '', childAge: su.parent ? su.age : '' }).then(function (j) {
+    api('POST', '/api/signup', { name: d.name, email: d.email, password: su.pw, role: su.parent ? 'parent' : 'student', country: su.country || s.countries[0], childName: su.parent ? d.child : '', childAge: su.parent ? su.age : '', lang: state.lang }).then(function (j) {
       state.me = j.user; state.user = firstName(j.user.name); su.pw = ''; su.done = true; render();
     }).catch(function (e) { if (btn) btn.disabled = false; setErr('suAgree', apiMsg(e)); });
   }
@@ -1505,7 +1505,7 @@ textarea.input{font-family:inherit}
     var base = lens.indexOf(60) !== -1 ? 60 : lens[0], rate = Math.round(parseFloat(r[base].p) * 60 / base);
     var subj = KEYS.filter(function (k) { return d.subjects[k]; });
     var body = { subjects: subj, offers: d.subjects, lengths: lens, rate: rate, currency: 'USD', country: d.country, langs: d.langs || '', years: d.years || 0, bio: (d.bio || '').trim(), qualifications: (d.quals || '').trim(), levels: subjLines().join('; ').slice(0, 300) };
-    if (!state.me) { body.name = (d.name || '').trim(); body.email = (d.email || '').trim(); body.password = d.pw || ''; body.role = 'teacher'; }
+    if (!state.me) { body.lang = state.lang; body.name = (d.name || '').trim(); body.email = (d.email || '').trim(); body.password = d.pw || ''; body.role = 'teacher'; }
     return body;
   }
   function submitWiz() {
@@ -1657,7 +1657,7 @@ textarea.input{font-family:inherit}
     else if (act === 'forgot') {
       var em = val('liEmail'), fm = document.getElementById('forgotMsg');
       if (!EMAIL.test(em)) { setErr('liEmail', S().forgotNeedEmail); document.getElementById('liEmail').focus(); return; }
-      api('POST', '/api/support/request', { email: em, kind: 'password' }).then(function () { state.li.forgot = true; if (fm) { fm.textContent = S().forgotMsg; fm.hidden = false; } })
+      api('POST', '/api/forgot', { email: em, lang: state.lang }).then(function () { state.li.forgot = true; if (fm) { fm.textContent = S().forgotMsg; fm.hidden = false; } })
         .catch(function (x) { if (fm) { fm.textContent = apiMsg(x); fm.hidden = false; } });
     }
     else if (act === 'menuLink') { setMenu(false); }
