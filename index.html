@@ -834,6 +834,10 @@ textarea.input{font-family:inherit}
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function f(str, o) { return String(str).replace(/\{(\w+)\}/g, function (m, k) { return o[k] != null ? o[k] : m; }); }
   function usd(n) { return '$' + n; }
+  function rt() { return state.rates[shownCur()] || 1; }
+  function curSym() { return shownCur() === 'USD' ? '$' : shownCur(); }
+  function fmtC(n) { var c = shownCur(), v = typeof n === 'number' ? n.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-US') : n; return c === 'USD' ? '$' + v : c + ' ' + v; }
+  function localPrice(u) { return Math.max(1, Math.round(u * rt())); }
   var COUNTRY_CUR = {}; 'AE:AED SA:SAR QA:QAR KW:KWD BH:BHD OM:OMR EG:EGP JO:JOD LB:LBP IQ:IQD SY:SYP YE:YER PS:ILS IL:ILS TR:TRY IR:IRR AF:AFN PK:PKR IN:INR BD:BDT LK:LKR NP:NPR MV:MVR ID:IDR MY:MYR SG:SGD TH:THB VN:VND PH:PHP KH:KHR LA:LAK MM:MMK BN:BND CN:CNY HK:HKD MO:MOP TW:TWD JP:JPY KR:KRW MN:MNT KZ:KZT UZ:UZS KG:KGS TJ:TJS TM:TMT AZ:AZN AM:AMD GE:GEL RU:RUB UA:UAH BY:BYN MD:MDL RO:RON BG:BGN RS:RSD BA:BAM HR:EUR SI:EUR SK:EUR CZ:CZK PL:PLN HU:HUF AL:ALL MK:MKD ME:EUR XK:EUR GR:EUR CY:EUR MT:EUR IT:EUR ES:EUR PT:EUR FR:EUR DE:EUR NL:EUR BE:EUR LU:EUR AT:EUR IE:EUR FI:EUR EE:EUR LV:EUR LT:EUR GB:GBP CH:CHF LI:CHF NO:NOK SE:SEK DK:DKK IS:ISK US:USD CA:CAD MX:MXN GT:GTQ BZ:BZD SV:USD HN:HNL NI:NIO CR:CRC PA:PAB CU:CUP JM:JMD HT:HTG DO:DOP TT:TTD BB:BBD BS:BSD CO:COP VE:VES EC:USD PE:PEN BO:BOB BR:BRL PY:PYG UY:UYU AR:ARS CL:CLP GY:GYD SR:SRD AU:AUD NZ:NZD FJ:FJD PG:PGK WS:WST TO:TOP VU:VUV SB:SBD MA:MAD DZ:DZD TN:TND LY:LYD SD:SDG SS:SSP MR:MRU SN:XOF ML:XOF NE:XOF BF:XOF CI:XOF TG:XOF BJ:XOF GW:XOF GM:GMD GN:GNF SL:SLE LR:LRD GH:GHS NG:NGN CM:XAF TD:XAF CF:XAF CG:XAF GA:XAF GQ:XAF CD:CDF AO:AOA ZM:ZMW ZW:ZWL MZ:MZN MW:MWK TZ:TZS KE:KES UG:UGX RW:RWF BI:BIF ET:ETB ER:ERN DJ:DJF SO:SOS MG:MGA MU:MUR SC:SCR KM:KMF ZA:ZAR NA:NAD BW:BWP LS:LSL SZ:SZL CV:CVE'.split(' ').forEach(function (x) { var p = x.split(':'); COUNTRY_CUR[p[0]] = p[1]; });
   var PIN = ['AE', 'SA', 'QA', 'KW', 'BH', 'OM', 'EG', 'JO'];
   function shownCur() { return state.rates[state.cur] ? state.cur : 'USD'; }
@@ -851,7 +855,12 @@ textarea.input{font-family:inherit}
     for (var k in map) if (tz.indexOf(k) !== -1) return map[k];
     return 'US';
   }
-  function setCountry(c) { state.country = c; state.cur = COUNTRY_CUR[c] || 'USD'; }
+  function setCountry(c) {
+    var old = shownCur(), oldRate = state.rates[old] || 1;
+    state.country = c; state.cur = COUNTRY_CUR[c] || 'USD';
+    var nr = state.rates[shownCur()] || 1;
+    try { var rs = state.wiz && state.wiz.data && state.wiz.data.rates; if (rs && old !== shownCur()) [30, 45, 60, 90].forEach(function (len) { var v = parseFloat(rs[len].p); if (v > 0) rs[len].p = String(Math.max(1, Math.round(v / oldRate * nr))); }); } catch (e) {}
+  }
   function buildPicker() {
     var btn = document.getElementById('ctryBtn'), code = document.getElementById('curCode'); if (!btn) return;
     code.textContent = shownCur(); btn.setAttribute('aria-label', S().ctryLabel + ': ' + countryName(state.country) + ' (' + shownCur() + ')');
@@ -1150,7 +1159,7 @@ textarea.input{font-family:inherit}
   var RAW = [];
   function rebuildTeachers() { TEACHERS.length = 0; RAW.forEach(function (a) { toTeachers(a).forEach(function (t) { TEACHERS.push(t); }); }); }
   function loadTeachers() {
-    api('GET', '/api/rates').then(function (r) { if (r && r.rates) { Object.keys(r.rates).forEach(function (k) { state.rates[k] = r.rates[k]; }); if (RAW.length) { rebuildTeachers(); buildPicker(); refreshBrowse(); } } }).catch(function () {});
+    api('GET', '/api/rates').then(function (r) { if (r && r.rates) { Object.keys(r.rates).forEach(function (k) { state.rates[k] = r.rates[k]; }); if (RAW.length) rebuildTeachers(); buildPicker(); if (route().v === 'teach' && !state.wiz.data.rates[60].p) render(true); else refreshBrowse(); } }).catch(function () {});
     api('GET', '/api/teachers').then(function (j) {
       RAW = j.teachers; rebuildTeachers();
       tState = 'ready'; refreshBrowse();
@@ -1344,11 +1353,11 @@ textarea.input{font-family:inherit}
   }
   function rateSummary() {
     var s = S(), r = state.wiz.data.rates;
-    return [30, 45, 60, 90].filter(function (len) { return r[len].on && parseFloat(r[len].p) > 0; }).map(function (len) { return len + ' ' + s.min + ': ' + usd(r[len].p); }).join(', ');
+    return [30, 45, 60, 90].filter(function (len) { return r[len].on && parseFloat(r[len].p) > 0; }).map(function (len) { return len + ' ' + s.min + ': ' + fmtC(r[len].p); }).join(', ');
   }
   function previewPrice() {
     var r = state.wiz.data.rates[60], p = parseFloat(r.p);
-    return r.on && isFinite(p) && p > 0 ? p : state.price;
+    return r.on && isFinite(p) && p > 0 ? p : localPrice(state.price);
   }
   function previewCard() {
     var s = S(), d = state.wiz.data, name = d.name || s.yourName, bio = (d.bio || '').trim();
@@ -1356,7 +1365,7 @@ textarea.input{font-family:inherit}
     var lines = subjLines().concat(d.langs ? [d.langs] : []);
     return '<div class="pcard"><div class="who">' + orb(name, 'all', 92, ' id="pvOrb"') + '<div><div class="nm" id="pvName">' + esc(name) + '</div><div class="hl" id="pvHead">' + esc(head) + '</div></div></div>'
       + '<div class="tags" id="pvTags">' + (lines.length ? lines.map(esc).join('<br>') : '&nbsp;') + '</div>'
-      + '<div class="pr"><span>' + esc(s.perHour) + '</span><b id="pvPrice">' + usd(previewPrice()) + '</b></div>'
+      + '<div class="pr"><span>' + esc(s.perHour) + '</span><b id="pvPrice">' + fmtC(previewPrice()) + '</b></div>'
       + '<div class="status"><i></i>' + esc(s.statusReview) + '</div></div>';
   }
   function updatePreview() {
@@ -1366,15 +1375,14 @@ textarea.input{font-family:inherit}
     document.getElementById('pvHead').textContent = bio ? (bio.length > 90 ? bio.slice(0, 87) + '…' : bio) : s.headlinePh;
     var lines = subjLines().concat(d.langs ? [d.langs] : []);
     document.getElementById('pvTags').innerHTML = lines.length ? lines.map(esc).join('<br>') : '&nbsp;';
-    document.getElementById('pvPrice').textContent = usd(previewPrice());
+    document.getElementById('pvPrice').textContent = fmtC(previewPrice());
     document.getElementById('pvOrb').style.setProperty('--g', orbGrad(name, 'all'));
   }
   function updateCalc() {
-    var pr = state.price, you = pr * 0.85, mon = you * state.perWeek * 4;
+    var pr = localPrice(state.price), you = pr * 0.85, mon = you * state.perWeek * 4;
     var set = function (id, v) { var e = document.getElementById(id); if (e) e.textContent = v; };
-    set('prV', usd(pr)); set('youV', f(S().youReceive, { p: usd(you.toFixed(2)) })); set('monV', f(S().monthly, { p: usd(Math.round(mon).toLocaleString('en-US')) }));
-    set('youV2', f(S().youReceive, { p: usd(you.toFixed(2)) })); set('wkV', String(state.perWeek)); set('feeV', usd((pr * 0.15).toFixed(2)));
-    var r = document.getElementById('prR'); if (r) r.style.setProperty('--p', ((pr - 5) / 55 * 100) + '%');
+    set('prV', fmtC(pr)); set('youV', f(S().youReceive, { p: fmtC(+you.toFixed(2)) })); set('monV', f(S().monthly, { p: fmtC(Math.round(mon)) }));
+    set('youV2', f(S().youReceive, { p: fmtC(+you.toFixed(2)) })); set('wkV', String(state.perWeek)); set('feeV', fmtC(+(pr * 0.15).toFixed(2)));
     var w = document.getElementById('wkR'); if (w) w.style.setProperty('--p', ((state.perWeek - 1) / 29 * 100) + '%');
   }
 
@@ -1415,12 +1423,12 @@ textarea.input{font-family:inherit}
         html += '<div class="field"><label for="wQual">' + esc(s.wQual) + '</label><textarea class="input" id="wQual" data-w="quals" placeholder="' + esc(s.wQualPh) + '">' + esc(d.quals || '') + '</textarea><span class="err" id="wQual-e" hidden></span></div>'
           + '<div class="field" style="max-width:260px"><label for="wYears">' + esc(s.wYears) + '</label><input class="input" id="wYears" data-w="years" type="number" min="0" max="60" inputmode="numeric" value="' + esc(d.years || '') + '"></div><p class="note">' + esc(s.wPrivacy) + '</p>';
       } else {
-        if (d.rates[60].on && d.rates[60].p === '') d.rates[60].p = String(state.price);
+        if (d.rates[60].on && d.rates[60].p === '') d.rates[60].p = String(localPrice(state.price));
         html += '<div class="field"><span class="lbl">' + esc(s.wLengths) + '</span><span class="note">' + esc(s.wLengthsHint) + '</span></div><div class="rates">'
           + [30, 45, 60, 90].map(function (len) {
-            var r = d.rates[len], p = parseFloat(r.p), you = isFinite(p) && p > 0 ? usd((p * 0.85).toFixed(2)) : '—';
+            var r = d.rates[len], p = parseFloat(r.p), you = isFinite(p) && p > 0 ? fmtC(+(p * 0.85).toFixed(2)) : '—';
             return '<div class="rate"><label class="top"><input class="cb" type="checkbox" data-len="' + len + '"' + (r.on ? ' checked' : '') + '>' + len + ' ' + esc(s.min) + '</label>'
-              + '<div class="money"><span aria-hidden="true">$</span><input class="input" type="number" min="1" step="1" inputmode="decimal" data-price="' + len + '" aria-label="' + len + ' ' + esc(s.min) + '" value="' + esc(r.p) + '"' + (r.on ? '' : ' disabled') + '></div>'
+              + '<div class="money"><span aria-hidden="true">' + esc(curSym()) + '</span><input class="input" type="number" min="1" step="1" inputmode="decimal" data-price="' + len + '" aria-label="' + len + ' ' + esc(s.min) + '" value="' + esc(r.p) + '"' + (r.on ? '' : ' disabled') + '></div>'
               + '<span class="you-get" data-you="' + len + '">' + esc(f(s.wYouGet, { p: you })) + '</span></div>';
           }).join('') + '</div><span class="err" id="wRate-e" hidden></span>'
           + '<label class="check-row"><input type="checkbox" id="wPkg"' + (d.pkg ? ' checked' : '') + '><span><strong style="color:var(--text)">' + esc(s.wPkg) + '</strong><br>' + esc(s.wPkgHint) + '</span></label>'
@@ -1702,7 +1710,7 @@ textarea.input{font-family:inherit}
     var d = state.wiz.data, r = d.rates, lens = [30, 45, 60, 90].filter(function (len) { return r[len].on && parseFloat(r[len].p) > 0; });
     var base = lens.indexOf(60) !== -1 ? 60 : lens[0], rate = Math.round(parseFloat(r[base].p) * 60 / base);
     var subj = KEYS.filter(function (k) { return d.subjects[k]; });
-    var body = { subjects: subj, offers: d.subjects, lengths: lens, rate: rate, currency: 'USD', country: d.country, langs: d.langs || '', years: d.years || 0, bio: (d.bio || '').trim(), qualifications: (d.quals || '').trim(), levels: subjLines().join('; ').slice(0, 300) };
+    var body = { subjects: subj, offers: d.subjects, lengths: lens, rate: rate, currency: shownCur(), country: d.country, langs: d.langs || '', years: d.years || 0, bio: (d.bio || '').trim(), qualifications: (d.quals || '').trim(), levels: subjLines().join('; ').slice(0, 300) };
     if (!state.me) { body.agreedTerms = true; body.lang = state.lang; body.name = (d.name || '').trim(); body.email = (d.email || '').trim(); body.password = d.pw || ''; body.role = 'teacher'; }
     return body;
   }
@@ -1927,7 +1935,7 @@ textarea.input{font-family:inherit}
     }
     if (t.hasAttribute('data-len')) {
       var len = t.getAttribute('data-len'); d.rates[len].on = t.checked;
-      var p = document.querySelector('[data-price="' + len + '"]'); if (p) { p.disabled = !t.checked; if (t.checked) { if (!p.value) { p.value = String(state.price); d.rates[len].p = p.value; } p.focus(); } }
+      var p = document.querySelector('[data-price="' + len + '"]'); if (p) { p.disabled = !t.checked; if (t.checked) { if (!p.value) { p.value = String(localPrice(state.price)); d.rates[len].p = p.value; } p.focus(); } }
       updatePreview(); return;
     }
     if (t.id === 'wPkg') { var ds = document.getElementById('wDisc'); if (ds) ds.disabled = !t.checked; return; }
@@ -1948,7 +1956,7 @@ textarea.input{font-family:inherit}
     if (t.hasAttribute('data-price')) {
       var len = t.getAttribute('data-price'), d = state.wiz.data; d.rates[len].p = t.value;
       var p = parseFloat(t.value), you = document.querySelector('[data-you="' + len + '"]');
-      if (you) you.textContent = f(S().wYouGet, { p: isFinite(p) && p > 0 ? usd((p * 0.85).toFixed(2)) : '—' });
+      if (you) you.textContent = f(S().wYouGet, { p: isFinite(p) && p > 0 ? fmtC(+(p * 0.85).toFixed(2)) : '—' });
       updatePreview();
     }
     if (t.id === 'prR') { state.price = Number(t.value); updateCalc(); updatePreview(); }
