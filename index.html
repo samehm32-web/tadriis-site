@@ -607,6 +607,29 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   nav.top:has(.brand.min:hover) .nav-links #acct .nav-link{max-width:0;opacity:0;padding-inline:0}
   nav.top{overflow:hidden}
 }
+
+.nav-links .sh{display:none}
+@media (max-width:640px){
+  .nav-links .lg{display:none}.nav-links .sh{display:inline}
+  html[dir="rtl"] nav.top{flex-direction:row}
+  html[dir="rtl"] .nav-links{flex-direction:row;justify-content:flex-start}
+}
+
+/* Arabic and spacing rhythm */
+[dir="rtl"] body{line-height:1.75}
+[dir="rtl"] .disp,[dir="rtl"] .d,[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] .v{letter-spacing:0}
+[dir="rtl"] .btn,[dir="rtl"] .input,[dir="rtl"] .search button{line-height:1.4}
+[dir="rtl"] .lead,[dir="rtl"] .sub,[dir="rtl"] .desc{text-wrap:pretty}
+@media (max-width:640px){
+  main{gap:22px;padding-block:12px 40px}
+  .search-msg{min-height:0}
+  .search-wrap{gap:6px}
+  .trust{margin:6px auto 4px}
+  .hero{gap:10px}
+  .teach-top{gap:28px}
+  .legal h2,.contact h2{margin-top:28px}
+  .legal h3,.contact h3,.contact dt{margin-top:18px}
+}
 </style>
 </head>
 <body>
@@ -1716,7 +1739,7 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
     document.title = s.title;
     document.querySelectorAll('[data-t]').forEach(function (el) { var v = s[el.getAttribute('data-t')]; if (v != null) el.textContent = v; });
     buildPicker();
-    var lb = document.getElementById('langBtn'); lb.textContent = s.otherLang; lb.lang = s.otherLangCode;
+    var lb = document.getElementById('langBtn'); lb.innerHTML = '<span class="lg">' + esc(s.otherLang) + '</span><span class="sh">' + (state.lang === 'ar' ? 'EN' : 'ع') + '</span>'; lb.lang = s.otherLangCode;
     var tb = document.getElementById('themeBtn'); tb.innerHTML = state.theme === 'dark' ? ICON.sun : ICON.moon; tb.setAttribute('aria-label', state.theme === 'dark' ? s.toLight : s.toDark);
     document.getElementById('nav').setAttribute('aria-label', s.navMain);
     var acct = document.getElementById('acct');
@@ -1727,7 +1750,7 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
         + '<a class="mi" role="menuitem" href="#profile" data-act="menuLink">' + ICON.user + '<span>' + esc(s.viewProfile) + '</span></a>'
         + '<button type="button" class="mi" role="menuitem" data-act="logout">' + ICON.out + '<span>' + esc(s.logout) + '</span></button></div></div>';
     }
-    else acct.innerHTML = '<a href="#login" class="nav-link">' + esc(s.login) + '</a><a href="#signup" class="signup">' + esc(s.signup) + '</a>';
+    else acct.innerHTML = '<a href="#login" class="nav-link"><span class="lg">' + esc(s.login) + '</span><span class="sh">' + (state.lang === 'ar' ? 'دخول' : esc(s.login)) + '</span></a><a href="#signup" class="signup"><span class="lg">' + esc(s.signup) + '</span><span class="sh">' + (state.lang === 'ar' ? 'انضم' : esc(s.signup)) + '</span></a>';
   }
   function avatarEl(u, cls) {
     var c = 'av' + (cls ? ' ' + cls : '');
