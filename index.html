@@ -594,6 +594,19 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   .range{height:44px}
 }
 .nav-link{display:inline-flex;align-items:center}
+
+/* Wordmark intro must never push the header wider on phones */
+@media (max-width:640px){
+  .lg-words{max-width:70px;gap:1px}
+  .w-en{font-size:16px}.w-ar{font-size:16px;line-height:1.3;margin-top:0}
+  .brand.min:hover .lg-words,.brand.min:focus-visible .lg-words{max-width:70px}
+  .nav-links #langBtn,.nav-links #acct .nav-link{max-width:90px;overflow:hidden;white-space:nowrap;transition:max-width .85s cubic-bezier(.65,0,.25,1),opacity .5s ease,padding .85s cubic-bezier(.65,0,.25,1)}
+  nav.top:has(.brand:not(.min)) .nav-links #langBtn,
+  nav.top:has(.brand:not(.min)) .nav-links #acct .nav-link,
+  nav.top:has(.brand.min:hover) .nav-links #langBtn,
+  nav.top:has(.brand.min:hover) .nav-links #acct .nav-link{max-width:0;opacity:0;padding-inline:0}
+  nav.top{overflow:hidden}
+}
 </style>
 </head>
 <body>
