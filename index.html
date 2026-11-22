@@ -509,6 +509,41 @@ textarea.input{font-family:inherit}
   .panel,.trow,.orb{transition:none}
 }
 
+
+/* ---- Polish pass (no motion changes) ---- */
+:root{--sp1:8px;--sp2:16px;--sp3:24px;--sp4:40px;--sp5:64px;--r:12px}
+body{line-height:1.55;text-rendering:optimizeLegibility}
+p,.desc,.lead,.sub{max-width:68ch}
+.panel,.calc{border-radius:var(--r)}
+.btn{border-radius:10px;letter-spacing:0;transition:background .15s,border-color .15s,filter .15s}
+.btn-ghost{border-color:var(--line)}
+.input,.field select,textarea.input{border-radius:10px;border-color:var(--line);transition:border-color .15s,box-shadow .15s,background .15s}
+.input:hover{border-color:var(--panel-b)}
+.input:focus,.input:focus-visible{outline:0;border-color:var(--c,#4A7DFF);box-shadow:0 0 0 3px rgba(var(--rgb,74,125,255),.22)}
+.field>label,.lbl{font-size:14px;font-weight:500;color:var(--soft)}
+.calc{padding:clamp(20px,4vw,32px);gap:24px}
+.calc-row{flex-wrap:wrap;row-gap:4px}
+.calc-row .v{font-family:var(--font);font-weight:600;font-size:clamp(28px,7.4vw,44px);letter-spacing:-.02em;white-space:nowrap}
+#monV,#wkV{font-family:var(--font)!important;font-weight:600!important}
+#monV{font-size:clamp(20px,5vw,28px)!important;letter-spacing:-.01em;line-height:1.25}
+.split{height:auto;min-height:52px;border-radius:10px;font-size:14px}
+.split .you{flex:1;width:auto;min-width:0;padding-block:14px}
+.split .fee{flex:none;width:auto;padding-inline:14px;white-space:nowrap;font-size:13px}
+.teach-top .btn,.hero .btn{text-align:center}
+.panel h2,.side h2{font-weight:600}
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 36px;margin:28px auto 8px;padding:16px 0;border-block:1px solid var(--line);color:var(--soft);font-size:14px}
+.trust span{display:inline-flex;align-items:center;gap:10px}
+.trust svg{width:20px;height:20px;flex:none;stroke:#22C3A6;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+html[data-theme="light"] .trust svg{stroke:#087562}
+.trow{padding-block:22px}
+.foot{border-top:1px solid var(--line);margin-top:var(--sp4)}
+a{text-underline-offset:3px}
+@media (max-width:640px){
+  .teach-top .btn,.teach-top .btn-lg{width:100%;min-height:54px}
+  .calc-row .v{font-size:clamp(26px,9vw,36px)}
+  .trust{justify-content:flex-start;gap:10px 24px}
+}
+[dir="rtl"] .range::-webkit-slider-runnable-track{background:linear-gradient(270deg,#4A7DFF var(--p,36%),var(--track) var(--p,36%))}
 </style>
 </head>
 <body>
@@ -1171,11 +1206,16 @@ textarea.input{font-family:inherit}
   }
 
   /* ================= Views ================= */
+  function trustHtml() {
+    var ar = state.lang === 'ar', T = ar ? ['عمولة ثابتة 15% بلا رسوم خفية', 'مدفوعات آمنة بالبطاقة', 'شركة مسجّلة في الإمارات'] : ['Flat 15% commission, no hidden fees', 'Secure card payments', 'Registered UAE company'];
+    return '<div class="trust" role="list"><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="17" r="2.2"/></svg>' + T[0] + '</span><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>' + T[1] + '</span><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-5h4v5"/></svg>' + T[2] + '</span></div>';
+  }
   function viewHome() {
     var s = S(), html = '';
     html += '<div class="hero rise d2"><h1 class="mega">' + esc(s.h1) + '</h1><p class="sub">' + esc(s.sub) + '</p></div>';
     html += '<div class="search-wrap rise d3"><form class="search" role="search" id="searchForm"><label for="q" class="sr-only">' + esc(s.searchLabel) + '</label>' + ICON.search
       + '<input id="q" type="search" autocomplete="off" placeholder="' + esc(s.searchPh) + '"><button type="submit">' + esc(s.searchBtn) + '</button></form><p class="search-msg" id="searchMsg" role="status"></p></div>';
+    html += trustHtml();
     html += '<div class="grid" id="grid">';
     KEYS.forEach(function (k, i) {
       var c = s.cols[k];
