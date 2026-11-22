@@ -630,6 +630,14 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   .legal h2,.contact h2{margin-top:28px}
   .legal h3,.contact h3,.contact dt{margin-top:18px}
 }
+
+/* Installed (home-screen) app: keep the header clear of the status bar and notch */
+.wrap{padding-top:env(safe-area-inset-top)}
+.flood,.intro{padding-top:env(safe-area-inset-top)}
+@media (display-mode:standalone){
+  html{background:#131418}
+  html[data-theme="light"]{background:#F6F4EE}
+}
 </style>
 </head>
 <body>
