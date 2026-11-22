@@ -957,7 +957,7 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   function usd(n) { return '$' + n; }
   function rt() { return state.rates[shownCur()] || 1; }
   function curSym() { return shownCur() === 'USD' ? '$' : shownCur(); }
-  function fmtC(n) { var c = shownCur(), v = typeof n === 'number' ? n.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-US') : n; return c === 'USD' ? '$' + v : c + ' ' + v; }
+  function fmtC(n) { var c = shownCur(), v = typeof n === 'number' ? n.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-arab' : 'en-US') : n; return c === 'USD' ? '$' + v : c + ' ' + v; }
   function localPrice(u) { return Math.max(1, Math.round(u * rt())); }
   var COUNTRY_CUR = {}; 'AE:AED SA:SAR QA:QAR KW:KWD BH:BHD OM:OMR EG:EGP JO:JOD LB:LBP IQ:IQD SY:SYP YE:YER PS:ILS IL:ILS TR:TRY IR:IRR AF:AFN PK:PKR IN:INR BD:BDT LK:LKR NP:NPR MV:MVR ID:IDR MY:MYR SG:SGD TH:THB VN:VND PH:PHP KH:KHR LA:LAK MM:MMK BN:BND CN:CNY HK:HKD MO:MOP TW:TWD JP:JPY KR:KRW MN:MNT KZ:KZT UZ:UZS KG:KGS TJ:TJS TM:TMT AZ:AZN AM:AMD GE:GEL RU:RUB UA:UAH BY:BYN MD:MDL RO:RON BG:BGN RS:RSD BA:BAM HR:EUR SI:EUR SK:EUR CZ:CZK PL:PLN HU:HUF AL:ALL MK:MKD ME:EUR XK:EUR GR:EUR CY:EUR MT:EUR IT:EUR ES:EUR PT:EUR FR:EUR DE:EUR NL:EUR BE:EUR LU:EUR AT:EUR IE:EUR FI:EUR EE:EUR LV:EUR LT:EUR GB:GBP CH:CHF LI:CHF NO:NOK SE:SEK DK:DKK IS:ISK US:USD CA:CAD MX:MXN GT:GTQ BZ:BZD SV:USD HN:HNL NI:NIO CR:CRC PA:PAB CU:CUP JM:JMD HT:HTG DO:DOP TT:TTD BB:BBD BS:BSD CO:COP VE:VES EC:USD PE:PEN BO:BOB BR:BRL PY:PYG UY:UYU AR:ARS CL:CLP GY:GYD SR:SRD AU:AUD NZ:NZD FJ:FJD PG:PGK WS:WST TO:TOP VU:VUV SB:SBD MA:MAD DZ:DZD TN:TND LY:LYD SD:SDG SS:SSP MR:MRU SN:XOF ML:XOF NE:XOF BF:XOF CI:XOF TG:XOF BJ:XOF GW:XOF GM:GMD GN:GNF SL:SLE LR:LRD GH:GHS NG:NGN CM:XAF TD:XAF CF:XAF CG:XAF GA:XAF GQ:XAF CD:CDF AO:AOA ZM:ZMW ZW:ZWL MZ:MZN MW:MWK TZ:TZS KE:KES UG:UGX RW:RWF BI:BIF ET:ETB ER:ERN DJ:DJF SO:SOS MG:MGA MU:MUR SC:SCR KM:KMF ZA:ZAR NA:NAD BW:BWP LS:LSL SZ:SZL CV:CVE'.split(' ').forEach(function (x) { var p = x.split(':'); COUNTRY_CUR[p[0]] = p[1]; });
   var PIN = ['AE', 'SA', 'QA', 'KW', 'BH', 'OM', 'EG', 'JO'];
@@ -966,7 +966,7 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   function money(n) {
     var c = shownCur(), v = Math.round(n * (state.rates[c] || 1));
     if (c === 'USD') return '$' + v;
-    var num = v.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-US');
+    var num = v.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-arab' : 'en-US');
     return c + ' ' + num;
   }
   function guessCountry() {
@@ -1038,7 +1038,7 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   function hh(h) { var ar = state.lang === 'ar', x = h % 12 === 0 ? 12 : h % 12; return x + ' ' + (ar ? (h >= 12 ? 'م' : 'ص') : (h >= 12 ? 'pm' : 'am')); }
   function fmtTime(h) { var ar = state.lang === 'ar', x = h % 12 === 0 ? 12 : h % 12; return x + ':00 ' + (ar ? (h >= 12 ? 'م' : 'ص') : (h >= 12 ? 'pm' : 'am')); }
   function days() {
-    var out = [], loc = state.lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB';
+    var out = [], loc = state.lang === 'ar' ? 'ar-AE-u-nu-arab' : 'en-GB';
     for (var i = 0; i < 7; i++) {
       var d = new Date(); d.setDate(d.getDate() + i);
       var wd; try { wd = new Intl.DateTimeFormat(loc, { weekday: 'short' }).format(d); } catch (e) { wd = ''; }
@@ -2114,6 +2114,26 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   else { try { if (window.matchMedia('(prefers-color-scheme: light)').matches) state.theme = 'light'; } catch (e) {} }
   if (sl === 'ar' || sl === 'en') state.lang = sl;
   else if ((navigator.language || '').toLowerCase().indexOf('ar') === 0) state.lang = 'ar';
+  var AR_D = '٠١٢٣٤٥٦٧٨٩';
+  function digitsFor(t, ar) {
+    if (t.indexOf('@') !== -1) return t;
+    return ar ? t.replace(/[0-9]/g, function (d) { return AR_D[d]; }) : t.replace(/[٠-٩]/g, function (d) { return String(AR_D.indexOf(d)); });
+  }
+  var digitBusy = false;
+  function localizeDigits() {
+    if (digitBusy) return; digitBusy = true;
+    try {
+      var ar = state.lang === 'ar';
+      var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
+        var p = n.parentNode; if (!p || /^(SCRIPT|STYLE|TEXTAREA|INPUT|SELECT|OPTION)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT; } });
+      var n, list = []; while ((n = w.nextNode())) list.push(n);
+      list.forEach(function (t) { var v = digitsFor(t.nodeValue, ar); if (v !== t.nodeValue) t.nodeValue = v; });
+    } finally { digitBusy = false; }
+  }
+  var digitTimer = 0;
+  new MutationObserver(function () { if (digitBusy) return; cancelAnimationFrame(digitTimer); digitTimer = requestAnimationFrame(localizeDigits); })
+    .observe(document.body, { childList: true, characterData: true, subtree: true });
   setCountry(guessCountry());
   render(true);
   loadTeachers(); restoreSession();
