@@ -956,8 +956,10 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   function f(str, o) { return String(str).replace(/\{(\w+)\}/g, function (m, k) { return o[k] != null ? o[k] : m; }); }
   function usd(n) { return '$' + n; }
   function rt() { return state.rates[shownCur()] || 1; }
-  function curSym() { return shownCur() === 'USD' ? '$' : shownCur(); }
-  function fmtC(n) { var c = shownCur(), v = typeof n === 'number' ? n.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-arab' : 'en-US') : n; return c === 'USD' ? '$' + v : c + ' ' + v; }
+  var AR_CUR = { AED: 'د.إ', SAR: 'ر.س', QAR: 'ر.ق', KWD: 'د.ك', BHD: 'د.ب', OMR: 'ر.ع', JOD: 'د.أ', EGP: 'ج.م', USD: 'دولار', EUR: 'يورو', GBP: 'جنيه إسترليني', MAD: 'د.م', TND: 'د.ت', DZD: 'د.ج', IQD: 'د.ع', LBP: 'ل.ل', LYD: 'د.ل', SDG: 'ج.س', YER: 'ر.ي', SYP: 'ل.س', TRY: 'ل.ت', CAD: 'دولار كندي', AUD: 'دولار أسترالي', INR: 'روبية هندية', PKR: 'روبية باكستانية', CHF: 'فرنك سويسري', JPY: 'ين ياباني', CNY: 'يوان صيني' };
+  function curName(c) { return state.lang === 'ar' ? (AR_CUR[c] || c) : (c === 'USD' ? '$' : c); }
+  function curSym() { return curName(shownCur()); }
+  function fmtC(n) { var c = shownCur(), v = typeof n === 'number' ? n.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-arab' : 'en-US') : n; return state.lang === 'ar' ? v + ' ' + curName(c) : (c === 'USD' ? '$' + v : c + ' ' + v); }
   function localPrice(u) { return Math.max(1, Math.round(u * rt())); }
   var COUNTRY_CUR = {}; 'AE:AED SA:SAR QA:QAR KW:KWD BH:BHD OM:OMR EG:EGP JO:JOD LB:LBP IQ:IQD SY:SYP YE:YER PS:ILS IL:ILS TR:TRY IR:IRR AF:AFN PK:PKR IN:INR BD:BDT LK:LKR NP:NPR MV:MVR ID:IDR MY:MYR SG:SGD TH:THB VN:VND PH:PHP KH:KHR LA:LAK MM:MMK BN:BND CN:CNY HK:HKD MO:MOP TW:TWD JP:JPY KR:KRW MN:MNT KZ:KZT UZ:UZS KG:KGS TJ:TJS TM:TMT AZ:AZN AM:AMD GE:GEL RU:RUB UA:UAH BY:BYN MD:MDL RO:RON BG:BGN RS:RSD BA:BAM HR:EUR SI:EUR SK:EUR CZ:CZK PL:PLN HU:HUF AL:ALL MK:MKD ME:EUR XK:EUR GR:EUR CY:EUR MT:EUR IT:EUR ES:EUR PT:EUR FR:EUR DE:EUR NL:EUR BE:EUR LU:EUR AT:EUR IE:EUR FI:EUR EE:EUR LV:EUR LT:EUR GB:GBP CH:CHF LI:CHF NO:NOK SE:SEK DK:DKK IS:ISK US:USD CA:CAD MX:MXN GT:GTQ BZ:BZD SV:USD HN:HNL NI:NIO CR:CRC PA:PAB CU:CUP JM:JMD HT:HTG DO:DOP TT:TTD BB:BBD BS:BSD CO:COP VE:VES EC:USD PE:PEN BO:BOB BR:BRL PY:PYG UY:UYU AR:ARS CL:CLP GY:GYD SR:SRD AU:AUD NZ:NZD FJ:FJD PG:PGK WS:WST TO:TOP VU:VUV SB:SBD MA:MAD DZ:DZD TN:TND LY:LYD SD:SDG SS:SSP MR:MRU SN:XOF ML:XOF NE:XOF BF:XOF CI:XOF TG:XOF BJ:XOF GW:XOF GM:GMD GN:GNF SL:SLE LR:LRD GH:GHS NG:NGN CM:XAF TD:XAF CF:XAF CG:XAF GA:XAF GQ:XAF CD:CDF AO:AOA ZM:ZMW ZW:ZWL MZ:MZN MW:MWK TZ:TZS KE:KES UG:UGX RW:RWF BI:BIF ET:ETB ER:ERN DJ:DJF SO:SOS MG:MGA MU:MUR SC:SCR KM:KMF ZA:ZAR NA:NAD BW:BWP LS:LSL SZ:SZL CV:CVE'.split(' ').forEach(function (x) { var p = x.split(':'); COUNTRY_CUR[p[0]] = p[1]; });
   var PIN = ['AE', 'SA', 'QA', 'KW', 'BH', 'OM', 'EG', 'JO'];
@@ -965,9 +967,9 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   function usdOf(rate, cur) { var r = state.rates[cur]; return r > 0 ? rate / r : rate; }
   function money(n) {
     var c = shownCur(), v = Math.round(n * (state.rates[c] || 1));
-    if (c === 'USD') return '$' + v;
+    if (c === 'USD' && state.lang !== 'ar') return '$' + v;
     var num = v.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-arab' : 'en-US');
-    return c + ' ' + num;
+    return state.lang === 'ar' ? num + ' ' + curName(c) : c + ' ' + num;
   }
   function guessCountry() {
     var saved = load('country'); if (saved && COUNTRY_CUR[saved]) return saved;
@@ -984,7 +986,7 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   }
   function buildPicker() {
     var btn = document.getElementById('ctryBtn'), code = document.getElementById('curCode'); if (!btn) return;
-    code.textContent = shownCur(); btn.setAttribute('aria-label', S().ctryLabel + ': ' + countryName(state.country) + ' (' + shownCur() + ')');
+    code.textContent = state.lang === 'ar' && shownCur() === 'USD' ? '$' : curName(shownCur()); btn.setAttribute('aria-label', S().ctryLabel + ': ' + countryName(state.country) + ' (' + shownCur() + ')');
   }
   function countryName(c) { try { return new Intl.DisplayNames([state.lang], { type: 'region' }).of(c) || c; } catch (e) { return c; } }
   function openCountry() {
