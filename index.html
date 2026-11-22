@@ -771,7 +771,7 @@ textarea.input{font-family:inherit}
     pfEmailH: 'Change your email', pfEmailNote: 'Enter the new email and your current password to confirm it is you.', fNewEmail: 'New email', pfEmailBtn: 'Update email', pfEmailDone: 'Email updated. Use it next time you sign in.',
     pfPwH: 'Change your password', fCurPw: 'Current password', fNewPw: 'New password', fNewPw2: 'Repeat new password', pfPwBtn: 'Update password', pfPwDone: 'Password updated. Your other devices were signed out.',
     pfDevH: 'Your devices', pfDevNote: 'Signed in somewhere you no longer use? Sign out of every other device. This one stays signed in.', pfDevBtn: 'Sign out other devices', pfDevDone: 'Your other devices were signed out.',
-    pfWrongPw: 'That password is not right.', pfErrName: 'Enter your name (2 to 80 characters).', pfErrPhone: 'Enter a valid phone number.', pfErrAge: 'Enter an age from 3 to 17.', pfErrPw: 'Use at least 10 characters.', pfErrMatch: 'The two passwords do not match.',
+    pfWrongPw: 'That password is not right.', pfErrName: 'Enter your name (2 to 80 characters).', pfErrPhone: 'Enter a valid phone number.', pfErrAge: 'Enter a valid age.', pfErrPw: 'Use at least 10 characters.', pfErrMatch: 'The two passwords do not match.',
     pfTeachNote: 'Your teaching profile and rates are managed under Teach on Tadriis.', pfSignIn: 'Sign in to see your profile.'
   });
   Object.assign(STR.ar, {
@@ -782,7 +782,7 @@ textarea.input{font-family:inherit}
     pfEmailH: 'تغيير بريدك الإلكتروني', pfEmailNote: 'أدخل البريد الجديد وكلمة مرورك الحالية للتأكيد.', fNewEmail: 'البريد الجديد', pfEmailBtn: 'تحديث البريد', pfEmailDone: 'تم تحديث البريد. استخدمه عند تسجيل الدخول في المرة القادمة.',
     pfPwH: 'تغيير كلمة المرور', fCurPw: 'كلمة المرور الحالية', fNewPw: 'كلمة المرور الجديدة', fNewPw2: 'أعد كتابة كلمة المرور الجديدة', pfPwBtn: 'تحديث كلمة المرور', pfPwDone: 'تم تحديث كلمة المرور. تم تسجيل خروج أجهزتك الأخرى.',
     pfDevH: 'أجهزتك', pfDevNote: 'سجّلت الدخول في مكان لم تعد تستخدمه؟ سجّل الخروج من كل الأجهزة الأخرى. يبقى هذا الجهاز مسجّلاً.', pfDevBtn: 'تسجيل الخروج من الأجهزة الأخرى', pfDevDone: 'تم تسجيل الخروج من أجهزتك الأخرى.',
-    pfWrongPw: 'كلمة المرور غير صحيحة.', pfErrName: 'أدخل اسمك (من 2 إلى 80 حرفاً).', pfErrPhone: 'أدخل رقم هاتف صحيحاً.', pfErrAge: 'أدخل عمراً بين 3 و17.', pfErrPw: 'استخدم 10 أحرف على الأقل.', pfErrMatch: 'كلمتا المرور غير متطابقتين.',
+    pfWrongPw: 'كلمة المرور غير صحيحة.', pfErrName: 'أدخل اسمك (من 2 إلى 80 حرفاً).', pfErrPhone: 'أدخل رقم هاتف صحيحاً.', pfErrAge: 'أدخل عمراً صحيحاً.', pfErrPw: 'استخدم 10 أحرف على الأقل.', pfErrMatch: 'كلمتا المرور غير متطابقتين.',
     pfTeachNote: 'تُدار صفحتك كمعلّم وأسعارك من «علّم على تدريس».', pfSignIn: 'سجّل الدخول لعرض ملفك الشخصي.'
   });
 
@@ -1550,7 +1550,7 @@ textarea.input{font-family:inherit}
         + '<div class="pf-row">' + pfField('pfCountry', s.fCountry, 'text', p.country, ' autocomplete="country-name" maxlength="60" list="pfCountries"') + '<datalist id="pfCountries">' + (s.countries || []).map(function (c) { return '<option value="' + esc(c) + '">'; }).join('') + '</datalist>'
         + pfField('pfPhone', s.fPhone, 'tel', p.phone, ' autocomplete="tel" inputmode="tel" dir="ltr" maxlength="30"') + '</div>'
         + (u.role === 'parent' ? '<div class="pf-row">' + pfField('pfChild', s.childName, 'text', p.childName, ' maxlength="60"') + pfField('pfAge', s.childAge, 'number', p.childAge, ' min="3" max="17" inputmode="numeric"') + '</div>'
-          : u.role === 'student' ? '<div class="pf-row">' + pfField('pfAge', s.fAge, 'number', p.childAge, ' min="3" max="17" inputmode="numeric"') + '<span></span></div>' : '')
+          : u.role === 'student' ? '<div class="pf-row">' + pfField('pfAge', s.fAge, 'number', p.childAge, ' min="3" max="100" inputmode="numeric"') + '<span></span></div>' : '')
         + '<div class="field"><label for="pfAbout">' + esc(s.fAbout) + '</label><textarea class="input" id="pfAbout" maxlength="300">' + esc(p.about || '') + '</textarea></div>'
         + (u.role === 'teacher' ? '<p class="note">' + esc(s.pfTeachNote) + '</p>' : '')
         + '<div class="pf-actions"><button type="submit" class="btn btn-primary">' + esc(s.pfSave) + '</button></div></form>';
@@ -1584,7 +1584,7 @@ textarea.input{font-family:inherit}
   function pfCheck(list) { var first = null, ok = true; list.forEach(function (c) { var r = setErr(c[0], c[1] ? '' : c[2]); if (!r && !first) first = c[0]; ok = ok && r; }); if (first) document.getElementById(first).focus(); return ok; }
   function submitPfInfo() {
     var s = S(), age = val('pfAge'), phone = val('pfPhone'), n = val('pfName');
-    if (!pfCheck([['pfName', n.length >= 2 && n.length <= 80, s.pfErrName], ['pfPhone', !phone || /^[0-9+()\-\s.]{5,30}$/.test(phone), s.pfErrPhone], ['pfAge', !document.getElementById('pfAge') || !age || (Number(age) >= 3 && Number(age) <= 17), s.pfErrAge]])) return;
+    if (!pfCheck([['pfName', n.length >= 2 && n.length <= 80, s.pfErrName], ['pfPhone', !phone || /^[0-9+()\-\s.]{5,30}$/.test(phone), s.pfErrPhone], ['pfAge', !document.getElementById('pfAge') || !age || (Number(age) >= 3 && Number(age) <= (state.me.role === 'student' ? 100 : 17)), s.pfErrAge]])) return;
     var btn = document.querySelector('#pfInfoForm button[type=submit]'); if (btn) btn.disabled = true;
     api('POST', '/api/me/profile', { name: n, country: val('pfCountry'), phone: phone, about: val('pfAbout'), childName: val('pfChild'), childAge: age }).then(function (j) { applyUser(j.user); pfDone('info', 'pfSaved'); })
       .catch(function (e) { if (btn) btn.disabled = false; pfErr('pfName', e); });
