@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" data-theme="dark" data-sj="">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tadriis — Live lessons in Arabic, Quran and Math</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0iIzEzMTQxOCIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxLDQwKSBzY2FsZSgwLjgpIj48ZGVmcz48Y2xpcFBhdGggaWQ9ImNsIj48cGF0aCBkPSJNNTggMTc4IFE1OCAxNTIgODIgMTU4IEwyNTAgMjE0IFEyNzYgMjIyIDI3NiAyNDggTDI3NiA0MDQgUTI3NiA0MjAgMjYwIDQyMCBMMjQwIDQyMCBDMTMwIDQyMCA1OCAzNjAgNTggMjcwIFoiLz48L2NsaXBQYXRoPjwvZGVmcz4KPHBhdGggZD0iTTU4IDE3OCBRNTggMTUyIDgyIDE1OCBMMjUwIDIxNCBRMjc2IDIyMiAyNzYgMjQ4IEwyNzYgNDA0IFEyNzYgNDIwIDI2MCA0MjAgTDI0MCA0MjAgQzEzMCA0MjAgNTggMzYwIDU4IDI3MCBaIiBmaWxsPSIjNEE3REZGIi8+PHBhdGggZD0iTTQ1NCAxNzggUTQ1NCAxNTIgNDMwIDE1OCBMMjYyIDIxNCBRMjM2IDIyMiAyMzYgMjQ4IEwyMzYgNDY4IFEyMzYgNDg4IDI1MCA0NzQgTDMwNCA0MjAgQzM5NiA0MTQgNDU0IDM1NiA0NTQgMjcwIFoiIGZpbGw9IiMyMkMzQTYiLz48cGF0aCBkPSJNNDU0IDE3OCBRNDU0IDE1MiA0MzAgMTU4IEwyNjIgMjE0IFEyMzYgMjIyIDIzNiAyNDggTDIzNiA0NjggUTIzNiA0ODggMjUwIDQ3NCBMMzA0IDQyMCBDMzk2IDQxNCA0NTQgMzU2IDQ1NCAyNzAgWiIgZmlsbD0iIzdGRTZEOCIgY2xpcC1wYXRoPSJ1cmwoI2NsKSIgLz48cGF0aCBkPSJNMjE4IDk4IEwyNDQgMTI0IEwyMTggMTUwIEwxOTIgMTI0IFogTTI5NCA5OCBMMzIwIDEyNCBMMjk0IDE1MCBMMjY4IDEyNCBaIiBmaWxsPSIjRkZGRkZGIi8+PC9nPjwvc3ZnPg==">
 <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png">
@@ -544,7 +544,7 @@ p,.desc,.lead,.sub{max-width:68ch}
 .trust svg{width:20px;height:20px;flex:none;stroke:#22C3A6;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
 html[data-theme="light"] .trust svg{stroke:#087562}
 .trow{padding-block:22px}
-.foot{border-top:1px solid var(--line);margin-top:var(--sp4)}
+.foot{margin-top:var(--sp4)}
 a{text-underline-offset:3px}
 @media (max-width:640px){
   .teach-top .btn,.teach-top .btn-lg{width:100%;min-height:54px}
@@ -566,6 +566,34 @@ a{text-underline-offset:3px}
 .legal h1,.contact h1,.about h1{margin-bottom:14px}
 .legal h2,.contact h2{margin-top:36px;font-weight:600}
 .legal h3,.contact h3,.contact dt{font-weight:600;margin-top:22px}
+
+/* ---- Phone sizing pass ---- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:clip}
+body{min-height:100vh;min-height:100dvh}
+a,button,.btn,select,input,label{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+:root{--ic:20px}
+.container{padding-inline:max(18px,env(safe-area-inset-left),env(safe-area-inset-right))}
+footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
+.nav-links svg,.search svg,.cur-pick svg,.icon-btn svg{width:var(--ic);height:var(--ic);flex:none}
+.dd-btn svg,.back svg{width:16px;height:16px;flex:none}
+.perk svg{width:24px;height:24px}
+.foot a{display:inline-flex;align-items:center;min-height:44px;padding-inline:6px}
+.nav-link,.cur-pick,.icon-btn{min-height:44px}
+.icon-btn{min-width:44px;display:inline-flex;align-items:center;justify-content:center}
+.back{min-height:44px;display:inline-flex;align-items:center}
+@media (max-width:640px){
+  .nav-links .icon-btn{width:40px;height:40px;min-height:40px;min-width:40px}
+  .nav-links{align-items:center}
+  nav.top .brand svg,.brand .lg-icon{width:40px;height:40px}
+  .nav-links .btn{min-height:40px}
+  .foot{flex-direction:column;align-items:flex-start;gap:4px}
+  .foot>div{display:flex;flex-wrap:wrap;gap:0 6px}
+  input[type=checkbox],.cb{width:22px;height:22px}
+  .field label:has(input[type=checkbox]),label.chk{min-height:44px;display:flex;align-items:center;gap:12px}
+  .perks{grid-template-columns:1fr}
+  .range{height:44px}
+}
+.nav-link{display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
