@@ -544,6 +544,20 @@ a{text-underline-offset:3px}
   .trust{justify-content:flex-start;gap:10px 24px}
 }
 [dir="rtl"] .range::-webkit-slider-runnable-track{background:linear-gradient(270deg,#4A7DFF var(--p,36%),var(--track) var(--p,36%))}
+@media (max-width:640px){
+  nav.top{flex-wrap:nowrap;gap:6px;padding-block:14px}
+  .nav-links{flex-wrap:nowrap;gap:0;font-size:14px;min-width:0}
+  .nav-link{padding:8px 7px;font-size:14px;white-space:nowrap}
+  .nav-links .btn{min-height:38px;padding:0 13px;font-size:14px}
+  .nav-links .icon-btn{width:36px;height:36px}
+  .nav-links .cur-pick{padding-inline:6px;gap:4px}
+}
+@media (max-width:360px){#acct .nav-link{display:none}}
+.nav-links .btn{white-space:nowrap}
+@media (max-width:420px){.nav-links .btn{padding:0 10px;font-size:13px}.nav-link{padding:8px 5px;font-size:13px}.nav-links .icon-btn{width:32px;height:32px}}
+.legal h1,.contact h1,.about h1{margin-bottom:14px}
+.legal h2,.contact h2{margin-top:36px;font-weight:600}
+.legal h3,.contact h3,.contact dt{font-weight:600;margin-top:22px}
 </style>
 </head>
 <body>
