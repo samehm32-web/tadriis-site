@@ -123,6 +123,7 @@ nav.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-bet
 .foot-brand{display:inline-flex;align-items:center;gap:10px}
 .foot-brand svg{width:26px;height:26px;flex:none}
 .nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:15px}
+.cur-pick{position:relative;display:inline-flex;align-items:center;gap:6px;padding:10px 10px;color:var(--soft);font-size:15px;border-radius:8px;cursor:pointer}.cur-pick:hover{color:var(--text)}.cur-pick select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px}.cur-pick:focus-within{outline:2px solid var(--c,#4A7DFF)}
 .nav-link{text-decoration:none;padding:10px 12px;color:var(--soft);background:none;border:0;border-radius:8px}
 .nav-link:hover{color:var(--text)}
 .icon-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:transparent;border:1px solid var(--panel-b);margin-inline:6px}
@@ -153,6 +154,15 @@ textarea.input{min-height:110px;resize:vertical;line-height:1.5}
 .err{color:#FF8A8A;font-size:14px}
 html[data-theme="light"] .err{color:#B3261E}
 .note{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+.about{max-width:980px;margin:0 auto;padding:8px 0 70px}.ab-hero{position:relative;padding:30px 0 40px}.ab-word{position:absolute;inset-inline-end:-10px;top:-50px;font-size:min(34vw,300px);line-height:1;font-weight:800;background:linear-gradient(120deg,#4A7DFF,#22C3A6);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.16;pointer-events:none;user-select:none}
+.ab-hero h1{position:relative;max-width:12ch;margin-bottom:22px}.ab-hero .lead{position:relative;max-width:56ch;font-size:19px;line-height:1.65;color:var(--soft)}
+.ab-three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:1px solid var(--line)}.ab-three section{padding:30px 26px 34px;border-inline-start:1px solid var(--line)}.ab-three section:first-child{border-inline-start:0;padding-inline-start:0}
+.ab-three h2{font-size:clamp(34px,5vw,52px);line-height:1;margin:0 0 14px;letter-spacing:-.02em;color:var(--c,#4A7DFF)}.ab-three section[data-k=ar]{--c:#4A7DFF}.ab-three section[data-k=qu]{--c:#22C3A6}.ab-three section[data-k=ma]{--c:#E0A030}
+.ab-three p{margin:0;font-size:16px;line-height:1.65;color:var(--soft)}
+.ab-h{font-size:22px;margin:54px 0 16px}.ab-why{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 40px;margin:0}.ab-why dt{font-weight:700;margin-bottom:4px}.ab-why dd{margin:0;color:var(--soft);line-height:1.6}
+.ab-who{max-width:64ch;line-height:1.7;color:var(--soft);font-size:16.5px}.ab-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
+.contact .ct-mail{font-size:clamp(24px,4vw,36px);font-weight:700;margin:22px 0 14px}.contact .ct-mail a{text-decoration:none}.contact .ab-why{margin:34px 0 10px}
+@media(max-width:760px){.ab-three{grid-template-columns:1fr}.ab-three section{border-inline-start:0;border-top:1px solid var(--line);padding-inline:0}.ab-three section:first-child{border-top:0}.ab-why{grid-template-columns:1fr}}
 .legal{max-width:760px;margin:0 auto;padding:12px 0 60px}.legal h2{font-size:20px;margin:34px 0 8px}.legal p{font-size:16px;line-height:1.7;color:var(--soft);margin:0 0 12px}.legal .lead{color:var(--text);font-size:17px}.legal a,.check-row a{color:inherit;text-decoration:underline}
 .check-row{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--soft);line-height:1.5;cursor:pointer}
 .check-row input,.cb{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--c,#4A7DFF)}
@@ -505,6 +515,7 @@ textarea.input{font-family:inherit}
     <nav class="top container" id="nav">
       <a href="#home" class="brand" id="brand" aria-label="Tadriis تدريس"><svg class="lg-icon" viewBox="50 78 412 410" aria-hidden="true" focusable="false"><defs><clipPath id="hcl"><path d="M58 178 Q58 152 82 158 L250 214 Q276 222 276 248 L276 404 Q276 420 260 420 L240 420 C130 420 58 360 58 270 Z"/></clipPath></defs><g transform="translate(0,-10)"><path class="hl" d="M58 178 Q58 152 82 158 L250 214 Q276 222 276 248 L276 404 Q276 420 260 420 L240 420 C130 420 58 360 58 270 Z" fill="#4A7DFF"/><path class="hr" d="M454 178 Q454 152 430 158 L262 214 Q236 222 236 248 L236 468 Q236 488 250 474 L304 420 C396 414 454 356 454 270 Z" fill="#22C3A6"/><path class="hm" d="M454 178 Q454 152 430 158 L262 214 Q236 222 236 248 L236 468 Q236 488 250 474 L304 420 C396 414 454 356 454 270 Z" fill="#7FE6D8" clip-path="url(#hcl)"/><path class="hd hd1" d="M218 98 L244 124 L218 150 L192 124 Z" fill="var(--text)"/><path class="hd hd2" d="M294 98 L320 124 L294 150 L268 124 Z" fill="var(--text)"/></g></svg><span class="lg-words"><span class="w-en">Tadriis</span><span class="w-ar" lang="ar">تدريس</span></span></a>
       <div class="nav-links">
+        <label class="cur-pick"><span id="curCode">USD</span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><select id="ctrySel"></select></label>
         <button type="button" class="nav-link" id="langBtn" lang="ar">العربية</button>
         <a href="#teach" class="nav-link hide-sm" data-t="teach">Teach on Tadriis</a>
         <button type="button" class="icon-btn" id="themeBtn"></button>
@@ -516,7 +527,7 @@ textarea.input{font-family:inherit}
   <footer>
     <div class="container foot">
       <span class="foot-brand"><svg viewBox="40 80 432 420" aria-hidden="true" focusable="false"><path d="M58 178 Q58 152 82 158 L250 214 Q276 222 276 248 L276 404 Q276 420 260 420 L240 420 C130 420 58 360 58 270 Z" fill="#4A7DFF"/><path d="M454 178 Q454 152 430 158 L262 214 Q236 222 236 248 L236 468 Q236 488 250 474 L304 420 C396 414 454 356 454 270 Z" fill="#22C3A6"/><path d="M218 98 L244 124 L218 150 L192 124 Z M294 98 L320 124 L294 150 L268 124 Z" fill="var(--text)"/></svg><span data-t="copy">© 2026 Tadriis</span></span>
-      <div><a href="#teach" data-t="teach">Teach on Tadriis</a><a href="#terms" data-t="terms">Terms</a><a href="#privacy" data-t="privacy">Privacy</a><a href="#" data-t="contact">Contact</a></div>
+      <div><a href="#teach" data-t="teach">Teach on Tadriis</a><a href="#about" data-t="aboutL">About</a><a href="#terms" data-t="terms">Terms</a><a href="#privacy" data-t="privacy">Privacy</a><a href="#contact" data-t="contact">Contact</a></div>
     </div>
     <div class="container foot-legal" data-t="entity" dir="auto">Tadriis is a part of Professionals for Training &amp; Consulting LLC · Licence No. 2219525.01 · Sharjah Media City Free Zone (Shams), UAE</div>
   </footer>
@@ -530,7 +541,7 @@ textarea.input{font-family:inherit}
   var STR = {
     en: {
       tag: 'Learn it. Say it. Own it.', brand: 'Tadriis', teach: 'Teach on Tadriis', login: 'Log in', signup: 'Sign up', logout: 'Log out', hi: 'Hi, {name}',
-      entity: 'Tadriis is a part of Professionals for Training & Consulting LLC · Licence No. 2219525.01 · Sharjah Media City Free Zone (Shams), UAE', copy: '© 2026 Tadriis', terms: 'Terms', privacy: 'Privacy', contact: 'Contact',
+      entity: 'Tadriis is a part of Professionals for Training & Consulting LLC · Licence No. 2219525.01 · Sharjah Media City Free Zone (Shams), UAE', aboutL: 'About', copy: '© 2026 Tadriis', terms: 'Terms', privacy: 'Privacy', contact: 'Contact',
       otherLang: 'العربية', otherLangCode: 'ar', toDark: 'Switch to dark mode', toLight: 'Switch to light mode', navMain: 'Main',
       title: 'Tadriis — Live lessons in Arabic, Quran and Math',
       h1: 'What would you like to learn?', sub: 'Live classes that turn knowledge into confident voices. Pick a subject, or describe what you need.',
@@ -608,7 +619,7 @@ textarea.input{font-family:inherit}
     },
     ar: {
       tag: 'تعلّمها. قُلها. أتقنها.', brand: 'تدريس', teach: 'علّم على تدريس', login: 'تسجيل الدخول', signup: 'إنشاء حساب', logout: 'تسجيل الخروج', hi: 'أهلاً، {name}',
-      entity: 'تدريس جزء من المحترفون للتدريب والاستشارات ذ م م · رخصة رقم 2219525.01 · مدينة الشارقة للإعلام - المنطقة الحرة (شمس)، الإمارات', copy: '© 2026 تدريس', terms: 'الشروط', privacy: 'الخصوصية', contact: 'تواصل معنا',
+      entity: 'تدريس جزء من المحترفون للتدريب والاستشارات ذ م م · رخصة رقم 2219525.01 · مدينة الشارقة للإعلام - المنطقة الحرة (شمس)، الإمارات', aboutL: 'من نحن', copy: '© 2026 تدريس', terms: 'الشروط', privacy: 'الخصوصية', contact: 'تواصل معنا',
       otherLang: 'English', otherLangCode: 'en', toDark: 'التبديل إلى الوضع الداكن', toLight: 'التبديل إلى الوضع الفاتح', navMain: 'القائمة الرئيسية',
       title: 'تدريس — دروس مباشرة في العربية والقرآن والرياضيات',
       h1: 'ماذا تريد أن تتعلّم؟', sub: 'دروس مباشرة تحوّل المعرفة إلى أصوات واثقة. اختر مادة، أو صِف ما تحتاجه بكلماتك.',
@@ -696,7 +707,7 @@ textarea.input{font-family:inherit}
   Object.assign(STR.en, {
     sampleFoot: 'Sample data for a design concept.',
     samplesNote: 'These are sample profiles to show how the platform will look.',
-    curNote: 'Prices are shown in {c}, converted from USD at an approximate rate.',
+    curNote: 'Prices are shown in {c}, converted at an approximate rate (rates by exchangerate-api.com). You pay the amount shown at checkout.', ctryLabel: 'Country and currency',
     any: { ar: 'Any level', qu: 'Any topic', ma: 'Any grade' },
     filters: 'Filters', fSubject: 'Subject', fSort: 'Sort by', fLang: 'Teaches in', anyLang: 'Any language', reset: 'Reset filters',
     sortSoon: 'Soonest available', sortLow: 'Lowest price', sortHigh: 'Highest price',
@@ -715,7 +726,7 @@ textarea.input{font-family:inherit}
   Object.assign(STR.ar, {
     sampleFoot: 'بيانات تجريبية لتصور التصميم.',
     samplesNote: 'هذه ملفات تجريبية توضّح شكل المنصّة.',
-    curNote: 'الأسعار معروضة بعملة {c}، محوَّلة من الدولار بسعر تقريبي.',
+    curNote: 'الأسعار معروضة بعملة {c}، محوَّلة بسعر تقريبي (الأسعار من exchangerate-api.com).', ctryLabel: 'الدولة والعملة',
     any: { ar: 'أي مستوى', qu: 'أي موضوع', ma: 'أي صف' },
     filters: 'التصفية', fSubject: 'المادة', fSort: 'الترتيب', fLang: 'لغة التدريس', anyLang: 'أي لغة', reset: 'إعادة ضبط',
     sortSoon: 'الأقرب موعداً', sortLow: 'الأقل سعراً', sortHigh: 'الأعلى سعراً',
@@ -793,7 +804,7 @@ textarea.input{font-family:inherit}
   var KEYS = ['ar', 'qu', 'ma'];
   var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
   var state = {
-    lang: 'en', theme: 'dark', cur: /Dubai|Muscat/.test(tz) ? 'AED' : 'USD', tz: tz,
+    lang: 'en', theme: 'dark', cur: 'USD', country: 'US', rates: { USD: 1, AED: 3.6725, SAR: 3.75, QAR: 3.64, BHD: 0.376, OMR: 0.3845, KWD: 0.307, JOD: 0.709, EGP: 48, EUR: 0.92, GBP: 0.79 }, tz: tz,
     sel: { ar: '', qu: '', ma: '' }, matched: null, user: null, me: null, app: null, rs: { done: false, bad: false }, pending: null, keep: false, flood: null,
     filt: { lang: '', sort: 'soon' },
     book: { id: null, opt: 0, day: null, time: null, done: false },
@@ -813,7 +824,33 @@ textarea.input{font-family:inherit}
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function f(str, o) { return String(str).replace(/\{(\w+)\}/g, function (m, k) { return o[k] != null ? o[k] : m; }); }
   function usd(n) { return '$' + n; }
-  function money(n) { return state.cur === 'AED' ? 'AED ' + Math.round(n * 3.67) : '$' + Math.round(n); }
+  var COUNTRY_CUR = {}; 'AE:AED SA:SAR QA:QAR KW:KWD BH:BHD OM:OMR EG:EGP JO:JOD LB:LBP IQ:IQD SY:SYP YE:YER PS:ILS IL:ILS TR:TRY IR:IRR AF:AFN PK:PKR IN:INR BD:BDT LK:LKR NP:NPR MV:MVR ID:IDR MY:MYR SG:SGD TH:THB VN:VND PH:PHP KH:KHR LA:LAK MM:MMK BN:BND CN:CNY HK:HKD MO:MOP TW:TWD JP:JPY KR:KRW MN:MNT KZ:KZT UZ:UZS KG:KGS TJ:TJS TM:TMT AZ:AZN AM:AMD GE:GEL RU:RUB UA:UAH BY:BYN MD:MDL RO:RON BG:BGN RS:RSD BA:BAM HR:EUR SI:EUR SK:EUR CZ:CZK PL:PLN HU:HUF AL:ALL MK:MKD ME:EUR XK:EUR GR:EUR CY:EUR MT:EUR IT:EUR ES:EUR PT:EUR FR:EUR DE:EUR NL:EUR BE:EUR LU:EUR AT:EUR IE:EUR FI:EUR EE:EUR LV:EUR LT:EUR GB:GBP CH:CHF LI:CHF NO:NOK SE:SEK DK:DKK IS:ISK US:USD CA:CAD MX:MXN GT:GTQ BZ:BZD SV:USD HN:HNL NI:NIO CR:CRC PA:PAB CU:CUP JM:JMD HT:HTG DO:DOP TT:TTD BB:BBD BS:BSD CO:COP VE:VES EC:USD PE:PEN BO:BOB BR:BRL PY:PYG UY:UYU AR:ARS CL:CLP GY:GYD SR:SRD AU:AUD NZ:NZD FJ:FJD PG:PGK WS:WST TO:TOP VU:VUV SB:SBD MA:MAD DZ:DZD TN:TND LY:LYD SD:SDG SS:SSP MR:MRU SN:XOF ML:XOF NE:XOF BF:XOF CI:XOF TG:XOF BJ:XOF GW:XOF GM:GMD GN:GNF SL:SLE LR:LRD GH:GHS NG:NGN CM:XAF TD:XAF CF:XAF CG:XAF GA:XAF GQ:XAF CD:CDF AO:AOA ZM:ZMW ZW:ZWL MZ:MZN MW:MWK TZ:TZS KE:KES UG:UGX RW:RWF BI:BIF ET:ETB ER:ERN DJ:DJF SO:SOS MG:MGA MU:MUR SC:SCR KM:KMF ZA:ZAR NA:NAD BW:BWP LS:LSL SZ:SZL CV:CVE'.split(' ').forEach(function (x) { var p = x.split(':'); COUNTRY_CUR[p[0]] = p[1]; });
+  var PIN = ['AE', 'SA', 'QA', 'KW', 'BH', 'OM', 'EG', 'JO'];
+  function shownCur() { return state.rates[state.cur] ? state.cur : 'USD'; }
+  function usdOf(rate, cur) { var r = state.rates[cur]; return r > 0 ? rate / r : rate; }
+  function money(n) {
+    var c = shownCur(), v = Math.round(n * (state.rates[c] || 1));
+    if (c === 'USD') return '$' + v;
+    var num = v.toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-US');
+    return c + ' ' + num;
+  }
+  function guessCountry() {
+    var saved = load('country'); if (saved && COUNTRY_CUR[saved]) return saved;
+    var m = (navigator.language || '').match(/-([A-Za-z]{2})$/); if (m && COUNTRY_CUR[m[1].toUpperCase()]) return m[1].toUpperCase();
+    var map = { Dubai: 'AE', Muscat: 'OM', Riyadh: 'SA', Qatar: 'QA', Kuwait: 'KW', Bahrain: 'BH', Cairo: 'EG', Amman: 'JO' };
+    for (var k in map) if (tz.indexOf(k) !== -1) return map[k];
+    return 'US';
+  }
+  function setCountry(c) { state.country = c; state.cur = COUNTRY_CUR[c] || 'USD'; }
+  function buildPicker() {
+    var sel = document.getElementById('ctrySel'), code = document.getElementById('curCode'); if (!sel) return;
+    var dn = null; try { dn = new Intl.DisplayNames([state.lang], { type: 'region' }); } catch (e) {}
+    var items = Object.keys(COUNTRY_CUR).map(function (c) { var n = c; try { n = dn ? dn.of(c) : c; } catch (e) {} return { c: c, n: n }; });
+    items.sort(function (a, b) { var pa = PIN.indexOf(a.c), pb = PIN.indexOf(b.c); if (pa >= 0 || pb >= 0) return (pa < 0 ? 99 : pa) - (pb < 0 ? 99 : pb); return a.n.localeCompare(b.n, state.lang); });
+    sel.innerHTML = items.map(function (x) { return '<option value="' + x.c + '"' + (x.c === state.country ? ' selected' : '') + '>' + esc(x.n + ' (' + COUNTRY_CUR[x.c] + ')') + '</option>'; }).join('');
+    sel.setAttribute('aria-label', S().ctryLabel); code.textContent = shownCur();
+  }
+
   function store(k, v) { try { localStorage.setItem('tadriis-' + k, v); } catch (e) {} }
   function load(k) { try { return localStorage.getItem('tadriis-' + k); } catch (e) { return null; } }
   function teacher(id) { for (var i = 0; i < TEACHERS.length; i++) if (TEACHERS[i].id === id) return TEACHERS[i]; return null; }
@@ -1064,7 +1101,7 @@ textarea.input{font-family:inherit}
   function firstName(n) { return String(n || '').split(' ')[0]; }
   function toTeachers(a) {
     var cut = String(a.bio || '').replace(/\s+/g, ' ').trim(), head = cut.split(/(?<=[.!?؟])\s/)[0]; if (head.length > 140) head = head.slice(0, 137) + '…';
-    var rate = a.currency === 'AED' ? a.rate / 3.67 : a.rate;
+    var rate = usdOf(a.rate, a.currency);
     var lc = Object.keys(LANGS).filter(function (c2) { return String(a.langs || '').toLowerCase().indexOf(LANGS[c2].toLowerCase()) !== -1 || (c2 === 'ar' && /[؀-ۿ]/.test(a.langs || '')); });
     return a.subjects.map(function (k) {
       return { id: 't' + a.id + k, k: k, name: [a.name, a.name], ini: [a.name.charAt(0), a.name.charAt(0)], country: [a.country || '', a.country || ''], langs: [a.langs || '', a.langs || ''],
@@ -1073,9 +1110,12 @@ textarea.input{font-family:inherit}
     });
   }
   function liveCount(k) { return TEACHERS.filter(function (t) { return t.k === k; }).length; }
+  var RAW = [];
+  function rebuildTeachers() { TEACHERS.length = 0; RAW.forEach(function (a) { toTeachers(a).forEach(function (t) { TEACHERS.push(t); }); }); }
   function loadTeachers() {
+    api('GET', '/api/rates').then(function (r) { if (r && r.rates) { Object.keys(r.rates).forEach(function (k) { state.rates[k] = r.rates[k]; }); if (RAW.length) { rebuildTeachers(); buildPicker(); refreshBrowse(); } } }).catch(function () {});
     api('GET', '/api/teachers').then(function (j) {
-      TEACHERS.length = 0; j.teachers.forEach(function (a) { toTeachers(a).forEach(function (t) { TEACHERS.push(t); }); });
+      RAW = j.teachers; rebuildTeachers();
       tState = 'ready'; refreshBrowse();
     }).catch(function () { tState = 'error'; refreshBrowse(); });
   }
@@ -1157,7 +1197,7 @@ textarea.input{font-family:inherit}
         + '<span class="price-col"><span class="t-price">' + esc(money(minPrice(t))) + ' <small>/ ' + t.lengths[0] + ' ' + esc(s.min) + '</small></span>' + (t.next ? '<span class="t-next"><span class="dot" aria-hidden="true"></span>' + esc(f(s.nextAvail, { t: t.next[l] })) + '</span>' : '') + '</span>'
         + '<span class="open">' + esc(s.viewProfile) + '</span></a>';
     });
-    html += '</div>' + (state.cur === 'AED' ? '<p class="note" style="margin-top:16px">' + esc(f(s.curNote, { c: 'AED' })) + '</p>' : '') + '</section></div>';
+    html += '</div>' + (shownCur() !== 'USD' ? '<p class="note" style="margin-top:16px">' + esc(f(s.curNote, { c: shownCur() })) + '</p>' : '') + '</section></div>';
     return html;
   }
 
@@ -1194,7 +1234,7 @@ textarea.input{font-family:inherit}
     html += '<section class="sec"><h2>' + esc(s.reviewsH) + '</h2><p>' + esc(s.noReviews) + '</p></section></div>';
     html += '<aside class="book" aria-labelledby="bookH"><h2 id="bookH">' + esc(s.bookSoonH) + '</h2><p class="note" style="font-size:16px;color:var(--soft)">' + esc(s.bookSoonText) + '</p>'
       + '<div class="sum"><div><span>' + esc(s.lessonL) + '</span><small>' + esc(o.sub.split(',')[0]) + '</small></div><span class="tot">' + esc(money(o.total)) + '</span></div></aside></div>';
-    if (state.cur === 'AED') html += '<p class="note">' + esc(f(s.curNote, { c: 'AED' })) + '</p>';
+    if (shownCur() !== 'USD') html += '<p class="note">' + esc(f(s.curNote, { c: shownCur() })) + '</p>';
     return html;
   }
 
@@ -1435,6 +1475,39 @@ textarea.input{font-family:inherit}
     return esc(s.agreePre) + '<a href="#terms" target="_blank" rel="noopener">' + esc(s.terms) + '</a> ' + esc(s.agreeAnd) + ' <a href="#privacy" target="_blank" rel="noopener">' + esc(s.privacy) + '</a>' + esc(s.agreePost);
   }
 
+  /* ================= About and Contact ================= */
+  var PAGES = {
+    en: {
+      about: { h: 'Say it like you mean it.', sub: 'Tadriis (تدريس) means teaching. We make it simple to find a real teacher for Arabic, Quran and Islamic studies, or Math, and to start learning today.',
+        three: [['Learn it.', 'Pick a teacher who fits your child or you: their subject, their lesson length, their price, all shown upfront. No packages you did not ask for.'], ['Say it.', 'Real lessons with a real person. You read, recite and ask questions out loud, and a teacher listens and corrects you in the moment.'], ['Own it.', 'Practice turns into confidence. Teachers set goals with you, and you keep going at your own pace until it feels natural.']],
+        whyH: 'What we stand for', why: [['Fair to teachers', 'Teachers set their own rate and keep 85% of every lesson. We take a clear 15% to run the platform.'], ['Open about prices', 'You see the price and lesson length before you decide. Nothing hidden.'], ['Safe for families', 'We review every teacher before they appear. Parents stay involved, and lessons can be recorded for safety.'], ['Made for two languages', 'Tadriis works in Arabic and English, from right to left or left to right, on any screen.']],
+        whoH: 'Who is behind Tadriis', who: 'Tadriis is a part of Professionals for Training & Consulting LLC, a company licensed by the Sharjah Media City Free Zone Authority (Shams) in Sharjah, United Arab Emirates. We are a facilitator: we connect students and parents with independent teachers, and the teachers teach.', cta: 'Find a teacher', cta2: 'Teach on Tadriis' },
+      contact: { h: 'Contact us', sub: 'We read every message. Write to us about anything below.', email: 'master@tadriis.com', emailL: 'Email us', things: [['Questions about lessons or your account', 'Tell us your name and the email you signed up with.'], ['Teachers', 'Ask about your application, your rate or your lessons.'], ['A safety concern', 'Tell us what happened and the teacher’s name. We take every report seriously.'], ['Your data', 'Ask to see, correct or delete the data we hold about you.']], addrH: 'Where we are', addr: 'Professionals for Training & Consulting LLC\nSharjah Media City Free Zone (Shams)\nSharjah, United Arab Emirates', forgot: 'Forgot your password? You can reset it yourself from the log in page.' }
+    },
+    ar: {
+      about: { h: 'قلها بثقة.', sub: 'تدريس تعني التعليم. نجعل العثور على معلّم حقيقي للغة العربية والقرآن والعلوم الإسلامية أو الرياضيات أمراً بسيطاً، وبدء التعلّم اليوم.',
+        three: [['تعلّمها.', 'اختر المعلّم المناسب لك أو لطفلك: مادته ومدة درسه وسعره، كلها ظاهرة منذ البداية. بلا باقات لم تطلبها.'], ['قلها.', 'دروس حقيقية مع شخص حقيقي. تقرأ وتتلو وتسأل بصوتك، ومعلّم يستمع إليك ويصحّح لك في اللحظة نفسها.'], ['أتقنها.', 'يتحول التدريب إلى ثقة. يضع معك المعلّمون أهدافاً، وتواصل بإيقاعك حتى تصبح الأمور طبيعية.']],
+        whyH: 'ما نؤمن به', why: [['منصفون مع المعلّمين', 'يحدّد المعلّمون سعرهم بأنفسهم ويحتفظون بـ 85% من كل درس. ونأخذ 15% معلنة لتشغيل المنصّة.'], ['واضحون في الأسعار', 'ترى السعر ومدة الدرس قبل أن تقرّر. لا شيء مخفي.'], ['آمنون للأسر', 'نراجع كل معلّم قبل ظهوره. ويبقى أولياء الأمور مشاركين، وقد تُسجَّل الدروس للسلامة.'], ['مصمّمة للغتين', 'تعمل تدريس بالعربية والإنجليزية، من اليمين إلى اليسار أو العكس، على أي شاشة.']],
+        whoH: 'من وراء تدريس', who: 'تدريس جزء من المحترفون للتدريب والاستشارات ذ م م، وهي شركة مرخّصة من هيئة مدينة الشارقة للإعلام - المنطقة الحرة (شمس) في الشارقة بدولة الإمارات العربية المتحدة. نحن منصّة تيسير: نصل الطلاب وأولياء الأمور بمعلّمين مستقلين، والمعلّمون هم من يدرّسون.', cta: 'ابحث عن معلّم', cta2: 'درّس على تدريس' },
+      contact: { h: 'تواصل معنا', sub: 'نقرأ كل رسالة. راسلنا بخصوص أي مما يلي.', email: 'master@tadriis.com', emailL: 'راسلنا', things: [['أسئلة عن الدروس أو حسابك', 'أخبرنا باسمك والبريد الذي سجّلت به.'], ['المعلّمون', 'اسأل عن طلبك أو سعرك أو دروسك.'], ['مخاوف تتعلق بالسلامة', 'أخبرنا بما حدث واسم المعلّم. نأخذ كل بلاغ بجدية.'], ['بياناتك', 'اطلب الاطلاع على بياناتنا عنك أو تصحيحها أو حذفها.']], addrH: 'أين نحن', addr: 'المحترفون للتدريب والاستشارات ذ م م\nمدينة الشارقة للإعلام - المنطقة الحرة (شمس)\nالشارقة، الإمارات العربية المتحدة', forgot: 'نسيت كلمة المرور؟ يمكنك إعادة تعيينها بنفسك من صفحة تسجيل الدخول.' }
+    }
+  };
+  function viewAbout() {
+    var d = PAGES[state.lang].about, tone = ['ar', 'qu', 'ma'];
+    return '<article class="about"><header class="ab-hero"><span class="ab-word" aria-hidden="true" lang="ar">تدريس</span><h1 class="q">' + esc(d.h) + '</h1><p class="lead">' + esc(d.sub) + '</p></header>'
+      + '<div class="ab-three">' + d.three.map(function (x, i) { return '<section data-k="' + tone[i] + '"><h2>' + esc(x[0]) + '</h2><p>' + esc(x[1]) + '</p></section>'; }).join('') + '</div>'
+      + '<h2 class="ab-h">' + esc(d.whyH) + '</h2><dl class="ab-why">' + d.why.map(function (x) { return '<div><dt>' + esc(x[0]) + '</dt><dd>' + esc(x[1]) + '</dd></div>'; }).join('') + '</dl>'
+      + '<h2 class="ab-h">' + esc(d.whoH) + '</h2><p class="ab-who">' + esc(d.who) + '</p>'
+      + '<p class="ab-cta"><a class="btn btn-primary btn-lg" href="#home">' + esc(d.cta) + '</a> <a class="btn btn-ghost btn-lg" href="#teach">' + esc(d.cta2) + '</a></p></article>';
+  }
+  function viewContact() {
+    var d = PAGES[state.lang].contact;
+    return '<article class="legal contact"><h1 class="q">' + esc(d.h) + '</h1><p class="lead">' + esc(d.sub) + '</p>'
+      + '<p class="ct-mail"><a href="mailto:' + d.email + '" dir="ltr">' + d.email + '</a></p><p><a class="btn btn-primary btn-lg" href="mailto:' + d.email + '">' + esc(d.emailL) + '</a></p>'
+      + '<dl class="ab-why">' + d.things.map(function (x) { return '<div><dt>' + esc(x[0]) + '</dt><dd>' + esc(x[1]) + '</dd></div>'; }).join('') + '</dl>'
+      + '<h2>' + esc(d.addrH) + '</h2><p style="white-space:pre-line">' + esc(d.addr) + '</p><p>' + esc(d.forgot) + ' <a href="#login">' + esc(S().login) + '</a></p></article>';
+  }
+
   function route() {
     var h = (location.hash || '').replace(/^#/, ''), m;
     if (!h || h === 'home') return { v: 'home' };
@@ -1447,6 +1520,7 @@ textarea.input{font-family:inherit}
     if ((m = h.match(/^reset=([A-Za-z0-9_-]{20,100})$/))) return { v: 'reset', token: m[1] };
     if (h === 'reset-done' && state.rs.done) return { v: 'reset' };
     if (h === 'terms' || h === 'privacy') return { v: 'legal', k: h };
+    if (h === 'about' || h === 'contact') return { v: h };
     if (h === 'signup' || h === 'login' || h === 'teach' || h === 'profile') return { v: h };
     if (h === 'apply' || h === 'join') return { v: 'teach', scroll: h };
     return { v: 'home' };
@@ -1464,6 +1538,8 @@ textarea.input{font-family:inherit}
     else if (r.v === 'reset') html = viewReset();
     else if (r.v === 'profile') html = viewProfile();
     else if (r.v === 'legal') html = viewLegal(r.k);
+    else if (r.v === 'about') html = viewAbout();
+    else if (r.v === 'contact') html = viewContact();
     else if (r.v === 'loading') html = '<p class="empty">' + esc(S().loadingT) + '</p>';
     else html = viewTeach();
     app.className = 'container' + (!keep && r.v !== 'home' ? ' enter' : '');
@@ -1490,6 +1566,7 @@ textarea.input{font-family:inherit}
     root.style.setProperty('--flip', state.lang === 'ar' ? 'scaleX(-1)' : 'none');
     document.title = s.title;
     document.querySelectorAll('[data-t]').forEach(function (el) { var v = s[el.getAttribute('data-t')]; if (v != null) el.textContent = v; });
+    buildPicker();
     var lb = document.getElementById('langBtn'); lb.textContent = s.otherLang; lb.lang = s.otherLangCode;
     var tb = document.getElementById('themeBtn'); tb.innerHTML = state.theme === 'dark' ? ICON.sun : ICON.moon; tb.setAttribute('aria-label', state.theme === 'dark' ? s.toLight : s.toDark);
     document.getElementById('nav').setAttribute('aria-label', s.navMain);
@@ -1853,6 +1930,7 @@ textarea.input{font-family:inherit}
     var p = e.target.closest && e.target.closest('.panel'); if (p && p.getAttribute('data-col') === 'ar' && !(e.relatedTarget && p.contains(e.relatedTarget))) replayWrite();
   });
 
+  document.getElementById('ctrySel').addEventListener('change', function (e) { setCountry(e.target.value); store('country', state.country); buildPicker(); render(true); });
   document.getElementById('themeBtn').addEventListener('click', function () { state.theme = state.theme === 'dark' ? 'light' : 'dark'; store('theme', state.theme); renderChrome(); });
   document.getElementById('langBtn').addEventListener('click', function () { state.lang = state.lang === 'en' ? 'ar' : 'en'; store('lang', state.lang); document.body.classList.add('no-intro'); render(true); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var bx = document.getElementById('acctBox'); if (bx && bx.classList.contains('open')) { setMenu(false); var t = bx.querySelector('.acct-btn'); if (t) t.focus(); } } });
@@ -1864,6 +1942,7 @@ textarea.input{font-family:inherit}
   else { try { if (window.matchMedia('(prefers-color-scheme: light)').matches) state.theme = 'light'; } catch (e) {} }
   if (sl === 'ar' || sl === 'en') state.lang = sl;
   else if ((navigator.language || '').toLowerCase().indexOf('ar') === 0) state.lang = 'ar';
+  setCountry(guessCountry());
   render(true);
   loadTeachers(); restoreSession();
   var intro = document.getElementById('intro');
