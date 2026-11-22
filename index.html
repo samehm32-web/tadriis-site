@@ -462,7 +462,6 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
 (function () {
   'use strict';
 
-  var ONLINE = { ar: 12, qu: 9, ma: 15 }; // placeholder counts until the platform supplies real ones
   function grades(aria, cta) { var o = []; for (var n = 1; n <= 12; n++) o.push({ id: String(n), label: String(n), aria: aria.replace('{n}', n), cta: cta.replace('{n}', n) }); return o; }
 
   var STR = {
@@ -473,7 +472,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       title: 'Tadriis — Live lessons in Arabic, Quran and Math',
       h1: 'What would you like to learn?', sub: 'Live classes that turn knowledge into confident voices. Pick a subject, or describe what you need.',
       searchLabel: 'Describe what you need', searchPh: 'e.g. My son is in Grade 7 and struggles with fractions', searchBtn: 'Search',
-      trust1: 'Verified teachers', trust2: 'Lessons in your browser', trust3: 'Full refund if you cancel before the lesson',
+      trust1: 'Verified teachers', trust2: 'Lessons in your browser', trust3: 'Parent accounts for under 18s',
       online: '{n} {s} teachers available today',
       hint: 'Try words like Tajweed, Grade 7 or beginner Arabic.', match: 'Best match:', comma: ', ',
       back: 'Back', home: 'Home', sample: 'Sample profile', min: 'min', all: 'All',
@@ -493,17 +492,17 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       needAccount: 'Create a free account to book with {name}. It takes under a minute.',
       suH: 'Create your account', suSub: 'Free to join. You only pay for the lessons you book.',
       roleStudent: 'I’m learning', roleParent: 'I’m a parent',
-      fName: 'Full name', fEmail: 'Email', fPw: 'Password', pwHint: 'At least 8 characters', show: 'Show', hide: 'Hide', fCountry: 'Country',
+      fName: 'Full name', fEmail: 'Email', fPw: 'Password', pwHint: 'At least 10 characters', show: 'Show', hide: 'Hide', fCountry: 'Country',
       childH: 'Your child', childName: 'Child’s first name', childAge: 'Child’s age', childNote: 'You can add more children after sign-up.',
       agree: 'I agree to the Terms and Privacy Policy, including the recording of lessons.',
       create: 'Create account', or: 'or', google: 'Continue with Google', apple: 'Continue with Apple',
       haveAcc: 'Already have an account?', newHere: 'New to Tadriis?', wantTeach: 'Want to teach?', applyHere: 'Apply here',
-      errName: 'Enter your name', errEmail: 'Enter a valid email address', errPw: 'Use at least 8 characters', errPwLogin: 'Enter your password',
+      errName: 'Enter your name', errEmail: 'Enter a valid email address', errPw: 'Use at least 10 characters', errPwLogin: 'Enter your password',
       errAgree: 'Accept the terms to continue', errChild: 'Enter your child’s name and age',
-      suDone: 'Account created', suDoneText: 'Welcome to Tadriis, {name}.', demo: 'Prototype: nothing was sent or saved.',
+      suDone: 'Account created', suDoneText: 'Welcome to Tadriis, {name}.', demo: '',
       findTeacher: 'Find a teacher', backTo: 'Back to {name}',
       liH: 'Welcome back', liSub: 'Log in to see your lessons and messages.', forgot: 'Forgot password?', liBtn: 'Log in',
-      liDone: 'You’re logged in', forgotMsg: 'On the live platform we would email you a link to reset your password.',
+      liDone: 'You’re logged in', forgotMsg: 'Request sent. Our team will email you a link to reset your password.',
       tH: 'Teach on Tadriis. Keep 85% of every lesson.',
       tSub: 'Set your own rates, lesson lengths and packages. Students find you; we handle bookings, payments and the classroom.',
       tApply: 'Start your application', tHow: 'How to join',
@@ -521,7 +520,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
         ['Verify your identity', 'The front and back of your government ID, and a clear selfie.'],
         ['Set rates and go live', 'Choose prices and lesson lengths. Your profile goes live once our team approves it.']
       ],
-      wizH: 'Your application', wizSteps: ['You and your subjects', 'Credentials', 'Identity', 'Rates'],
+      wizH: 'Your application', wizSteps: ['You and your subjects', 'Qualifications', 'Rates'],
       wName: 'Full name', wEmail: 'Email', wCountry: 'Country you live in', wLangs: 'Languages you teach in', wLangsPh: 'e.g. Arabic, English',
       wBio: 'Introduce yourself to students', wBioPh: 'Who you teach, how you teach, and what students can expect.',
       wSubjects: 'What do you teach?', wSubjectsHint: 'Choose a subject, then exactly what you teach within it.',
@@ -532,7 +531,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       wPkg: 'Offer packages', wPkgHint: 'Students who buy 8 or more lessons get a discount you choose.', wDiscount: 'Package discount',
       next: 'Continue', prev: 'Back', submit: 'Submit application',
       errSubject: 'Choose at least one subject and what you teach in it', errCert: 'Upload at least one certificate', errId: 'Upload all three images', errRate: 'Offer at least one lesson length with a price',
-      wDoneH: 'Application submitted', wDoneText: 'Our team reviews every application and will email you at {email}. Your profile goes live once it is approved.',
+      wDoneH: 'Application submitted', wDoneText: 'Thank you. Our team reviews every application, and may contact you at {email} if we need more information. You are signed in, and your profile goes live once it is approved.',
       underReview: 'Under review', wSummary: 'Summary', wSubjectsL: 'Subjects', wLessonsL: 'Lessons', wDocsL: 'Documents', wDocsV: '{n} files uploaded',
       countries: ['United Arab Emirates', 'Saudi Arabia', 'Egypt', 'Jordan', 'United Kingdom', 'United States', 'Canada', 'Other'],
       cols: {
@@ -551,7 +550,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       title: 'تدريس — دروس مباشرة في العربية والقرآن والرياضيات',
       h1: 'ماذا تريد أن تتعلّم؟', sub: 'دروس مباشرة تحوّل المعرفة إلى أصوات واثقة. اختر مادة، أو صِف ما تحتاجه بكلماتك.',
       searchLabel: 'صِف ما تحتاجه', searchPh: 'مثال: ابني في الصف السابع ويجد صعوبة في الكسور', searchBtn: 'ابحث',
-      trust1: 'معلّمون موثّقون', trust2: 'دروس من متصفّحك مباشرة', trust3: 'استرداد كامل عند الإلغاء قبل الدرس',
+      trust1: 'معلّمون موثّقون', trust2: 'دروس من متصفّحك مباشرة', trust3: 'حسابات أولياء الأمور لمن هم دون 18',
       online: 'معلّمو {s} المتاحون اليوم: {n}',
       hint: 'جرّب كلمات مثل: تجويد، الصف 7، عربي مبتدئ.', match: 'أفضل نتيجة:', comma: '، ',
       back: 'رجوع', home: 'الرئيسية', sample: 'ملف تجريبي', min: 'دقيقة', all: 'الكل',
@@ -571,17 +570,17 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       needAccount: 'أنشئ حساباً مجانياً لتحجز مع {name}. لن يستغرق ذلك أكثر من دقيقة.',
       suH: 'أنشئ حسابك', suSub: 'التسجيل مجاني، وتدفع فقط مقابل الدروس التي تحجزها.',
       roleStudent: 'أنا متعلّم', roleParent: 'أنا وليّ أمر',
-      fName: 'الاسم الكامل', fEmail: 'البريد الإلكتروني', fPw: 'كلمة المرور', pwHint: '8 أحرف على الأقل', show: 'إظهار', hide: 'إخفاء', fCountry: 'الدولة',
+      fName: 'الاسم الكامل', fEmail: 'البريد الإلكتروني', fPw: 'كلمة المرور', pwHint: '10 أحرف على الأقل', show: 'إظهار', hide: 'إخفاء', fCountry: 'الدولة',
       childH: 'طفلك', childName: 'الاسم الأول للطفل', childAge: 'عمر الطفل', childNote: 'يمكنك إضافة أطفال آخرين بعد التسجيل.',
       agree: 'أوافق على الشروط وسياسة الخصوصية، بما في ذلك تسجيل الدروس.',
       create: 'إنشاء الحساب', or: 'أو', google: 'المتابعة عبر Google', apple: 'المتابعة عبر Apple',
       haveAcc: 'لديك حساب بالفعل؟', newHere: 'جديد على تدريس؟', wantTeach: 'تريد التدريس؟', applyHere: 'قدّم من هنا',
-      errName: 'أدخل اسمك', errEmail: 'أدخل بريداً إلكترونياً صحيحاً', errPw: 'استخدم 8 أحرف على الأقل', errPwLogin: 'أدخل كلمة المرور',
+      errName: 'أدخل اسمك', errEmail: 'أدخل بريداً إلكترونياً صحيحاً', errPw: 'استخدم 10 أحرف على الأقل', errPwLogin: 'أدخل كلمة المرور',
       errAgree: 'وافق على الشروط للمتابعة', errChild: 'أدخل اسم طفلك وعمره',
-      suDone: 'تم إنشاء الحساب', suDoneText: 'أهلاً بك في تدريس يا {name}.', demo: 'نسخة تجريبية: لم يُرسَل أو يُحفَظ أي شيء.',
+      suDone: 'تم إنشاء الحساب', suDoneText: 'أهلاً بك في تدريس يا {name}.', demo: '',
       findTeacher: 'ابحث عن معلّم', backTo: 'العودة إلى {name}',
       liH: 'مرحباً بعودتك', liSub: 'سجّل الدخول لرؤية دروسك ورسائلك.', forgot: 'نسيت كلمة المرور؟', liBtn: 'تسجيل الدخول',
-      liDone: 'تم تسجيل الدخول', forgotMsg: 'في المنصّة الفعلية سنرسل إليك رابطاً لإعادة تعيين كلمة المرور.',
+      liDone: 'تم تسجيل الدخول', forgotMsg: 'تم إرسال الطلب. سيراسلك فريقنا برابط لإعادة تعيين كلمة المرور.',
       tH: 'علّم على تدريس واحتفظ بـ85% من كل درس.',
       tSub: 'حدّد أسعارك ومدة دروسك وباقاتك. يجدك الطلاب، ونتولّى نحن الحجوزات والمدفوعات والفصل الدراسي.',
       tApply: 'ابدأ طلبك', tHow: 'خطوات الانضمام',
@@ -599,7 +598,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
         ['وثّق هويتك', 'وجه الهوية الرسمية وظهرها، وصورة شخصية واضحة.'],
         ['حدّد أسعارك وابدأ', 'اختر الأسعار ومدد الدروس. يُنشر ملفك بعد موافقة فريقنا.']
       ],
-      wizH: 'طلبك', wizSteps: ['أنت وموادك', 'المؤهلات', 'الهوية', 'الأسعار'],
+      wizH: 'طلبك', wizSteps: ['أنت وموادك', 'المؤهلات', 'الأسعار'],
       wName: 'الاسم الكامل', wEmail: 'البريد الإلكتروني', wCountry: 'دولة الإقامة', wLangs: 'اللغات التي تدرّس بها', wLangsPh: 'مثال: العربية، الإنجليزية',
       wBio: 'عرّف الطلاب بنفسك', wBioPh: 'من تدرّس، وكيف تدرّس، وماذا يتوقّع الطلاب منك.',
       wSubjects: 'ماذا تدرّس؟', wSubjectsHint: 'اختر المادة، ثم حدّد ما تدرّسه فيها بالضبط.',
@@ -610,7 +609,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       wPkg: 'تقديم باقات', wPkgHint: 'يحصل الطلاب الذين يشترون 8 دروس أو أكثر على خصم تختاره.', wDiscount: 'خصم الباقة',
       next: 'متابعة', prev: 'رجوع', submit: 'إرسال الطلب',
       errSubject: 'اختر مادة واحدة على الأقل وما تدرّسه فيها', errCert: 'ارفع شهادة واحدة على الأقل', errId: 'ارفع الصور الثلاث', errRate: 'قدّم مدة درس واحدة على الأقل مع سعرها',
-      wDoneH: 'تم إرسال الطلب', wDoneText: 'يراجع فريقنا كل طلب وسيراسلك على {email}. يُنشر ملفك بعد الموافقة عليه.',
+      wDoneH: 'تم إرسال الطلب', wDoneText: 'شكراً لك. يراجع فريقنا كل طلب وقد يتواصل معك على {email} إن احتجنا إلى معلومات إضافية. أنت الآن مسجّل الدخول، ويُنشر ملفك بعد الموافقة عليه.',
       underReview: 'قيد المراجعة', wSummary: 'الملخّص', wSubjectsL: 'المواد', wLessonsL: 'الدروس', wDocsL: 'المستندات', wDocsV: 'عدد الملفات المرفوعة: {n}',
       countries: ['الإمارات', 'السعودية', 'مصر', 'الأردن', 'المملكة المتحدة', 'الولايات المتحدة', 'كندا', 'أخرى'],
       cols: {
@@ -624,67 +623,17 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     }
   };
 
-  // Sample teachers (clearly labelled as samples in the interface). [English, Arabic] pairs.
-  var TEACHERS = [
-    { id: 'mariam', k: 'ar', name: ['Mariam Al-Sayed', 'مريم السيد'], ini: ['M', 'م'], country: ['Egypt', 'مصر'], langs: ['Arabic, English', 'العربية، الإنجليزية'],
-      head: ['Patient Arabic teacher for complete beginners and children', 'معلّمة عربية صبورة للمبتدئين والأطفال'],
-      about: ['Mariam teaches Arabic from the first letters, using short everyday conversations so students speak from their first lesson. She works with children from age 6 and with adults learning for travel or faith.', 'تدرّس مريم العربية من الحروف الأولى، وتعتمد على محادثات يومية قصيرة ليتكلّم الطالب منذ الدرس الأول. تعمل مع الأطفال من عمر 6 سنوات ومع الكبار الذين يتعلّمون للسفر أو للدين.'],
-      creds: [['BA in Arabic Language and Literature', 'Teaching Arabic to non-native speakers since 2019'], ['بكالوريوس في اللغة العربية وآدابها', 'تدرّس العربية لغير الناطقين بها منذ 2019']],
-      who: ['Children and adults', 'الأطفال والكبار'], offers: ['b', 'i'], lengths: [30, 45, 60], rate: 18, pk: [[8, 10], [12, 15]], next: ['Today, 6:00 pm', 'اليوم، 6:00 م'], times: [16, 17, 18, 19] },
-    { id: 'omar', k: 'ar', name: ['Omar Haddad', 'عمر حداد'], ini: ['O', 'ع'], country: ['Jordan', 'الأردن'], langs: ['Arabic, English, French', 'العربية، الإنجليزية، الفرنسية'],
-      head: ['Conversation and grammar for intermediate and advanced learners', 'محادثة وقواعد للمستويين المتوسط والمتقدّم'],
-      about: ['Omar helps learners who already read Arabic move to fluent conversation and confident writing. Lessons mix Modern Standard Arabic with everyday Levantine dialect.', 'يساعد عمر من يقرؤون العربية على الانتقال إلى محادثة طليقة وكتابة واثقة. تجمع دروسه بين الفصحى واللهجة الشامية اليومية.'],
-      creds: [['MA in Applied Linguistics', 'Former Arabic instructor at a language institute'], ['ماجستير في اللسانيات التطبيقية', 'مدرّس سابق للعربية في معهد لغات']],
-      who: ['Teens and adults', 'المراهقون والكبار'], offers: ['i', 'a'], lengths: [45, 60], rate: 22, pk: [[10, 10]], next: ['Tomorrow, 10:00 am', 'غداً، 10:00 ص'], times: [9, 10, 11, 20] },
-    { id: 'layla', k: 'ar', name: ['Layla Nasser', 'ليلى ناصر'], ini: ['L', 'ل'], country: ['United Arab Emirates', 'الإمارات'], langs: ['Arabic, English', 'العربية، الإنجليزية'],
-      head: ['All levels, with a focus on reading and writing', 'لجميع المستويات مع تركيز على القراءة والكتابة'],
-      about: ['Layla builds strong reading and writing foundations, then grows vocabulary through stories and topics each student enjoys. A good fit for families who want support with school Arabic.', 'تبني ليلى أساساً قوياً في القراءة والكتابة، ثم توسّع المفردات بقصص ومواضيع يحبّها كل طالب. مناسبة للأهالي الذين يريدون دعماً في العربية المدرسية.'],
-      creds: [['BEd in Arabic Teaching', 'Arabic teacher in UAE schools'], ['بكالوريوس تربية في تدريس العربية', 'معلّمة عربية في مدارس الإمارات']],
-      who: ['Children and teens', 'الأطفال والمراهقون'], offers: ['b', 'i', 'a'], lengths: [30, 60], rate: 15, pk: [[8, 10], [12, 15]], next: ['Today, 4:30 pm', 'اليوم، 4:30 م'], times: [15, 16, 17, 18] },
-    { id: 'yusuf', k: 'qu', name: ['Yusuf Rahman', 'يوسف رحمن'], ini: ['Y', 'ي'], country: ['Egypt', 'مصر'], langs: ['Arabic, English', 'العربية، الإنجليزية'],
-      head: ['Quran recitation, tajweed and memorization', 'تلاوة القرآن والتجويد والحفظ'],
-      about: ['Yusuf teaches correct recitation step by step, from makharij to the full rules of tajweed, and guides students through structured memorization plans with regular revision.', 'يعلّم يوسف التلاوة الصحيحة خطوة بخطوة، من مخارج الحروف إلى أحكام التجويد كاملة، ويرافق الطلاب في خطط حفظ منظّمة مع مراجعة منتظمة.'],
-      creds: [['Ijazah in Hafs an Asim', 'Degree in Quranic Sciences'], ['إجازة برواية حفص عن عاصم', 'شهادة جامعية في علوم القرآن']],
-      who: ['Children and adults', 'الأطفال والكبار'], offers: ['r', 't', 'm'], lengths: [30, 45, 60], rate: 20, pk: [[8, 10], [16, 15]], next: ['Today, 7:00 pm', 'اليوم، 7:00 م'], times: [6, 7, 19, 20, 21] },
-    { id: 'aisha', k: 'qu', name: ['Aisha Karim', 'عائشة كريم'], ini: ['A', 'ع'], country: ['United Kingdom', 'المملكة المتحدة'], langs: ['English, Arabic, Urdu', 'الإنجليزية، العربية، الأردية'],
-      head: ['Quran and Islamic studies for girls and women', 'القرآن والدراسات الإسلامية للفتيات والنساء'],
-      about: ['Aisha teaches recitation and tajweed alongside Islamic studies, explained clearly in English for students growing up outside the Arab world.', 'تدرّس عائشة التلاوة والتجويد إلى جانب الدراسات الإسلامية، بشرح واضح بالإنجليزية للطالبات اللواتي يكبرن خارج العالم العربي.'],
-      creds: [['Ijazah in Quran recitation', 'Diploma in Islamic Studies'], ['إجازة في تلاوة القرآن', 'دبلوم في الدراسات الإسلامية']],
-      who: ['Girls and women', 'الفتيات والنساء'], offers: ['r', 't', 's'], lengths: [30, 45], rate: 17, pk: [[8, 10]], next: ['Tomorrow, 5:00 pm', 'غداً، 5:00 م'], times: [16, 17, 18] },
-    { id: 'ibrahim', k: 'qu', name: ['Ibrahim Saleh', 'إبراهيم صالح'], ini: ['I', 'إ'], country: ['Saudi Arabia', 'السعودية'], langs: ['Arabic', 'العربية'],
-      head: ['Hifz programs and Islamic studies', 'برامج تحفيظ ودراسات إسلامية'],
-      about: ['Ibrahim runs structured hifz programs with weekly targets and revision cycles, and teaches fiqh and seerah to teens and adults.', 'يقدّم إبراهيم برامج تحفيظ منظّمة بأهداف أسبوعية ودورات مراجعة، ويدرّس الفقه والسيرة للمراهقين والكبار.'],
-      creds: [['Ijazah with a connected chain in Hafs', 'BA in Islamic Studies'], ['إجازة بالسند المتصل برواية حفص', 'بكالوريوس في الدراسات الإسلامية']],
-      who: ['Teens and adults', 'المراهقون والكبار'], offers: ['m', 's'], lengths: [45, 60], rate: 24, pk: [[12, 15]], next: ['Thursday, 8:00 pm', 'الخميس، 8:00 م'], times: [5, 6, 20, 21] },
-    { id: 'sara', k: 'ma', name: ['Sara Mansour', 'سارة منصور'], ini: ['S', 'س'], country: ['Lebanon', 'لبنان'], langs: ['English, Arabic, French', 'الإنجليزية، العربية، الفرنسية'],
-      head: ['Primary math made visual and fun', 'رياضيات المرحلة الابتدائية بأسلوب مرئي وممتع'],
-      about: ['Sara uses drawings, games and the shared whiteboard so numbers, fractions and word problems make sense to younger learners.', 'تستخدم سارة الرسوم والألعاب والسبورة المشتركة لتجعل الأعداد والكسور والمسائل الكلامية سهلة على الصغار.'],
-      creds: [['BSc in Mathematics', 'Primary teacher, British curriculum'], ['بكالوريوس في الرياضيات', 'معلّمة ابتدائي في المنهج البريطاني']],
-      who: ['Grades 1 to 6', 'الصفوف 1 إلى 6'], offers: ['1', '2', '3', '4', '5', '6'], lengths: [30, 45], rate: 16, pk: [[8, 10], [12, 15]], next: ['Today, 5:00 pm', 'اليوم، 5:00 م'], times: [15, 16, 17] },
-    { id: 'khalid', k: 'ma', name: ['Khalid Aziz', 'خالد عزيز'], ini: ['K', 'خ'], country: ['United Arab Emirates', 'الإمارات'], langs: ['Arabic, English', 'العربية، الإنجليزية'],
-      head: ['Algebra, geometry and exam preparation', 'الجبر والهندسة والاستعداد للاختبارات'],
-      about: ['Khalid prepares secondary students for school exams, IGCSE and SAT math, with a focus on method and timing.', 'يُعدّ خالد طلاب المرحلة الثانوية لاختبارات المدرسة وIGCSE وSAT في الرياضيات، مع تركيز على الطريقة وإدارة الوقت.'],
-      creds: [['MSc in Engineering Mathematics', '8 years teaching secondary math'], ['ماجستير في الرياضيات الهندسية', '8 سنوات في تدريس رياضيات الثانوي']],
-      who: ['Grades 6 to 12', 'الصفوف 6 إلى 12'], offers: ['6', '7', '8', '9', '10', '11', '12'], lengths: [45, 60, 90], rate: 25, pk: [[10, 10]], next: ['Tomorrow, 6:00 pm', 'غداً، 6:00 م'], times: [17, 18, 19, 20] },
-    { id: 'noor', k: 'ma', name: ['Noor Farouk', 'نور فاروق'], ini: ['N', 'ن'], country: ['Canada', 'كندا'], langs: ['English, Arabic', 'الإنجليزية، العربية'],
-      head: ['Catch-up and confidence building, Grades 4 to 10', 'تعويض ما فات وبناء الثقة للصفوف 4 إلى 10'],
-      about: ['Noor finds the gaps behind a student’s struggles and fills them calmly, one topic at a time, with homework support between lessons.', 'تحدّد نور الثغرات وراء صعوبات الطالب وتسدّها بهدوء، موضوعاً تلو الآخر، مع دعم في الواجبات بين الدروس.'],
-      creds: [['BEd, Secondary Mathematics', 'Tutor with North American curriculum experience'], ['بكالوريوس تربية، رياضيات ثانوي', 'خبرة في المنهج الأمريكي الشمالي']],
-      who: ['Grades 4 to 10', 'الصفوف 4 إلى 10'], offers: ['4', '5', '6', '7', '8', '9', '10'], lengths: [30, 60], rate: 20, pk: [[8, 10]], next: ['Today, 8:00 pm', 'اليوم، 8:00 م'], times: [18, 19, 20, 21] }
-  ];
+  // Live teachers are loaded from the Tadriis API when the page opens.
+  var TEACHERS = [];
+
 
 
   /* ===== Additions for the redesign ===== */
-  var SOON = { layla: 1, sara: 1.5, mariam: 2, yusuf: 3, noor: 4, omar: 15, aisha: 18, khalid: 20, ibrahim: 24 };
   var LANGS = { ar: 'Arabic', en: 'English', fr: 'French', ur: 'Urdu' };
-  TEACHERS.forEach(function (t) {
-    t.soon = SOON[t.id] || 24;
-    t.lc = Object.keys(LANGS).filter(function (c) { return t.langs[0].indexOf(LANGS[c]) !== -1; });
-  });
   Object.assign(STR.en, {
     sampleFoot: 'Sample data for a design concept.',
     samplesNote: 'These are sample profiles to show how the platform will look.',
-    curNote: 'Prices are shown in {c}. Rates are approximate in this prototype.',
+    curNote: 'Prices are shown in {c}, converted from USD at an approximate rate.',
     any: { ar: 'Any level', qu: 'Any topic', ma: 'Any grade' },
     filters: 'Filters', fSubject: 'Subject', fSort: 'Sort by', fLang: 'Teaches in', anyLang: 'Any language', reset: 'Reset filters',
     sortSoon: 'Soonest available', sortLow: 'Lowest price', sortHigh: 'Highest price',
@@ -703,7 +652,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
   Object.assign(STR.ar, {
     sampleFoot: 'بيانات تجريبية لتصور التصميم.',
     samplesNote: 'هذه ملفات تجريبية توضّح شكل المنصّة.',
-    curNote: 'الأسعار معروضة بعملة {c}. الأسعار تقريبية في هذه النسخة التجريبية.',
+    curNote: 'الأسعار معروضة بعملة {c}، محوَّلة من الدولار بسعر تقريبي.',
     any: { ar: 'أي مستوى', qu: 'أي موضوع', ma: 'أي صف' },
     filters: 'التصفية', fSubject: 'المادة', fSort: 'الترتيب', fLang: 'لغة التدريس', anyLang: 'أي لغة', reset: 'إعادة ضبط',
     sortSoon: 'الأقرب موعداً', sortLow: 'الأقل سعراً', sortHigh: 'الأعلى سعراً',
@@ -721,6 +670,36 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
   });
 
 
+  /* ===== Live platform strings ===== */
+  Object.assign(STR.en, {
+    noneYet: 'No teachers have joined yet.', noneYetSub: 'We are reviewing our first applications. Teachers appear here once they are approved.', noneYetCta: 'Apply to teach',
+    onlineNone: 'First teachers joining soon', onlineN: '{n} {s} teachers', onlineN1: '1 {s} teacher', loadingT: 'Loading…', loadFail: 'Could not load teachers. Refresh the page to try again.',
+    bookSoonH: 'Booking opens soon', bookSoonText: 'Online scheduling and payment are being set up. You can already see who is joining Tadriis.',
+    approvedL: 'Reviewed and approved by Tadriis', yearsL: 'Experience', yearsV: '{n} years',
+    errLogin: 'Email or password is incorrect.', errExists: 'An account with this email already exists. Log in instead.', errBusy: 'Too many attempts. Wait a few minutes and try again.',
+    errGeneric: 'Something went wrong. Please try again.', errNet: 'Could not reach Tadriis. Check your connection and try again.',
+    errBio: 'Write a short bio, at least 40 characters', errQual: 'Describe your qualifications, at least 10 characters',
+    wPassword: 'Password', wQual: 'Your qualifications and experience', wQualPh: 'Degrees, ijazah, certificates, and the schools or platforms where you have taught.',
+    wNeedSignOut: 'You are logged in with a student or parent account. Log out to apply as a teacher.', wUsing: 'You are logged in as {name}. This application will be added to your account.',
+    wPrivacy: 'Your details are used only to review your application.', wSubmitting: 'Sending…',
+    rsH: 'Choose a new password', rsBtn: 'Save password', rsDone: 'Password changed', rsDoneText: 'You can now log in with your new password.', rsBad: 'This link is invalid or has expired. Ask our team for a new one.',
+    forgotNeedEmail: 'Enter your email above first.'
+  });
+  Object.assign(STR.ar, {
+    noneYet: 'لم ينضم أي معلّم بعد.', noneYetSub: 'نراجع الآن أولى الطلبات. يظهر المعلّمون هنا بعد الموافقة عليهم.', noneYetCta: 'قدّم طلب التدريس',
+    onlineNone: 'أول المعلّمين ينضمّون قريباً', onlineN: '{n} معلّم {s}', onlineN1: 'معلّم {s} واحد', loadingT: 'جارٍ التحميل…', loadFail: 'تعذّر تحميل المعلّمين. أعد تحميل الصفحة للمحاولة مرة أخرى.',
+    bookSoonH: 'الحجز يبدأ قريباً', bookSoonText: 'نجهّز الآن الجدولة والدفع عبر الإنترنت. يمكنك منذ الآن رؤية من ينضم إلى تدريس.',
+    approvedL: 'تمت مراجعته والموافقة عليه من تدريس', yearsL: 'الخبرة', yearsV: '{n} سنوات',
+    errLogin: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.', errExists: 'يوجد حساب بهذا البريد الإلكتروني. سجّل الدخول بدلاً من ذلك.', errBusy: 'محاولات كثيرة. انتظر بضع دقائق ثم أعد المحاولة.',
+    errGeneric: 'حدث خطأ ما. حاول مرة أخرى.', errNet: 'تعذّر الاتصال بتدريس. تحقق من اتصالك وحاول مرة أخرى.',
+    errBio: 'اكتب نبذة قصيرة لا تقل عن 40 حرفاً', errQual: 'صف مؤهلاتك بما لا يقل عن 10 أحرف',
+    wPassword: 'كلمة المرور', wQual: 'مؤهلاتك وخبرتك', wQualPh: 'الدرجات العلمية والإجازات والشهادات، والمدارس أو المنصات التي درّست فيها.',
+    wNeedSignOut: 'أنت مسجّل الدخول بحساب طالب أو ولي أمر. سجّل الخروج للتقديم كمعلّم.', wUsing: 'أنت مسجّل الدخول باسم {name}. سيُضاف هذا الطلب إلى حسابك.',
+    wPrivacy: 'نستخدم بياناتك فقط لمراجعة طلبك.', wSubmitting: 'جارٍ الإرسال…',
+    rsH: 'اختر كلمة مرور جديدة', rsBtn: 'حفظ كلمة المرور', rsDone: 'تم تغيير كلمة المرور', rsDoneText: 'يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.', rsBad: 'هذا الرابط غير صالح أو انتهت صلاحيته. اطلب رابطاً جديداً من فريقنا.',
+    forgotNeedEmail: 'أدخل بريدك الإلكتروني أعلاه أولاً.'
+  });
+
   Object.assign(STR.en, { freeToday: 'Free hours today', errAge: 'Choose an age', choose: 'Choose…', basedL: 'Based in {c}. Speaks {l}.', pwShow: 'Show', pwHide: 'Hide' });
   Object.assign(STR.ar, { freeToday: 'ساعات متاحة اليوم', errAge: 'اختر العمر', choose: 'اختر…', basedL: 'مقيم في {c}. يتحدث: {l}.', pwShow: 'إظهار', pwHide: 'إخفاء' });
 
@@ -729,13 +708,13 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
   var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
   var state = {
     lang: 'en', theme: 'dark', cur: /Dubai|Muscat/.test(tz) ? 'AED' : 'USD', tz: tz,
-    sel: { ar: '', qu: '', ma: '' }, matched: null, user: null, pending: null, keep: false, flood: null,
+    sel: { ar: '', qu: '', ma: '' }, matched: null, user: null, me: null, app: null, rs: { done: false, bad: false }, pending: null, keep: false, flood: null,
     filt: { lang: '', sort: 'soon' },
     book: { id: null, opt: 0, day: null, time: null, done: false },
     su: { step: 0, parent: false, agree: false, country: '', age: '', d: {}, done: false },
     li: { done: false, forgot: false, showPw: false, showPwS: false },
     price: 20, perWeek: 12,
-    wiz: { step: 0, done: false, data: { subjects: {}, files: {}, rates: { 30: { on: false, p: '' }, 45: { on: false, p: '' }, 60: { on: true, p: '' }, 90: { on: false, p: '' } }, pkg: true, disc: '10', country: '' } }
+    wiz: { step: 0, done: false, data: { subjects: {}, files: {}, quals: '', pw: '', rates: { 30: { on: false, p: '' }, 45: { on: false, p: '' }, 60: { on: true, p: '' }, 90: { on: false, p: '' } }, pkg: true, disc: '10', country: '' } }
   };
   var root = document.documentElement;
   var app = document.getElementById('app');
@@ -754,7 +733,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
   function price(t, len) { return Math.round(t.rate * len / 60); }
   function baseLen(t) { return t.lengths.indexOf(60) !== -1 ? 60 : t.lengths[t.lengths.length - 1]; }
   function minPrice(t) { return price(t, t.lengths[0]); }
-  function matchT(k, opt) { return TEACHERS.filter(function (t) { return t.k === k && (!opt || t.offers.indexOf(opt) !== -1); }); }
+  function matchT(k, opt) { return TEACHERS.filter(function (t) { return t.k === k && (!opt || !t.offers.length || t.offers.indexOf(opt) !== -1); }); }
   function optLabel(k, id) { var o = S().cols[k].options.filter(function (x) { return x.id === id; })[0]; return o ? (o.aria || o.label) : ''; }
   function lessonOptions(t) {
     var s = S(), out = [];
@@ -979,6 +958,43 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     [ink, nib].forEach(function (e) { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; e.style.animationDelay = '0s'; });
   }
 
+  /* ================= API ================= */
+  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? (new URLSearchParams(location.search).get('api') || 'http://127.0.0.1:8787') : 'https://api.tadriis.com';
+  var tState = 'loading';
+  function api(method, path, body) {
+    return fetch(API + path, { method: method, credentials: 'include', headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'tadriis' }, body: body === undefined ? undefined : JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || ''); e.status = r.status; throw e; } return j; }); },
+        function () { var e = new Error('network'); e.status = 0; throw e; });
+  }
+  function apiMsg(e) {
+    var s = S(); if (!e || e.status === 0) return s.errNet;
+    if (e.status === 401) return s.errLogin; if (e.status === 409) return s.errExists; if (e.status === 429) return s.errBusy;
+    if (e.status === 400 && state.lang === 'en' && e.message) return e.message;
+    return s.errGeneric;
+  }
+  function firstName(n) { return String(n || '').split(' ')[0]; }
+  function toTeachers(a) {
+    var cut = String(a.bio || '').replace(/\s+/g, ' ').trim(), head = cut.split(/(?<=[.!?؟])\s/)[0]; if (head.length > 140) head = head.slice(0, 137) + '…';
+    var rate = a.currency === 'AED' ? a.rate / 3.67 : a.rate;
+    var lc = Object.keys(LANGS).filter(function (c2) { return String(a.langs || '').toLowerCase().indexOf(LANGS[c2].toLowerCase()) !== -1 || (c2 === 'ar' && /[؀-ۿ]/.test(a.langs || '')); });
+    return a.subjects.map(function (k) {
+      return { id: 't' + a.id + k, k: k, name: [a.name, a.name], ini: [a.name.charAt(0), a.name.charAt(0)], country: [a.country || '', a.country || ''], langs: [a.langs || '', a.langs || ''],
+        head: [head, head], about: [a.bio, a.bio], creds: [[], []], who: [a.levels || '', a.levels || ''], offers: (a.offers && a.offers[k]) || [], lengths: a.lengths && a.lengths.length ? a.lengths : [60],
+        rate: rate, pk: [], next: null, times: [], soon: 0, lc: lc, years: a.years || 0, live: true };
+    });
+  }
+  function liveCount(k) { return TEACHERS.filter(function (t) { return t.k === k; }).length; }
+  function loadTeachers() {
+    api('GET', '/api/teachers').then(function (j) {
+      TEACHERS.length = 0; j.teachers.forEach(function (a) { toTeachers(a).forEach(function (t) { TEACHERS.push(t); }); });
+      tState = 'ready'; refreshBrowse();
+    }).catch(function () { tState = 'error'; refreshBrowse(); });
+  }
+  function refreshBrowse() { if (['home', 'teachers', 'teacher', 'loading'].indexOf(route().v) !== -1) render(true); }
+  function restoreSession() {
+    api('GET', '/api/me').then(function (j) { if (j.user) { state.me = j.user; state.user = firstName(j.user.name); state.app = j.application || null; renderChrome(); } }).catch(function () {});
+  }
+
   /* ================= Views ================= */
   function viewHome() {
     var s = S(), html = '';
@@ -992,7 +1008,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       html += '<div class="rise c' + i + '" data-k="' + k + '" data-col="' + k + '"><section class="panel" aria-labelledby="h-' + k + '">'
         + artHtml(k)
         + '<div><h2 id="h-' + k + '">' + esc(c.title) + '</h2><p class="desc">' + esc(c.desc) + '</p>'
-        + '<p class="online"><span class="dot" aria-hidden="true"></span>' + esc(f(s.online, { n: ONLINE[k], s: c.subject })) + '</p></div>'
+        + '<p class="online"><span class="dot" aria-hidden="true"></span>' + esc(liveCount(k) ? f(liveCount(k) === 1 ? s.onlineN1 : s.onlineN, { n: liveCount(k), s: c.subject }) : s.onlineNone) + '</p></div>'
         + dd('home-' + k, c.prompt, opts, state.sel[k], { ph: s.choose, cols: !!c.grid })
         + '<div class="pv" hidden></div>'
         + '<a href="#teachers-' + k + '" class="btn btn-primary cta">' + esc(c.cta) + '</a></section></div>';
@@ -1010,7 +1026,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       var prev = col.querySelector('.pv');
       if (sel) {
         prev.innerHTML = matchT(k, sel).slice(0, 3).map(function (t) {
-          return '<a href="#teacher-' + t.id + '">' + orb(t.id, k, 44) + '<span><span class="tn">' + esc(t.name[L()]) + '</span><br><span class="ta">' + esc(f(s.nextAvail, { t: t.next[L()] })) + '</span></span><span class="tp">' + esc(s.from) + ' ' + money(minPrice(t)) + '</span></a>';
+          return '<a href="#teacher-' + t.id + '">' + orb(t.id, k, 44) + '<span><span class="tn">' + esc(t.name[L()]) + '</span>' + (t.next ? '<br><span class="ta">' + esc(f(s.nextAvail, { t: t.next[L()] })) + '</span>' : '') + '</span><span class="tp">' + esc(s.from) + ' ' + money(minPrice(t)) + '</span></a>';
         }).join('');
       }
       prev.hidden = !sel;
@@ -1038,18 +1054,21 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       + '<button type="button" class="btn btn-ghost" data-act="resetf">' + esc(s.reset) + '</button></aside>';
     html += '<section><div class="res-title"><h1 class="mega2">' + (opt ? esc(optLabel(k, opt)) + '<br>' + esc(c.subject) : esc(c.title)) + '</h1>'
       + '<p class="lead">' + esc(list.length === 1 ? s.count1 : f(s.count, { n: list.length })) + '</p></div><div class="tlist">';
-    if (!list.length) html += '<p class="empty">' + esc(s.none) + '</p>';
+    if (tState === 'loading') html += '<p class="empty">' + esc(s.loadingT) + '</p>';
+    else if (tState === 'error') html += '<p class="empty">' + esc(s.loadFail) + '</p>';
+    else if (!TEACHERS.length) html += '<div class="empty"><p style="margin:0 0 6px;color:var(--text);font-size:22px">' + esc(s.noneYet) + '</p><p style="margin:0 0 20px">' + esc(s.noneYetSub) + '</p><a class="btn btn-primary" href="#teach">' + esc(s.noneYetCta) + '</a></div>';
+    else if (!list.length) html += '<p class="empty">' + esc(s.none) + '</p>';
     list.forEach(function (t) {
       var bars = '';
       for (var h = 6; h <= 23; h++) { var on = t.times.indexOf(h) !== -1; bars += '<span' + (on ? ' class="on"' : '') + ' style="height:' + (on ? 16 + (h * 7 + hash(t.id)) % 18 : 8) + 'px"></span>'; }
       var times = t.times.slice().sort(function (a, b) { return a - b; }).map(hh).join(', ');
       html += '<a class="trow" href="#teacher-' + t.id + '">' + orb(t.id, k, 80)
-        + '<span><span class="t-name">' + esc(t.name[l]) + '</span><p class="t-head">' + esc(t.head[l]) + '</p><p class="t-meta">' + esc(f(s.basedL, { c: t.country[l], l: t.langs[l] })) + '</p></span>'
-        + '<span class="bars-col"><span class="bars" role="img" aria-label="' + esc(s.freeToday + ': ' + times) + '">' + bars + '</span><span class="t-av">' + esc(s.freeToday) + '</span></span>'
-        + '<span class="price-col"><span class="t-price">' + esc(money(minPrice(t))) + ' <small>/ ' + t.lengths[0] + ' ' + esc(s.min) + '</small></span><span class="t-next"><span class="dot" aria-hidden="true"></span>' + esc(f(s.nextAvail, { t: t.next[l] })) + '</span></span>'
+        + '<span><span class="t-name">' + esc(t.name[l]) + '</span><p class="t-head">' + esc(t.head[l]) + '</p>' + (t.country[l] ? '<p class="t-meta">' + esc(f(s.basedL, { c: t.country[l], l: t.langs[l] || '—' })) + '</p>' : '') + '</span>'
+        + '<span class="bars-col">' + (t.times.length ? '<span class="bars" role="img" aria-label="' + esc(s.freeToday + ': ' + times) + '">' + bars + '</span><span class="t-av">' + esc(s.freeToday) + '</span>' : '') + '</span>'
+        + '<span class="price-col"><span class="t-price">' + esc(money(minPrice(t))) + ' <small>/ ' + t.lengths[0] + ' ' + esc(s.min) + '</small></span>' + (t.next ? '<span class="t-next"><span class="dot" aria-hidden="true"></span>' + esc(f(s.nextAvail, { t: t.next[l] })) + '</span>' : '') + '</span>'
         + '<span class="open">' + esc(s.viewProfile) + '</span></a>';
     });
-    html += '</div>' + (state.cur === 'AED' ? '<p class="note" style="margin-top:16px">' + esc(f(s.curNote, { c: 'AED' })) + '</p>' : '') + '<p class="note" style="margin-top:6px">' + esc(s.samplesNote + ' ' + s.sampleFoot) + '</p></section></div>';
+    html += '</div>' + (state.cur === 'AED' ? '<p class="note" style="margin-top:16px">' + esc(f(s.curNote, { c: 'AED' })) + '</p>' : '') + '</section></div>';
     return html;
   }
 
@@ -1076,22 +1095,17 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     var when = b.time != null ? (dl[b.day].wd + ' ' + dl[b.day].n + (state.lang === 'ar' ? '، ' : ', ') + fmtTime(b.time)) : '—';
     html += '<div>' + backLink('#teachers-' + k) + '</div><div class="prof"><div class="prof-main">';
     html += '<section class="prof-hero">' + orb(t.id, k, 190) + '<div style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:240px"><h1 class="name">' + esc(t.name[l]) + '</h1><p class="lead">' + esc(t.head[l]) + '</p></div></section>';
-    html += '<ul class="verif" aria-label="' + esc(s.verifiedL) + '"><li>' + ICON.shield + esc(s.idv) + '</li><li>' + ICON.doc + esc(s.credv) + '</li><li>' + ICON.rec + esc(s.rec) + '</li></ul>';
-    html += '<section class="sec"><div class="rows"><div><span>' + esc(s.basedIn) + '</span><span>' + esc(t.country[l]) + '</span></div><div><span>' + esc(s.speaksL) + '</span><span>' + esc(t.langs[l]) + '</span></div><div><span>' + esc(s.whoL) + '</span><span>' + esc(t.who[l]) + '</span></div><div><span>' + esc(s.lengthsL) + '</span><span>' + t.lengths.join(', ') + ' ' + esc(s.min) + '</span></div></div></section>';
+    html += '<ul class="verif" aria-label="' + esc(s.verifiedL) + '"><li>' + ICON.shield + esc(s.approvedL) + '</li></ul>';
+    var prow = function (lab, v) { return v ? '<div><span>' + esc(lab) + '</span><span>' + esc(v) + '</span></div>' : ''; };
+    html += '<section class="sec"><div class="rows">' + prow(s.basedIn, t.country[l]) + prow(s.speaksL, t.langs[l]) + prow(s.whoL, t.who[l]) + prow(s.yearsL, t.years ? f(s.yearsV, { n: t.years }) : '') + prow(s.lengthsL, t.lengths.join(', ') + ' ' + s.min) + '</div></section>';
     html += '<section class="sec"><h2>' + esc(s.about) + '</h2><p>' + esc(t.about[l]) + '</p></section>';
-    html += '<section class="sec"><h2>' + esc(s.teachesL) + '</h2><p>' + esc(s.cols[k].title + ': ' + t.offers.map(function (id) { return optLabel(k, id); }).join(', ')) + '</p></section>';
+    html += '<section class="sec"><h2>' + esc(s.teachesL) + '</h2><p>' + esc(s.cols[k].title + (t.offers.length ? ': ' + t.offers.map(function (id) { return optLabel(k, id); }).join(', ') : '')) + '</p></section>';
     html += '<section class="sec"><h2>' + esc(s.lessonsH) + '</h2><div class="rows">' + opts.map(function (x, i) { return '<div' + (i === b.opt ? ' class="cur"' : '') + '><span style="color:var(--text)">' + esc(x.label) + '<br><small style="color:var(--muted);font-size:13.5px">' + esc(x.sub) + '</small></span><span class="p">' + esc(money(x.total)) + '</span></div>'; }).join('') + '</div></section>';
-    html += '<section class="sec"><h2>' + esc(s.creds) + '</h2><ul class="verif">' + t.creds[l].map(function (c) { return '<li>' + ICON.shield + '<span>' + esc(c) + '</span></li>'; }).join('') + '</ul></section>';
+    if (t.creds[l].length) html += '<section class="sec"><h2>' + esc(s.creds) + '</h2><ul class="verif">' + t.creds[l].map(function (c) { return '<li>' + ICON.shield + '<span>' + esc(c) + '</span></li>'; }).join('') + '</ul></section>';
     html += '<section class="sec"><h2>' + esc(s.reviewsH) + '</h2><p>' + esc(s.noReviews) + '</p></section></div>';
-    html += '<aside class="book" aria-labelledby="bookH"><h2 id="bookH">' + esc(s.pickTime) + '</h2>'
-      + dd('book-lesson', s.lessonL, opts.map(function (x, i) { return { v: String(i), l: x.label + ' (' + money(x.total) + ')' }; }), String(b.opt))
-      + sched(t)
-      + '<div class="legend"><span><i style="background:rgba(var(--rgb),.8)"></i>' + esc(s.freeL) + '</span><span><i style="background:var(--track)"></i>' + esc(s.takenL) + '</span><span style="margin-inline-start:auto">' + esc(f(s.tzIs, { tz: (state.tz || 'UTC').replace(/_/g, ' ') })) + '</span></div>'
-      + '<div class="sum"><div><span>' + esc(when === '—' ? s.pickSlot : when) + '</span><small>' + esc(o.sub.split(',')[0]) + '</small></div><span class="tot">' + esc(money(o.total)) + '</span></div>'
-      + (b.done ? '<div class="banner" role="status">' + esc(f(s.bookReady, { lesson: o.label, name: t.name[l], when: when })) + '</div>' : '')
-      + '<button type="button" class="btn btn-primary btn-lg" data-act="book"' + (b.time == null ? ' disabled' : '') + '>' + esc(s.bookBtn) + '</button>'
-      + '<p class="note">' + esc(s.refundNote) + '</p></aside></div>';
-    html += '<p class="note">' + esc(s.samplesNote + ' ' + s.sampleFoot) + (state.cur === 'AED' ? ' ' + esc(f(s.curNote, { c: 'AED' })) : '') + '</p>';
+    html += '<aside class="book" aria-labelledby="bookH"><h2 id="bookH">' + esc(s.bookSoonH) + '</h2><p class="note" style="font-size:16px;color:var(--soft)">' + esc(s.bookSoonText) + '</p>'
+      + '<div class="sum"><div><span>' + esc(s.lessonL) + '</span><small>' + esc(o.sub.split(',')[0]) + '</small></div><span class="tot">' + esc(money(o.total)) + '</span></div></aside></div>';
+    if (state.cur === 'AED') html += '<p class="note">' + esc(f(s.curNote, { c: 'AED' })) + '</p>';
     return html;
   }
 
@@ -1105,7 +1119,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     if (su.done) {
       return '<section class="success"><span class="ok">' + ICON.ok + '</span><h1 class="q">' + esc(s.suDone) + '</h1><p class="lead">' + esc(f(s.suDoneText, { name: state.user })) + '</p>'
         + (pt ? '<a class="btn btn-primary btn-lg" href="#teacher-' + pt.id + '">' + esc(f(s.backTo, { name: pt.name[l] })) + '</a>' : '<a class="btn btn-primary btn-lg" href="#home">' + esc(s.findTeacher) + '</a>')
-        + '<p class="demo-note">' + esc(s.demo) + '</p></section>';
+        + '</section>';
     }
     var steps = suSteps(), id = steps[su.step], q = '', body = '', last = su.step === steps.length - 1;
     if (id === 'name') { q = s.qName; body = bigInput('name', 'text', 'given-name', d.name, s.lblFirst); }
@@ -1131,9 +1145,18 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     return html;
   }
 
+  function viewReset() {
+    var s = S(), rs = state.rs;
+    if (rs.done) return '<section class="success"><span class="ok">' + ICON.ok + '</span><h1 class="q">' + esc(s.rsDone) + '</h1><p class="lead">' + esc(s.rsDoneText) + '</p><a class="btn btn-primary btn-lg" href="#login">' + esc(s.login) + '</a></section>';
+    return '<section class="ask" data-k="all"><span></span><form id="rsForm" novalidate><h1 class="q" id="qh">' + esc(s.rsH) + '</h1>'
+      + (rs.bad ? '<div class="banner" role="alert" style="max-width:560px">' + esc(s.rsBad) + '</div>' : '')
+      + '<div class="field" style="max-width:680px"><label for="rsPw">' + esc(s.fPw) + '</label><input class="big" id="rsPw" type="password" autocomplete="new-password"><span class="err" id="rsPw-e" hidden></span></div><p class="note">' + esc(s.pwHint) + '</p>'
+      + '<div class="ask-nav"><button type="submit" class="btn btn-primary btn-lg">' + esc(s.rsBtn) + '</button></div></form></section>';
+  }
+
   function viewLogin() {
     var s = S(), st = state.li;
-    if (st.done) return '<section class="success"><span class="ok">' + ICON.ok + '</span><h1 class="q">' + esc(s.liDone) + '</h1><p class="lead">' + esc(f(s.hi, { name: state.user })) + '</p><a class="btn btn-primary btn-lg" href="#home">' + esc(s.findTeacher) + '</a><p class="demo-note">' + esc(s.demo) + '</p></section>';
+    if (st.done) return '<section class="success"><span class="ok">' + ICON.ok + '</span><h1 class="q">' + esc(s.liDone) + '</h1><p class="lead">' + esc(f(s.hi, { name: state.user })) + '</p><a class="btn btn-primary btn-lg" href="#home">' + esc(s.findTeacher) + '</a></section>';
     return '<section class="ask" data-k="all"><span></span><form id="liForm" novalidate><h1 class="q" id="qh">' + esc(s.liH) + '</h1><p class="lead" style="margin-top:-14px">' + esc(s.liSub) + '</p>'
       + '<div class="field" style="max-width:680px"><label for="liEmail">' + esc(s.fEmail) + '</label><input class="big" id="liEmail" type="email" autocomplete="email" inputmode="email" dir="ltr"><span class="err" id="liEmail-e" hidden></span></div>'
       + '<div class="field" style="max-width:680px"><label for="liPw">' + esc(s.fPw) + '</label><input class="big" id="liPw" type="' + (st.showPw ? 'text' : 'password') + '" autocomplete="current-password"><span class="err" id="liPw-e" hidden></span></div>'
@@ -1192,6 +1215,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
   function viewTeach() {
     var s = S(), w = state.wiz, d = w.data, html = '';
     if (!d.country) d.country = s.countries[0];
+    if (state.me && state.me.role === 'teacher') { d.name = d.name || state.me.name; d.email = state.me.email; }
     html += '<section class="teach-top"><div style="display:flex;flex-direction:column;gap:28px"><h1 class="mega2" style="font-size:clamp(42px,6.4vw,84px)">' + esc(s.tSet) + '<br>' + esc(s.tKeep) + '</h1><p class="lead" style="max-width:520px">' + esc(s.tSub) + '</p>'
       + '<div style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn btn-primary btn-lg" href="#apply" data-act="toApply">' + esc(s.tApply) + '</a><a class="btn btn-ghost btn-lg" href="#join" data-act="toJoin">' + esc(s.tHow) + '</a></div></div>'
       + '<div class="calc"><div class="field"><div class="calc-row"><label for="prR" style="font-size:16px;color:var(--soft)">' + esc(s.priceFor) + '</label><span class="v" id="prV"></span></div><input class="range" id="prR" type="range" min="5" max="60" step="1" value="' + state.price + '" aria-describedby="youV2"></div>'
@@ -1202,14 +1226,16 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     html += '<section id="join" style="display:flex;flex-direction:column;gap:22px"><h2 class="disp" style="font-size:30px;font-weight:700">' + esc(s.stepsH) + '</h2><ol class="steps">' + s.steps.map(function (p) { return '<li><h3>' + esc(p[0]) + '</h3><p>' + esc(p[1]) + '</p></li>'; }).join('') + '</ol></section>';
     html += '<section class="apply" id="apply"><div class="wizard" aria-labelledby="wizH">';
     if (w.done) {
-      var nFiles = Object.keys(d.files).reduce(function (a, k2) { return a + (d.files[k2] || []).length; }, 0);
       html += '<div class="success" style="padding:0"><span class="ok">' + ICON.ok + '</span><h2 class="disp" id="wizH" style="font-size:34px;font-weight:700">' + esc(s.wDoneH) + '</h2><p class="lead">' + esc(f(s.wDoneText, { email: d.email || '' })) + '</p></div>'
-        + '<ul class="review-list"><li><span>' + esc(s.wName) + '</span><span>' + esc(d.name) + '</span></li><li><span>' + esc(s.wSubjectsL) + '</span><span>' + esc(subjLines().join('; ')) + '</span></li><li><span>' + esc(s.wLessonsL) + '</span><span>' + esc(rateSummary()) + '</span></li><li><span>' + esc(s.wDocsL) + '</span><span>' + esc(f(s.wDocsV, { n: nFiles })) + '</span></li></ul><p class="demo-note">' + esc(s.demo) + '</p>';
+        + '<ul class="review-list"><li><span>' + esc(s.wName) + '</span><span>' + esc(d.name) + '</span></li><li><span>' + esc(s.wSubjectsL) + '</span><span>' + esc(subjLines().join('; ')) + '</span></li><li><span>' + esc(s.wLessonsL) + '</span><span>' + esc(rateSummary()) + '</span></li></ul>';
+    } else if (state.me && state.me.role !== 'teacher') {
+      html += '<h2 class="disp" id="wizH" style="font-size:30px;font-weight:700">' + esc(s.wizH) + '</h2><div class="banner" role="status">' + esc(s.wNeedSignOut) + '</div>';
     } else {
-      html += '<h2 class="disp" id="wizH" style="font-size:30px;font-weight:700">' + esc(s.wizH) + '</h2><div class="progress" aria-hidden="true">' + s.wizSteps.map(function (n, i) { return '<div class="' + (i < w.step ? 'done' : i === w.step ? 'cur' : '') + '">' + esc(n) + '</div>'; }).join('') + '</div><form class="form" id="wizForm" novalidate>';
+      html += '<h2 class="disp" id="wizH" style="font-size:30px;font-weight:700">' + esc(s.wizH) + '</h2>' + (state.me ? '<p class="note">' + esc(f(s.wUsing, { name: state.me.name })) + '</p>' : '') + '<div class="progress" aria-hidden="true">' + s.wizSteps.map(function (n, i) { return '<div class="' + (i < w.step ? 'done' : i === w.step ? 'cur' : '') + '">' + esc(n) + '</div>'; }).join('') + '</div><form class="form" id="wizForm" novalidate>';
       if (w.step === 0) {
         html += '<div class="grid2"><div class="field"><label for="wName">' + esc(s.wName) + '</label><input class="input" id="wName" data-w="name" autocomplete="name" value="' + esc(d.name || '') + '"><span class="err" id="wName-e" hidden></span></div>'
-          + '<div class="field"><label for="wEmail">' + esc(s.wEmail) + '</label><input class="input" id="wEmail" data-w="email" type="email" inputmode="email" dir="ltr" autocomplete="email" value="' + esc(d.email || '') + '"><span class="err" id="wEmail-e" hidden></span></div>'
+          + '<div class="field"><label for="wEmail">' + esc(s.wEmail) + '</label><input class="input" id="wEmail" data-w="email" type="email" inputmode="email" dir="ltr" autocomplete="email" value="' + esc(d.email || '') + '"' + (state.me ? ' readonly' : '') + '><span class="err" id="wEmail-e" hidden></span></div>'
+          + (state.me ? '' : '<div class="field"><label for="wPw">' + esc(s.wPassword) + '</label><input class="input" id="wPw" data-w="pw" type="password" autocomplete="new-password" value="' + esc(d.pw || '') + '" aria-describedby="wPw-h"><span class="note" id="wPw-h">' + esc(s.pwHint) + '</span><span class="err" id="wPw-e" hidden></span></div>')
           + dd('w-country', s.wCountry, s.countries.map(function (c) { return { v: c, l: c }; }), d.country)
           + '<div class="field"><label for="wLangs">' + esc(s.wLangs) + '</label><input class="input" id="wLangs" data-w="langs" placeholder="' + esc(s.wLangsPh) + '" value="' + esc(d.langs || '') + '"></div></div>'
           + '<div class="field"><label for="wBio">' + esc(s.wBio) + '</label><textarea class="input" id="wBio" data-w="bio" placeholder="' + esc(s.wBioPh) + '">' + esc(d.bio || '') + '</textarea></div>'
@@ -1220,10 +1246,8 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
               + (sub ? '<div class="subopts">' + c.options.map(function (o) { return '<label><input class="cb" type="checkbox" data-sub="' + k + '" value="' + o.id + '"' + (sub.indexOf(o.id) !== -1 ? ' checked' : '') + '>' + esc(o.aria || o.label) + '</label>'; }).join('') + '</div>' : '') + '</div>';
           }).join('') + '</div><span class="err" id="wSubj-e" hidden></span>';
       } else if (w.step === 1) {
-        html += '<div class="drops">' + drop('fCerts', s.wCerts, s.wCertsHint, '.pdf,image/*', true) + drop('fIjazah', s.wIjazah, s.wIjazahHint, '.pdf,image/*', false) + '</div><span class="err" id="wCert-e" hidden></span>'
+        html += '<div class="field"><label for="wQual">' + esc(s.wQual) + '</label><textarea class="input" id="wQual" data-w="quals" placeholder="' + esc(s.wQualPh) + '">' + esc(d.quals || '') + '</textarea><span class="err" id="wQual-e" hidden></span></div>'
           + '<div class="field" style="max-width:260px"><label for="wYears">' + esc(s.wYears) + '</label><input class="input" id="wYears" data-w="years" type="number" min="0" max="60" inputmode="numeric" value="' + esc(d.years || '') + '"></div><p class="note">' + esc(s.wPrivacy) + '</p>';
-      } else if (w.step === 2) {
-        html += '<p class="note">' + esc(s.wIdHint) + '</p><div class="drops">' + drop('fIdFront', s.wIdFront, s.wIdHint, 'image/*', false) + drop('fIdBack', s.wIdBack, s.wIdHint, 'image/*', false) + drop('fSelfie', s.wSelfie, s.wSelfieHint, 'image/*', false) + '</div><span class="err" id="wId-e" hidden></span><p class="note">' + esc(s.wPrivacy) + '</p>';
       } else {
         if (d.rates[60].on && d.rates[60].p === '') d.rates[60].p = String(state.price);
         html += '<div class="field"><span class="lbl">' + esc(s.wLengths) + '</span><span class="note">' + esc(s.wLengthsHint) + '</span></div><div class="rates">'
@@ -1236,9 +1260,9 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
           + '<label class="check-row"><input type="checkbox" id="wPkg"' + (d.pkg ? ' checked' : '') + '><span><strong style="color:var(--text)">' + esc(s.wPkg) + '</strong><br>' + esc(s.wPkgHint) + '</span></label>'
           + '<div class="field" style="max-width:220px"><label for="wDisc">' + esc(s.wDiscount) + '</label><select class="input" id="wDisc"' + (d.pkg ? '' : ' disabled') + '>' + ['5', '10', '15', '20'].map(function (v) { return '<option value="' + v + '"' + (d.disc === v ? ' selected' : '') + '>' + v + '%</option>'; }).join('') + '</select></div>';
       }
-      html += '<div class="wiz-nav">' + (w.step > 0 ? '<button type="button" class="btn btn-ghost" data-act="wprev">' + esc(s.prev) + '</button>' : '<span></span>') + '<button type="submit" class="btn btn-primary">' + esc(w.step === 3 ? s.submit : s.next) + '</button></div></form>';
+      html += '<div class="wiz-nav">' + (w.step > 0 ? '<button type="button" class="btn btn-ghost" data-act="wprev">' + esc(s.prev) + '</button>' : '<span></span>') + '<button type="submit" class="btn btn-primary">' + esc(w.step === 2 ? s.submit : s.next) + '</button></div></form>';
     }
-    html += '</div><aside class="preview" aria-label="' + esc(s.previewH) + '"><span class="note" style="font-size:15px;color:var(--soft)">' + esc(s.previewH) + '</span>' + previewCard() + '<p class="note">' + esc(s.sampleFoot) + ' ' + esc(s.wPrivacy) + '</p></aside></section>';
+    html += '</div><aside class="preview" aria-label="' + esc(s.previewH) + '"><span class="note" style="font-size:15px;color:var(--soft)">' + esc(s.previewH) + '</span>' + previewCard() + '<p class="note">' + esc(s.wPrivacy) + '</p></aside></section>';
     return html;
   }
 
@@ -1251,7 +1275,9 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
       if (opt && !STR.en.cols[m[1]].options.some(function (o) { return o.id === opt; })) opt = null;
       return { v: 'teachers', k: m[1], opt: opt };
     }
-    if ((m = h.match(/^teacher-([a-z]+)$/)) && teacher(m[1])) return { v: 'teacher', t: teacher(m[1]) };
+    if ((m = h.match(/^teacher-([a-z0-9]+)$/))) { if (teacher(m[1])) return { v: 'teacher', t: teacher(m[1]) }; return tState === 'loading' ? { v: 'loading' } : { v: 'home' }; }
+    if ((m = h.match(/^reset=([A-Za-z0-9_-]{20,100})$/))) return { v: 'reset', token: m[1] };
+    if (h === 'reset-done' && state.rs.done) return { v: 'reset' };
     if (h === 'signup' || h === 'login' || h === 'teach') return { v: h };
     if (h === 'apply' || h === 'join') return { v: 'teach', scroll: h };
     return { v: 'home' };
@@ -1266,6 +1292,8 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     else if (r.v === 'teacher') html = viewTeacher(r.t);
     else if (r.v === 'signup') html = viewSignup();
     else if (r.v === 'login') html = viewLogin();
+    else if (r.v === 'reset') html = viewReset();
+    else if (r.v === 'loading') html = '<p class="empty">' + esc(S().loadingT) + '</p>';
     else html = viewTeach();
     app.className = 'container' + (!keep && r.v !== 'home' ? ' enter' : '');
     app.setAttribute('data-k', sj || 'all');
@@ -1337,12 +1365,15 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     var s = S(), su = state.su, d = su.d, steps = suSteps(), id = steps[su.step];
     if (id === 'name') { var v = val('suAns'); if (!setErr('suAns', v.length > 1 ? '' : s.errName)) return document.getElementById('suAns').focus(); d.name = v; }
     else if (id === 'email') { var e = val('suAns'); if (!setErr('suAns', EMAIL.test(e) ? '' : s.errEmail)) return document.getElementById('suAns').focus(); d.email = e; }
-    else if (id === 'pw') { if (!setErr('suAns', document.getElementById('suAns').value.length >= 8 ? '' : s.errPw)) return document.getElementById('suAns').focus(); }
+    else if (id === 'pw') { var pwv = document.getElementById('suAns').value; if (!setErr('suAns', pwv.length >= 10 ? '' : s.errPw)) return document.getElementById('suAns').focus(); su.pw = pwv; }
     else if (id === 'child') { var c = val('suAns'); if (!setErr('suAns', c.length > 0 ? '' : s.errChild)) return document.getElementById('suAns').focus(); d.child = c; }
     else if (id === 'age') { if (!su.age) { var ae = document.getElementById('suAge-e'); ae.hidden = false; return document.getElementById('dd-su-age').focus(); } }
     else { su.agree = document.getElementById('suAgree').checked; if (!setErr('suAgree', su.agree ? '' : s.errAgree)) return document.getElementById('suAgree').focus(); }
-    if (su.step < steps.length - 1) { su.step++; render(); }
-    else { state.user = d.name; su.done = true; render(); }
+    if (su.step < steps.length - 1) { su.step++; render(); return; }
+    var btn = document.querySelector('#suForm button[type=submit]'); if (btn) btn.disabled = true;
+    api('POST', '/api/signup', { name: d.name, email: d.email, password: su.pw, role: su.parent ? 'parent' : 'student', country: su.country || s.countries[0], childName: su.parent ? d.child : '', childAge: su.parent ? su.age : '' }).then(function (j) {
+      state.me = j.user; state.user = firstName(j.user.name); su.pw = ''; su.done = true; render();
+    }).catch(function (e) { if (btn) btn.disabled = false; setErr('suAgree', apiMsg(e)); });
   }
   function submitLogin() {
     var s = S(), ok = true, first = null;
@@ -1350,11 +1381,29 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     chk('liEmail', EMAIL.test(val('liEmail')), s.errEmail);
     chk('liPw', document.getElementById('liPw').value.length > 0, s.errPwLogin);
     if (!ok) { document.getElementById(first).focus(); return; }
-    state.user = val('liEmail').split('@')[0]; state.li.done = true; render();
+    var btn = document.querySelector('#liForm button[type=submit]'); if (btn) btn.disabled = true;
+    api('POST', '/api/login', { email: val('liEmail'), password: document.getElementById('liPw').value }).then(function (j) {
+      state.me = j.user; state.user = firstName(j.user.name); state.app = j.application || null; state.li.done = true; render();
+    }).catch(function (e) { if (btn) btn.disabled = false; setErr('liPw', apiMsg(e)); });
+  }
+  function submitReset() {
+    var s = S(), pw = document.getElementById('rsPw').value, m = (location.hash || '').match(/^#reset=(.+)$/);
+    if (!setErr('rsPw', pw.length >= 10 ? '' : s.errPw)) return document.getElementById('rsPw').focus();
+    api('POST', '/api/reset/complete', { token: m ? m[1] : '', password: pw }).then(function () {
+      state.rs.done = true; try { history.replaceState(null, '', location.pathname + location.search + '#reset-done'); } catch (e) {} render();
+    }).catch(function (e) { if (e.status === 400) { state.rs.bad = true; render(); } else setErr('rsPw', apiMsg(e)); });
   }
   function saveWizStep() {
     var d = state.wiz.data, step = state.wiz.step;
-    if (step === 3) { var pk = document.getElementById('wPkg'); if (pk) d.pkg = pk.checked; var ds = document.getElementById('wDisc'); if (ds && ds.value) d.disc = ds.value; }
+    if (step === 2) { var pk = document.getElementById('wPkg'); if (pk) d.pkg = pk.checked; var ds = document.getElementById('wDisc'); if (ds && ds.value) d.disc = ds.value; }
+  }
+  function wizPayload() {
+    var d = state.wiz.data, r = d.rates, lens = [30, 45, 60, 90].filter(function (len) { return r[len].on && parseFloat(r[len].p) > 0; });
+    var base = lens.indexOf(60) !== -1 ? 60 : lens[0], rate = Math.round(parseFloat(r[base].p) * 60 / base);
+    var subj = KEYS.filter(function (k) { return d.subjects[k]; });
+    var body = { subjects: subj, offers: d.subjects, lengths: lens, rate: rate, currency: 'USD', country: d.country, langs: d.langs || '', years: d.years || 0, bio: (d.bio || '').trim(), qualifications: (d.quals || '').trim(), levels: subjLines().join('; ').slice(0, 300) };
+    if (!state.me) { body.name = (d.name || '').trim(); body.email = (d.email || '').trim(); body.password = d.pw || ''; body.role = 'teacher'; }
+    return body;
   }
   function submitWiz() {
     var s = S(), w = state.wiz, d = w.data, ok = true, first = null;
@@ -1363,14 +1412,19 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     if (w.step === 0) {
       chk('wName', (d.name || '').trim().length > 1, s.errName);
       chk('wEmail', EMAIL.test((d.email || '').trim()), s.errEmail);
+      if (!state.me) chk('wPw', (d.pw || '').length >= 10, s.errPw);
+      chk('wBio', (d.bio || '').trim().length >= 40, s.errBio);
       chk('wSubj', KEYS.some(function (k) { return d.subjects[k] && d.subjects[k].length; }), s.errSubject);
-    } else if (w.step === 1) chk('wCert', (d.files.fCerts || []).length > 0, s.errCert);
-    else if (w.step === 2) chk('wId', ['fIdFront', 'fIdBack', 'fSelfie'].every(function (id) { return (d.files[id] || []).length; }), s.errId);
+    } else if (w.step === 1) chk('wQual', (d.quals || '').trim().length >= 10, s.errQual);
     else chk('wRate', [30, 45, 60, 90].some(function (len) { return d.rates[len].on && parseFloat(d.rates[len].p) > 0; }), s.errRate);
     if (!ok) { var el = document.getElementById(first); if (el && el.focus) el.focus(); return; }
-    if (w.step < 3) w.step++; else w.done = true;
-    render(true);
-    var a = document.getElementById('apply'); if (a) a.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (w.step < 2) { w.step++; render(true); var a = document.getElementById('apply'); if (a) a.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    var btn = document.querySelector('#wizForm button[type=submit]'); if (btn) { btn.disabled = true; btn.textContent = s.wSubmitting; }
+    var req = state.me ? api('POST', '/api/teacher/application', wizPayload()) : api('POST', '/api/signup', wizPayload());
+    req.then(function (j) {
+      if (j.user) { state.me = j.user; state.user = firstName(j.user.name); }
+      d.pw = ''; w.done = true; render(true); var a2 = document.getElementById('apply'); if (a2) a2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }).catch(function (e) { if (btn) { btn.disabled = false; btn.textContent = s.submit; } setErr('wRate', apiMsg(e)); });
   }
 
   /* ================= Events ================= */
@@ -1397,8 +1451,18 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     else if (act === 'pwS') { state.su.showPw = !state.su.showPw; var i1 = document.getElementById('suAns'); i1.type = state.su.showPw ? 'text' : 'password'; a.textContent = state.su.showPw ? S().pwHide : S().pwShow; }
     else if (act === 'pwL') { state.li.showPw = !state.li.showPw; var i2 = document.getElementById('liPw'); i2.type = state.li.showPw ? 'text' : 'password'; a.textContent = state.li.showPw ? S().pwHide : S().pwShow; }
     else if (act === 'suBack') { state.su.step = Math.max(0, state.su.step - 1); render(); }
-    else if (act === 'forgot') { state.li.forgot = true; var fm = document.getElementById('forgotMsg'); if (fm) fm.hidden = false; }
-    else if (act === 'logout') { state.user = null; state.su = { step: 0, parent: false, agree: false, country: '', age: '', d: {}, done: false }; state.li.done = false; render(true); }
+    else if (act === 'forgot') {
+      var em = val('liEmail'), fm = document.getElementById('forgotMsg');
+      if (!EMAIL.test(em)) { setErr('liEmail', S().forgotNeedEmail); document.getElementById('liEmail').focus(); return; }
+      api('POST', '/api/support/request', { email: em, kind: 'password' }).then(function () { state.li.forgot = true; if (fm) { fm.textContent = S().forgotMsg; fm.hidden = false; } })
+        .catch(function (x) { if (fm) { fm.textContent = apiMsg(x); fm.hidden = false; } });
+    }
+    else if (act === 'logout') {
+      api('POST', '/api/logout').catch(function () {}).then(function () {
+        state.user = null; state.me = null; state.app = null; state.su = { step: 0, parent: false, agree: false, country: '', age: '', d: {}, done: false, pw: '' }; state.li.done = false;
+        state.wiz.data.pw = ''; state.wiz.done = false; render(true);
+      });
+    }
     else if (act === 'wprev') { saveWizStep(); state.wiz.step = Math.max(0, state.wiz.step - 1); render(true); }
     else if (act === 'toApply' || act === 'toJoin') { e.preventDefault(); var el = document.getElementById(act === 'toApply' ? 'apply' : 'join'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
@@ -1435,6 +1499,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
     } else if (id === 'suForm') { e.preventDefault(); submitSignup(); }
     else if (id === 'liForm') { e.preventDefault(); submitLogin(); }
     else if (id === 'wizForm') { e.preventDefault(); submitWiz(); }
+    else if (id === 'rsForm') { e.preventDefault(); submitReset(); }
   });
 
   document.addEventListener('change', function (e) {
@@ -1500,6 +1565,7 @@ h1.q{font-family:var(--display);font-size:clamp(38px,6.4vw,76px);line-height:1.0
   if (sl === 'ar' || sl === 'en') state.lang = sl;
   else if ((navigator.language || '').toLowerCase().indexOf('ar') === 0) state.lang = 'ar';
   render(true);
+  loadTeachers(); restoreSession();
   var intro = document.getElementById('intro');
   setTimeout(function () { if (intro && intro.parentNode) intro.parentNode.removeChild(intro); document.body.classList.add('no-intro'); }, 2300);
   setTimeout(function () { var br = document.getElementById('brand'); if (br) br.classList.add('min'); }, 4800);
