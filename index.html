@@ -1383,6 +1383,7 @@ textarea.input{font-family:inherit}
     var set = function (id, v) { var e = document.getElementById(id); if (e) e.textContent = v; };
     set('prV', fmtC(pr)); set('youV', f(S().youReceive, { p: fmtC(+you.toFixed(2)) })); set('monV', f(S().monthly, { p: fmtC(Math.round(mon)) }));
     set('youV2', f(S().youReceive, { p: fmtC(+you.toFixed(2)) })); set('wkV', String(state.perWeek)); set('feeV', fmtC(+(pr * 0.15).toFixed(2)));
+    var q = document.getElementById('prR'); if (q) q.style.setProperty('--p', ((state.price - 5) / 55 * 100) + '%');
     var w = document.getElementById('wkR'); if (w) w.style.setProperty('--p', ((state.perWeek - 1) / 29 * 100) + '%');
   }
 
