@@ -845,6 +845,41 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   .ask::before{width:100%;inset-block:0 auto;height:170px}
   .ask::after{width:100%;inset-block:0 auto;height:170px;font-size:150px}
 }
+
+/* ---- design review fixes ---- */
+.hs-blue{justify-content:flex-start;gap:28px;min-height:360px}
+.hs-blue::after{bottom:-14px;inset-inline-end:20px;font-size:230px;line-height:1;opacity:.35}
+.hs-blue .sub{max-width:30ch;font-size:19px}
+.hs-strip{margin-top:var(--sp3,24px)}
+.teach-top>div:first-child::after{font-size:112px;right:-4px;bottom:-14px}
+[dir="rtl"] .teach-top>div:first-child::after{right:auto;left:-4px}
+.foot-legal{opacity:1}
+.big::placeholder{opacity:.85}
+.faq{margin-top:56px}
+.faq h2{font-family:var(--display);font-size:clamp(26px,3vw,36px);letter-spacing:-.02em;margin:0 0 20px}
+[dir="rtl"] .faq h2{font-family:var(--font);letter-spacing:0}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-of-type{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-size:18px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:26px;font-weight:400;line-height:1;color:var(--muted);flex:none}
+.faq details[open] summary::after{content:"\2212"}
+.faq summary:focus-visible{outline:2px solid #22C3A6;outline-offset:2px}
+.faq details p{margin:0 0 22px;max-width:62ch;color:var(--soft);font-size:17px;line-height:1.6}
+.faq-cta{margin:28px 0 0}
+.results.solo{grid-template-columns:1fr}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chips a{padding:9px 18px;border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-weight:500}
+.chips a:hover{border-color:var(--text)}
+.chips a[aria-current="page"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.empty-acts{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin:0}
+.empty-acts span{font-size:16px}
+.empty-acts span a{color:var(--text)}
+.nt-sel,.nt-in{width:100%;max-width:680px;border:0;border-bottom:3px solid var(--text);background:transparent;color:var(--text);padding:8px 0 10px;font-family:var(--display);font-size:clamp(20px,3vw,28px);font-weight:500;border-radius:0}
+[dir="rtl"] .nt-sel,[dir="rtl"] .nt-in{font-family:var(--font)}
+.nt-sel option{font-size:16px;color:#131418}
+.nt-in:focus-visible,.nt-sel:focus-visible{outline:2px solid #22C3A6;outline-offset:4px}
+.field .hint{display:block;margin-top:6px;font-size:14px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -891,7 +926,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       otherLang: 'العربية', otherLangCode: 'ar', toDark: 'Switch to dark mode', toLight: 'Switch to light mode', navMain: 'Main',
       title: 'Tadriis — Live lessons in Arabic, Quran and Math',
       h1: 'What would you like to learn?', sub: 'Live classes that turn knowledge into confident voices. Pick a subject, or describe what you need.',
-      searchLabel: 'Describe what you need', searchPh: 'e.g. My son is in Grade 7 and struggles with fractions', searchBtn: 'Search',
+      searchLabel: 'Describe what you need', searchPh: 'e.g. Grade 7 fractions help', searchBtn: 'Search',
       trust1: 'Verified teachers', trust2: 'Lessons in your browser', trust3: 'Parent accounts for under 18s',
       online: '{n} {s} teachers available today',
       hint: 'Try words like Tajweed, Grade 7 or beginner Arabic.', match: 'Best match:', comma: ', ',
@@ -969,7 +1004,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       otherLang: 'English', otherLangCode: 'en', toDark: 'التبديل إلى الوضع الداكن', toLight: 'التبديل إلى الوضع الفاتح', navMain: 'القائمة الرئيسية',
       title: 'تدريس — دروس مباشرة في العربية والقرآن والرياضيات',
       h1: 'ماذا تريد أن تتعلّم؟', sub: 'دروس مباشرة تحوّل المعرفة إلى أصوات واثقة. اختر مادة، أو صِف ما تحتاجه بكلماتك.',
-      searchLabel: 'صِف ما تحتاجه', searchPh: 'مثال: ابني في الصف السابع ويجد صعوبة في الكسور', searchBtn: 'ابحث',
+      searchLabel: 'صِف ما تحتاجه', searchPh: 'مثال: مساعدة في كسور الصف السابع', searchBtn: 'ابحث',
       trust1: 'معلّمون موثّقون', trust2: 'دروس من متصفّحك مباشرة', trust3: 'حسابات أولياء الأمور لمن هم دون 18',
       online: 'معلّمو {s} المتاحون اليوم: {n}',
       hint: 'جرّب كلمات مثل: تجويد، الصف 7، عربي مبتدئ.', match: 'أفضل نتيجة:', comma: '، ',
@@ -1092,7 +1127,10 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
 
   /* ===== Live platform strings ===== */
   Object.assign(STR.en, {
-    noneYet: 'No teachers have joined yet.', noneYetSub: 'We are reviewing our first applications. Teachers appear here once they are approved.', noneYetCta: 'Apply to teach',
+    noneYet: 'No teachers have joined yet.', noneYetSub: 'We are reviewing our first applications. Join the waiting list and we will tell you the day teachers go live.', noneYetCta: 'Apply to teach',
+    notifyMe: 'Notify me', ntH: 'Hear when teachers go live', ntSub: 'We are approving our first teachers now. Leave your email and we will tell you the day lessons open.', ntWa: 'WhatsApp number (optional)', ntWaHint: 'With country code, for example +971 50 123 4567', ntSubj: 'Subject', ntAny: 'Any subject', ntBtn: 'Notify me', ntDone: 'You are on the list', ntDoneText: 'We will email you as soon as teachers are live.', ntBadEmail: 'Enter a valid email address.', ntBadWa: 'Enter the number with its country code, or leave it empty.', ntTeacher: 'Are you a teacher?',
+    faqH: 'Questions families ask', faq: [['How are teachers checked?', 'Every teacher sends academic certificates (and an ijazah for Quran), a government ID and a selfie. Our team reviews them before a profile goes live.'], ['How do lessons work?', 'Lessons are live video in your browser, with screen sharing and a shared whiteboard. There is nothing to install.'], ['What does a lesson cost?', 'Each teacher sets their own price, and you see it in your own currency before you book. Cancellation and refund rules are shown before you confirm.'], ['When can I book?', 'Online booking and payment are being set up. Join the waiting list and we will email you when teachers are live.']], faqCta: 'Join the waiting list',
+    stripT: [['Choose', 'Pick a subject, a level and a time that suits you.'], ['Book', 'See times in your own timezone and pay by card.'], ['Learn live', 'Join the lesson in your browser. Nothing to install.']], trustT: ['ID and credentials checked for every teacher', 'Secure card payments', 'Registered UAE company'],
     onlineNone: 'First teachers joining soon', onlineN: '{n} {s} teachers', onlineN1: '1 {s} teacher', loadingT: 'Loading…', loadFail: 'Could not load teachers. Refresh the page to try again.',
     bookSoonH: 'Booking opens soon', bookSoonText: 'Online scheduling and payment are being set up. You can already see who is joining Tadriis.',
     approvedL: 'Reviewed and approved by Tadriis', yearsL: 'Experience', yearsV: '{n} years',
@@ -1106,7 +1144,10 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     forgotNeedEmail: 'Enter your email above first.'
   });
   Object.assign(STR.ar, {
-    noneYet: 'لم ينضم أي معلّم بعد.', noneYetSub: 'نراجع الآن أولى الطلبات. يظهر المعلّمون هنا بعد الموافقة عليهم.', noneYetCta: 'قدّم طلب التدريس',
+    noneYet: 'لم ينضم أي معلّم بعد.', noneYetSub: 'نراجع الآن أولى الطلبات. انضم إلى قائمة الانتظار وسنخبرك يوم يبدأ المعلّمون.', noneYetCta: 'قدّم طلب التدريس',
+    notifyMe: 'أبلغني', ntH: 'اعرف متى يبدأ المعلّمون', ntSub: 'نوافق الآن على أول المعلّمين. اترك بريدك الإلكتروني وسنخبرك يوم تُفتح الدروس.', ntWa: 'رقم واتساب (اختياري)', ntWaHint: 'مع رمز الدولة، مثل \u200E+971 50 123 4567\u200E', ntSubj: 'المادة', ntAny: 'أي مادة', ntBtn: 'أبلغني', ntDone: 'أنت على القائمة', ntDoneText: 'سنراسلك بمجرد أن يبدأ المعلّمون.', ntBadEmail: 'أدخل بريداً إلكترونياً صحيحاً.', ntBadWa: 'أدخل الرقم مع رمز الدولة أو اتركه فارغاً.', ntTeacher: 'هل أنت معلّم؟',
+    faqH: 'أسئلة تطرحها العائلات', faq: [['كيف يتم التحقق من المعلّمين؟', 'يرسل كل معلّم شهاداته الأكاديمية (وإجازة للقرآن) وهوية حكومية وصورة شخصية. يراجعها فريقنا قبل نشر الملف.'], ['كيف تتم الدروس؟', 'الدروس فيديو مباشر في متصفحك، مع مشاركة الشاشة وسبورة مشتركة. لا حاجة لتثبيت أي شيء.'], ['كم يكلّف الدرس؟', 'يحدد كل معلّم سعره بنفسه، وتراه بعملتك قبل الحجز. تظهر قواعد الإلغاء والاسترداد قبل أن تؤكد.'], ['متى يمكنني الحجز؟', 'نجهّز الآن الحجز والدفع عبر الإنترنت. انضم إلى قائمة الانتظار وسنراسلك عندما يبدأ المعلّمون.']], faqCta: 'انضم إلى قائمة الانتظار',
+    stripT: [['اختر', 'اختر المادة والمستوى والوقت المناسب لك.'], ['احجز', 'شاهد المواعيد بتوقيتك وادفع بالبطاقة.'], ['تعلّم مباشرة', 'انضم إلى الدرس من متصفحك دون تثبيت أي شيء.']], trustT: ['التحقق من هوية كل معلّم وشهاداته', 'مدفوعات آمنة بالبطاقة', 'شركة مسجّلة في الإمارات'],
     onlineNone: 'أول المعلّمين ينضمّون قريباً', onlineN: '{n} معلّم {s}', onlineN1: 'معلّم {s} واحد', loadingT: 'جارٍ التحميل…', loadFail: 'تعذّر تحميل المعلّمين. أعد تحميل الصفحة للمحاولة مرة أخرى.',
     bookSoonH: 'الحجز يبدأ قريباً', bookSoonText: 'نجهّز الآن الجدولة والدفع عبر الإنترنت. يمكنك منذ الآن رؤية من ينضم إلى تدريس.',
     approvedL: 'تمت مراجعته والموافقة عليه من تدريس', yearsL: 'الخبرة', yearsV: '{n} سنوات',
@@ -1156,6 +1197,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     book: { id: null, opt: 0, day: null, time: null, done: false },
     su: { step: 0, parent: false, agree: false, country: '', age: '', d: {}, done: false },
     li: { done: false, forgot: false, showPw: false, showPwS: false },
+    nt: { done: false },
     pf: { tab: 'info', msg: '', mt: '', showPw: false }, booted: false,
     price: 20, perWeek: 12,
     wiz: { step: 0, done: false, data: { subjects: {}, files: {}, quals: '', pw: '', rates: { 30: { on: false, p: '' }, 45: { on: false, p: '' }, 60: { on: true, p: '' }, 90: { on: false, p: '' } }, pkg: true, disc: '10', country: '' } }
@@ -1188,10 +1230,10 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   }
   function guessCountry() {
     var saved = load('country'); if (saved && COUNTRY_CUR[saved]) return saved;
-    var m = (navigator.language || '').match(/-([A-Za-z]{2})$/); if (m && COUNTRY_CUR[m[1].toUpperCase()]) return m[1].toUpperCase();
     var map = { Dubai: 'AE', Muscat: 'OM', Riyadh: 'SA', Qatar: 'QA', Kuwait: 'KW', Bahrain: 'BH', Cairo: 'EG', Amman: 'JO' };
-    for (var k in map) if (tz.indexOf(k) !== -1) return map[k];
-    return 'US';
+    for (var k in map) if (tz.indexOf(k) !== -1) return map[k]; // where the person is comes first, then their language, then the UAE
+    var m = (navigator.language || '').match(/-([A-Za-z]{2})$/); if (m && COUNTRY_CUR[m[1].toUpperCase()] && m[1].toUpperCase() !== 'US') return m[1].toUpperCase();
+    return 'AE';
   }
   function setCountry(c) {
     var old = shownCur(), oldRate = state.rates[old] || 1;
@@ -1510,23 +1552,22 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
 
   /* ================= Views ================= */
   function trustHtml() {
-    var ar = state.lang === 'ar', T = ar ? ['عمولة ثابتة 15% بلا رسوم خفية', 'مدفوعات آمنة بالبطاقة', 'شركة مسجّلة في الإمارات'] : ['Flat 15% commission, no hidden fees', 'Secure card payments', 'Registered UAE company'];
-    return '<div class="trust" role="list"><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="17" r="2.2"/></svg>' + T[0] + '</span><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>' + T[1] + '</span><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-5h4v5"/></svg>' + T[2] + '</span></div>';
+    var T = S().trustT, sh = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg>';
+    return '<div class="trust" role="list"><span role="listitem">' + sh + T[0] + '</span><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>' + T[1] + '</span><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-5h4v5"/></svg>' + T[2] + '</span></div>';
   }
   function viewHome() {
     var s = S(), ar = state.lang === 'ar', html = '';
     var rows = KEYS.map(function (k) {
       var c = s.cols[k], mp = null;
       TEACHERS.forEach(function (t) { if (t.k === k) { var m = minPrice(t); if (mp === null || m < mp) mp = m; } });
-      return '<a class="srow" data-k="' + k + '" href="#teachers-' + k + '"><span class="sn">' + esc(c.title) + '</span><span class="sp">' + (mp !== null ? esc(s.from) + ' ' + money(mp) : (ar ? 'قريباً' : 'Soon')) + '</span></a>';
+      return '<a class="srow" data-k="' + k + '" href="#' + (mp !== null ? 'teachers-' : 'notify-') + k + '"><span class="sn">' + esc(c.title) + '</span><span class="sp">' + (mp !== null ? esc(s.from) + ' ' + money(mp) : esc(s.notifyMe)) + '</span></a>';
     }).join('');
     html += '<section class="home-split rise d2"><div class="hs-blue"><h1>' + esc(s.h1) + '</h1><p class="sub">' + esc(s.sub) + '</p></div>'
       + '<div class="hs-side"><div class="search-wrap"><form class="search" role="search" id="searchForm"><label for="q" class="sr-only">' + esc(s.searchLabel) + '</label>'
       + '<input id="q" type="search" autocomplete="off" placeholder="' + esc(s.searchPh) + '"><button type="submit">' + esc(s.searchBtn) + '</button></form><p class="search-msg" id="searchMsg" role="status"></p></div>'
       + '<div class="srows">' + rows + '</div></div></section>';
-    html += '<a class="hs-bar" href="#teachers-ar"><span>' + (ar ? 'ابحث عن معلّم' : 'Find a teacher') + '</span><span class="ar-go">' + (ar ? '←' : '→') + '</span></a>';
-    var T = ar ? [['اختر', 'المادة والمستوى والوقت.'], ['احجز', 'بتوقيتك وبالدفع بالبطاقة.'], ['تعلّم مباشرة', 'في متصفحك.']] : [['Choose', 'Subject, level, time.'], ['Book', 'Your timezone, card pay.'], ['Learn live', 'In your browser.']];
-    html += '<div class="hs-strip rise d3">' + T.map(function (t, i) { return '<div class="st st' + i + '"><h3>' + esc(t[0]) + '</h3><p>' + esc(t[1]) + '</p></div>'; }).join('') + '</div>';
+    html += '<div class="hs-strip rise d3">' + s.stripT.map(function (t, i) { return '<div class="st st' + i + '"><h3>' + esc(t[0]) + '</h3><p>' + esc(t[1]) + '</p></div>'; }).join('') + '</div>';
+    html += '<section class="faq" aria-labelledby="faqH"><h2 id="faqH">' + esc(s.faqH) + '</h2>' + s.faq.map(function (x) { return '<details><summary>' + esc(x[0]) + '</summary><p>' + esc(x[1]) + '</p></details>'; }).join('') + '<p class="faq-cta"><a class="btn btn-primary" href="#notify">' + esc(s.faqCta) + '</a></p></section>';
     html += trustHtml();
     return html;
   }
@@ -1558,19 +1599,21 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     var optOpts = [{ v: '', l: s.any[k] }].concat(c.options.map(function (o) { return { v: o.id, l: o.aria || o.label }; }));
     var langOpts = [{ v: '', l: s.anyLang }].concat(Object.keys(s.langs).map(function (x) { return { v: x, l: s.langs[x] }; }));
     var sortOpts = [{ v: 'soon', l: s.sortSoon }, { v: 'low', l: s.sortLow }, { v: 'high', l: s.sortHigh }];
-    html += '<div>' + backLink('#home') + '</div><div class="results">';
-    html += '<aside class="side" aria-label="' + esc(s.filters) + '"><h2>' + esc(s.filters) + '</h2>'
+    var few = TEACHERS.length < 6;
+    html += '<div>' + backLink('#home') + '</div><div class="results' + (few ? ' solo' : '') + '">';
+    if (few) html += '';
+    else html += '<aside class="side" aria-label="' + esc(s.filters) + '"><h2>' + esc(s.filters) + '</h2>'
       + dd('f-subject', s.fSubject, KEYS.map(function (x) { return { v: x, l: s.cols[x].title }; }), k)
       + dd('f-opt', c.prompt, optOpts, opt || '', { cols: !!c.grid })
       + dd('f-lang', s.fLang, langOpts, state.filt.lang)
       + dd('f-sort', s.fSort, sortOpts, state.filt.sort)
       + '<button type="button" class="btn btn-ghost" data-act="resetf">' + esc(s.reset) + '</button></aside>';
-    html += '<section><div class="res-title"><h1 class="mega2">' + (opt ? esc(optLabel(k, opt)) + '<br>' + esc(c.subject) : esc(c.title)) + '</h1>'
+    html += '<section>' + (few ? '<nav class="chips" aria-label="' + esc(s.fSubject) + '">' + KEYS.map(function (x) { return '<a href="#teachers-' + x + '"' + (x === k ? ' aria-current="page"' : '') + '>' + esc(s.cols[x].title) + '</a>'; }).join('') + '</nav>' : '') + '<div class="res-title"><h1 class="mega2">' + (opt ? esc(optLabel(k, opt)) + '<br>' + esc(c.subject) : esc(c.title)) + '</h1>'
       + '<p class="lead">' + esc(list.length === 1 ? s.count1 : f(s.count, { n: list.length })) + '</p></div><div class="tlist">';
     if (tState === 'loading') html += '<p class="empty">' + esc(s.loadingT) + '</p>';
     else if (tState === 'error') html += '<p class="empty">' + esc(s.loadFail) + '</p>';
-    else if (!TEACHERS.length) html += '<div class="empty"><p style="margin:0 0 6px;color:var(--text);font-size:22px">' + esc(s.noneYet) + '</p><p style="margin:0 0 20px">' + esc(s.noneYetSub) + '</p><a class="btn btn-primary" href="#teach">' + esc(s.noneYetCta) + '</a></div>';
-    else if (!list.length) html += '<p class="empty">' + esc(s.none) + '</p>';
+    else if (!TEACHERS.length) html += '<div class="empty"><p style="margin:0 0 6px;color:var(--text);font-size:22px">' + esc(s.noneYet) + '</p><p style="margin:0 0 20px">' + esc(s.noneYetSub) + '</p><p class="empty-acts"><a class="btn btn-primary" href="#notify-' + k + '">' + esc(s.notifyMe) + '</a><span>' + esc(s.ntTeacher) + ' <a href="#teach">' + esc(s.noneYetCta) + '</a></span></p></div>';
+    else if (!list.length) html += '<div class="empty"><p style="margin:0 0 16px">' + esc(s.none) + '</p><p class="empty-acts"><a class="btn btn-primary" href="#notify-' + k + '">' + esc(s.notifyMe) + '</a></p></div>';
     list.forEach(function (t) {
       var bars = '';
       for (var h = 6; h <= 23; h++) { var on = t.times.indexOf(h) !== -1; bars += '<span' + (on ? ' class="on"' : '') + ' style="height:' + (on ? 16 + (h * 7 + hash(t.id)) % 18 : 8) + 'px"></span>'; }
@@ -1667,6 +1710,27 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       + '<div class="ask-nav"><button type="submit" class="btn btn-primary btn-lg">' + esc(s.rsBtn) + '</button></div></form></section>';
   }
 
+  function viewNotify(k) {
+    var s = S(), st = state.nt;
+    if (st.done) return '<section class="success"><span class="ok">' + ICON.ok + '</span><h1 class="q">' + esc(s.ntDone) + '</h1><p class="lead">' + esc(s.ntDoneText) + '</p><a class="btn btn-primary btn-lg" href="#home">' + esc(s.home) + '</a></section>';
+    var opts = '<option value="">' + esc(s.ntAny) + '</option>' + KEYS.map(function (x) { return '<option value="' + x + '"' + (x === k ? ' selected' : '') + '>' + esc(s.cols[x].title) + '</option>'; }).join('');
+    return '<section class="ask" data-k="all"><span></span><form id="ntForm" novalidate><h1 class="q" id="qh">' + esc(s.ntH) + '</h1><p class="lead" style="margin-top:-14px">' + esc(s.ntSub) + '</p>'
+      + '<div class="field" style="max-width:680px"><label for="ntEmail">' + esc(s.fEmail) + '</label><input class="nt-in" id="ntEmail" type="email" autocomplete="email" inputmode="email" dir="ltr"><span class="err" id="ntEmail-e" hidden></span></div>'
+      + '<div class="field" style="max-width:680px"><label for="ntSubj">' + esc(s.ntSubj) + '</label><select class="nt-sel" id="ntSubj">' + opts + '</select></div>'
+      + '<div class="field" style="max-width:680px"><label for="ntWa">' + esc(s.ntWa) + '</label><input class="nt-in" id="ntWa" type="tel" autocomplete="tel" inputmode="tel" dir="ltr" aria-describedby="ntWa-h ntWa-e"><span class="hint" id="ntWa-h">' + esc(s.ntWaHint) + '</span><span class="err" id="ntWa-e" hidden></span></div>'
+      + '<div class="banner" id="ntMsg" role="alert" style="max-width:560px" hidden></div>'
+      + '<div class="ask-nav"><button type="submit" class="btn btn-primary btn-lg">' + esc(s.ntBtn) + '</button></div></form>'
+      + '<p class="alt">' + esc(s.ntTeacher) + ' <a href="#teach">' + esc(s.noneYetCta) + '</a></p></section>';
+  }
+  function submitNotify() {
+    var s = S(), em = val('ntEmail'), wa = val('ntWa'), msg = document.getElementById('ntMsg'), ok = true;
+    ok = setErr('ntEmail', EMAIL.test(em) ? '' : s.ntBadEmail) && ok;
+    ok = setErr('ntWa', !wa || /^\+?\d{7,15}$/.test(wa.replace(/[\s\-()]/g, '')) ? '' : s.ntBadWa) && ok;
+    if (!ok) { var bad = document.querySelector('#ntForm [aria-invalid]'); if (bad) bad.focus(); return; }
+    msg.hidden = true;
+    api('POST', '/api/waitlist', { email: em, whatsapp: wa, subject: val('ntSubj'), lang: state.lang }).then(function () { state.nt.done = true; render(); })
+      .catch(function (x) { msg.textContent = apiMsg(x); msg.hidden = false; });
+  }
   function viewLogin() {
     var s = S(), st = state.li;
     if (st.done) return '<section class="success"><span class="ok">' + ICON.ok + '</span><h1 class="q">' + esc(s.liDone) + '</h1><p class="lead">' + esc(f(s.hi, { name: state.user })) + '</p><a class="btn btn-primary btn-lg" href="#home">' + esc(s.findTeacher) + '</a></section>';
@@ -1903,6 +1967,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     if ((m = h.match(/^teacher-([a-z0-9]+)$/))) { if (teacher(m[1])) return { v: 'teacher', t: teacher(m[1]) }; return tState === 'loading' ? { v: 'loading' } : { v: 'home' }; }
     if ((m = h.match(/^reset=([A-Za-z0-9_-]{20,100})$/))) return { v: 'reset', token: m[1] };
     if (h === 'reset-done' && state.rs.done) return { v: 'reset' };
+    if ((m = h.match(/^notify(?:-(ar|qu|ma))?$/))) return { v: 'notify', k: m[1] || '' };
     if (h === 'terms' || h === 'privacy') return { v: 'legal', k: h };
     if (h === 'about' || h === 'contact') return { v: h };
     if (h === 'signup' || h === 'login' || h === 'teach' || h === 'profile') return { v: h };
@@ -1912,6 +1977,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
 
   function render(keep) {
     var r = route(), html;
+    if (r.v !== 'notify') state.nt.done = false;
     var sj = r.v === 'teachers' ? r.k : (r.v === 'teacher' ? r.t.k : '');
     root.setAttribute('data-sj', sj); setStage(sj);
     if (r.v === 'home') html = viewHome();
@@ -1919,6 +1985,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     else if (r.v === 'teacher') html = viewTeacher(r.t);
     else if (r.v === 'signup') html = viewSignup();
     else if (r.v === 'login') html = viewLogin();
+    else if (r.v === 'notify') html = viewNotify(r.k);
     else if (r.v === 'reset') html = viewReset();
     else if (r.v === 'profile') html = viewProfile();
     else if (r.v === 'legal') html = viewLegal(r.k);
@@ -2247,6 +2314,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       state.sel[r.k] = r.id; location.hash = 'teachers-' + r.k + (r.id ? '-' + r.id : '');
     } else if (id === 'suForm') { e.preventDefault(); submitSignup(); }
     else if (id === 'liForm') { e.preventDefault(); submitLogin(); }
+    else if (id === 'ntForm') { e.preventDefault(); submitNotify(); }
     else if (id === 'pfInfoForm') { e.preventDefault(); submitPfInfo(); }
     else if (id === 'pfEmailForm') { e.preventDefault(); submitPfEmail(); }
     else if (id === 'pfPwForm') { e.preventDefault(); submitPfPw(); }
