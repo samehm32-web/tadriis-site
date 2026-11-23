@@ -880,6 +880,23 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
 .nt-sel option{font-size:16px;color:#131418}
 .nt-in:focus-visible,.nt-sel:focus-visible{outline:2px solid #22C3A6;outline-offset:4px}
 .field .hint{display:block;margin-top:6px;font-size:14px;color:var(--muted)}
+
+/* ---- teacher icons, gender field, Teach hero ---- */
+.pav{width:92px;height:92px;border-radius:50%;background:#2447C7;display:block;overflow:hidden;flex:none}
+.pav svg{display:block;width:100%;height:100%}
+.pav.sm{width:52px;height:52px}
+.tsq{overflow:hidden}
+.tsq svg{display:block;width:100%;height:100%}
+.gender{border:0;padding:0;margin:0;min-width:0;grid-column:1/-1;display:flex;flex-direction:column;gap:10px}
+.gender legend{padding:0;margin-bottom:10px;font-weight:500;font-size:15px}
+.gopts{display:flex;flex-wrap:wrap;gap:12px}
+.gopt{display:flex;align-items:center;gap:14px;padding:10px 22px 10px 10px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-weight:500;transition:border-color .2s,background .2s}
+[dir="rtl"] .gopt{padding:10px 10px 10px 22px}
+.gopt:hover{border-color:var(--text)}
+.gopt input{position:absolute;opacity:0;pointer-events:none}
+.gopt:has(input:checked){border-color:#22C3A6;background:rgba(34,195,166,.14);box-shadow:inset 0 0 0 1px #22C3A6}
+.gopt:has(input:focus-visible){outline:2px solid #22C3A6;outline-offset:2px}
+.teach-top>div:first-child::after{content:none}
 </style>
 </head>
 <body>
@@ -958,7 +975,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       findTeacher: 'Find a teacher', backTo: 'Back to {name}',
       liH: 'Welcome back', liSub: 'Log in to see your lessons and messages.', forgot: 'Forgot password?', liBtn: 'Log in',
       liDone: 'You’re logged in', forgotMsg: 'If there is an account for that email, we have just sent a link to reset your password. Check your inbox and spam folder.',
-      tH: 'Teach on Tadriis. Keep 85% of every lesson.',
+      tH: 'Teach on Tadriis. Set your own price.',
       tSub: 'Set your own rates, lesson lengths and packages. Students find you; we handle bookings, payments and the classroom.',
       tApply: 'Start your application', tHow: 'How to join',
       eTitle: 'Example: one $20 lesson', ePays: 'Student pays', eComm: 'Tadriis commission (15%)', eFees: 'Card processing fees', eFeesV: 'Paid by Tadriis', eGet: 'You receive',
@@ -1036,7 +1053,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       findTeacher: 'ابحث عن معلّم', backTo: 'العودة إلى {name}',
       liH: 'مرحباً بعودتك', liSub: 'سجّل الدخول لرؤية دروسك ورسائلك.', forgot: 'نسيت كلمة المرور؟', liBtn: 'تسجيل الدخول',
       liDone: 'تم تسجيل الدخول', forgotMsg: 'إذا كان هناك حساب بهذا البريد، فقد أرسلنا إليه رابطًا لإعادة تعيين كلمة المرور. تحقق من البريد الوارد ومجلد الرسائل غير المرغوب فيها.',
-      tH: 'علّم على تدريس واحتفظ بـ85% من كل درس.',
+      tH: 'علّم على تدريس وحدّد سعرك بنفسك.',
       tSub: 'حدّد أسعارك ومدة دروسك وباقاتك. يجدك الطلاب، ونتولّى نحن الحجوزات والمدفوعات والفصل الدراسي.',
       tApply: 'ابدأ طلبك', tHow: 'خطوات الانضمام',
       eTitle: 'مثال: درس واحد بسعر 20 دولاراً', ePays: 'يدفع الطالب', eComm: 'عمولة تدريس (15%)', eFees: 'رسوم معالجة البطاقات', eFeesV: 'يتحمّلها تدريس', eGet: 'تحصل على',
@@ -1099,7 +1116,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     qChild: 'What’s your child’s first name?', qAge: 'How old is {child}?', qFinish: 'Almost done.',
     cont: 'Continue', orEnter: 'or press Enter', forChild: 'I’m signing up for my child', haveAcc2: 'Already have an account?',
     stepOf: 'Step {n} of {t}', lblAge: 'Age',
-    tSet: 'Set your price.', tKeep: 'Keep 85%.', priceFor: 'Your price for a 60 minute lesson', perWeek: 'Lessons a week',
+    tSet: 'Set your price.', tKeep: 'Teach your way.', priceFor: 'Your price for a 60 minute lesson', perWeek: 'Lessons a week',
     youReceive: 'You receive {p}', tadriisGets: 'Tadriis keeps 15% and pays the card fees. Nothing else is taken out.', monthly: 'About {p} a month',
     monthlyL: 'At {n} lessons a week', previewH: 'This is how families will see you. It updates as you type.',
     yourName: 'Your name', headlinePh: 'Your headline appears here.', statusReview: 'Under review. Goes live once approved.', perHour: '60 min lesson'
@@ -1118,7 +1135,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     qChild: 'ما الاسم الأول لطفلك؟', qAge: 'كم عمر {child}؟', qFinish: 'اقتربنا من النهاية.',
     cont: 'متابعة', orEnter: 'أو اضغط Enter', forChild: 'أسجّل لطفلي', haveAcc2: 'لديك حساب بالفعل؟',
     stepOf: 'الخطوة {n} من {t}', lblAge: 'العمر',
-    tSet: 'حدّد سعرك.', tKeep: 'واحتفظ بـ85%.', priceFor: 'سعرك لدرس مدّته 60 دقيقة', perWeek: 'عدد الدروس أسبوعياً',
+    tSet: 'حدّد سعرك.', tKeep: 'علّم بطريقتك.', priceFor: 'سعرك لدرس مدّته 60 دقيقة', perWeek: 'عدد الدروس أسبوعياً',
     youReceive: 'تحصل على {p}', tadriisGets: 'يحتفظ تدريس بـ15% ويتحمّل رسوم البطاقات. لا يُخصم أي شيء آخر.', monthly: 'حوالي {p} شهرياً',
     monthlyL: 'عند {n} دروس أسبوعياً', previewH: 'هكذا ستظهر للعائلات. يتحدّث أثناء الكتابة.',
     yourName: 'اسمك', headlinePh: 'يظهر عنوانك هنا.', statusReview: 'قيد المراجعة. يُنشر بعد الموافقة.', perHour: 'درس 60 دقيقة'
@@ -1128,6 +1145,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   /* ===== Live platform strings ===== */
   Object.assign(STR.en, {
     noneYet: 'No teachers have joined yet.', noneYetSub: 'We are reviewing our first applications. Join the waiting list and we will tell you the day teachers go live.', noneYetCta: 'Apply to teach',
+    wGender: 'Gender', wGenderHint: 'Shown to families as the picture on your profile.', gMan: 'Man', gWoman: 'Woman', errGender: 'Choose one.',
     notifyMe: 'Notify me', ntH: 'Hear when teachers go live', ntSub: 'We are approving our first teachers now. Leave your email and we will tell you the day lessons open.', ntWa: 'WhatsApp number (optional)', ntWaHint: 'With country code, for example +971 50 123 4567', ntSubj: 'Subject', ntAny: 'Any subject', ntBtn: 'Notify me', ntDone: 'You are on the list', ntDoneText: 'We will email you as soon as teachers are live.', ntBadEmail: 'Enter a valid email address.', ntBadWa: 'Enter the number with its country code, or leave it empty.', ntTeacher: 'Are you a teacher?',
     faqH: 'Questions families ask', faq: [['How are teachers checked?', 'Every teacher sends academic certificates (and an ijazah for Quran), a government ID and a selfie. Our team reviews them before a profile goes live.'], ['How do lessons work?', 'Lessons are live video in your browser, with screen sharing and a shared whiteboard. There is nothing to install.'], ['What does a lesson cost?', 'Each teacher sets their own price, and you see it in your own currency before you book. Cancellation and refund rules are shown before you confirm.'], ['When can I book?', 'Online booking and payment are being set up. Join the waiting list and we will email you when teachers are live.']], faqCta: 'Join the waiting list',
     stripT: [['Choose', 'Pick a subject, a level and a time that suits you.'], ['Book', 'See times in your own timezone and pay by card.'], ['Learn live', 'Join the lesson in your browser. Nothing to install.']], trustT: ['ID and credentials checked for every teacher', 'Secure card payments', 'Registered UAE company'],
@@ -1145,6 +1163,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   });
   Object.assign(STR.ar, {
     noneYet: 'لم ينضم أي معلّم بعد.', noneYetSub: 'نراجع الآن أولى الطلبات. انضم إلى قائمة الانتظار وسنخبرك يوم يبدأ المعلّمون.', noneYetCta: 'قدّم طلب التدريس',
+    wGender: 'الجنس', wGenderHint: 'يظهر للعائلات كصورة لملفك.', gMan: 'رجل', gWoman: 'امرأة', errGender: 'اختر أحد الخيارين.',
     notifyMe: 'أبلغني', ntH: 'اعرف متى يبدأ المعلّمون', ntSub: 'نوافق الآن على أول المعلّمين. اترك بريدك الإلكتروني وسنخبرك يوم تُفتح الدروس.', ntWa: 'رقم واتساب (اختياري)', ntWaHint: 'مع رمز الدولة، مثل \u200E+971 50 123 4567\u200E', ntSubj: 'المادة', ntAny: 'أي مادة', ntBtn: 'أبلغني', ntDone: 'أنت على القائمة', ntDoneText: 'سنراسلك بمجرد أن يبدأ المعلّمون.', ntBadEmail: 'أدخل بريداً إلكترونياً صحيحاً.', ntBadWa: 'أدخل الرقم مع رمز الدولة أو اتركه فارغاً.', ntTeacher: 'هل أنت معلّم؟',
     faqH: 'أسئلة تطرحها العائلات', faq: [['كيف يتم التحقق من المعلّمين؟', 'يرسل كل معلّم شهاداته الأكاديمية (وإجازة للقرآن) وهوية حكومية وصورة شخصية. يراجعها فريقنا قبل نشر الملف.'], ['كيف تتم الدروس؟', 'الدروس فيديو مباشر في متصفحك، مع مشاركة الشاشة وسبورة مشتركة. لا حاجة لتثبيت أي شيء.'], ['كم يكلّف الدرس؟', 'يحدد كل معلّم سعره بنفسه، وتراه بعملتك قبل الحجز. تظهر قواعد الإلغاء والاسترداد قبل أن تؤكد.'], ['متى يمكنني الحجز؟', 'نجهّز الآن الحجز والدفع عبر الإنترنت. انضم إلى قائمة الانتظار وسنراسلك عندما يبدأ المعلّمون.']], faqCta: 'انضم إلى قائمة الانتظار',
     stripT: [['اختر', 'اختر المادة والمستوى والوقت المناسب لك.'], ['احجز', 'شاهد المواعيد بتوقيتك وادفع بالبطاقة.'], ['تعلّم مباشرة', 'انضم إلى الدرس من متصفحك دون تثبيت أي شيء.']], trustT: ['التحقق من هوية كل معلّم وشهاداته', 'مدفوعات آمنة بالبطاقة', 'شركة مسجّلة في الإمارات'],
@@ -1309,6 +1328,14 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   function slotFree(t, day, h) { return !slotTaken(t, day, h) && !(day === 0 && h <= new Date().getHours()); }
   function hash(s) { var h = 0; s = String(s); for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); }
   var PAL = { ar: ['#4A7DFF', '#14214F', '#A9C1FF', '#2F5BE0'], qu: ['#22C3A6', '#063A33', '#7FE6D8', '#13A78C'], ma: ['#FF3B5C', '#5A0A22', '#FF94A5', '#B5122F'], all: ['#4A7DFF', '#22C3A6', '#7FE6D8', '#1B2A66'] };
+  var AV = {
+    m: '<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><path fill="#101114" d="M10 96c0-19 16-31 38-31s38 12 38 31z"/><rect x="41" y="52" width="14" height="16" rx="6" fill="#F6F4EE"/><circle cx="48" cy="38" r="17" fill="#F6F4EE"/><path fill="#101114" d="M30 37c-2-13 6-22 18-22s20 9 18 22c-2-6-5-9-9-10-6 2-12 2-18 0-4 1-7 4-9 10z"/></svg>',
+    f: '<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><path fill="#101114" d="M26 42c0-15 9-26 22-26s22 11 22 26v26c0 5-4 8-9 8H35c-5 0-9-3-9-8z"/><path fill="#101114" d="M10 96c0-19 16-31 38-31s38 12 38 31z"/><rect x="41" y="52" width="14" height="16" rx="6" fill="#F6F4EE"/><ellipse cx="48" cy="41" rx="15" ry="18" fill="#F6F4EE"/><path fill="#101114" d="M33 36c4-8 9-12 15-12s11 4 15 12c-5-3-10-4-15-4s-10 1-15 4z"/></svg>',
+    n: '<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><path fill="#101114" d="M10 96c0-19 16-31 38-31s38 12 38 31z"/><rect x="41" y="52" width="14" height="16" rx="6" fill="#F6F4EE"/><circle cx="48" cy="38" r="17" fill="#F6F4EE"/></svg>'
+  };
+  function avIcon(g) { return AV[g === 'm' || g === 'f' ? g : 'n']; }
+  function tAvatar(t, l) { return t.gender ? AV[t.gender] : esc(t.ini[l]); }
+
   function orbGrad(id, k) {
     var h = hash(id), p = PAL[k] || PAL.all, r = h % 4; p = p.slice(r).concat(p.slice(0, r));
     return 'conic-gradient(from ' + (h % 360) + 'deg,' + p[0] + ',' + p[1] + ',' + p[2] + ',' + p[3] + ',' + p[0] + ')';
@@ -1530,7 +1557,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     var rate = usdOf(a.rate, a.currency);
     var lc = Object.keys(LANGS).filter(function (c2) { return String(a.langs || '').toLowerCase().indexOf(LANGS[c2].toLowerCase()) !== -1 || (c2 === 'ar' && /[؀-ۿ]/.test(a.langs || '')); });
     return a.subjects.map(function (k) {
-      return { id: 't' + a.id + k, k: k, name: [a.name, a.name], ini: [a.name.charAt(0), a.name.charAt(0)], country: [a.country || '', a.country || ''], langs: [a.langs || '', a.langs || ''],
+      return { id: 't' + a.id + k, k: k, gender: a.gender || '', name: [a.name, a.name], ini: [a.name.charAt(0), a.name.charAt(0)], country: [a.country || '', a.country || ''], langs: [a.langs || '', a.langs || ''],
         head: [head, head], about: [a.bio, a.bio], creds: [[], []], who: [a.levels || '', a.levels || ''], offers: (a.offers && a.offers[k]) || [], lengths: a.lengths && a.lengths.length ? a.lengths : [60],
         rate: rate, pk: [], next: null, times: [], soon: 0, lc: lc, years: a.years || 0, live: true };
     });
@@ -1580,7 +1607,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       var prev = col.querySelector('.pv');
       if (sel) {
         prev.innerHTML = matchT(k, sel).slice(0, 3).map(function (t) {
-          return '<a href="#teacher-' + t.id + '"><span class="tsq sm" data-k="' + k + '" aria-hidden="true">' + esc(t.ini[L()]) + '</span>' + '<span><span class="tn">' + esc(t.name[L()]) + '</span>' + (t.next ? '<br><span class="ta">' + esc(f(s.nextAvail, { t: t.next[L()] })) + '</span>' : '') + '</span><span class="tp">' + esc(s.from) + ' ' + money(minPrice(t)) + '</span></a>';
+          return '<a href="#teacher-' + t.id + '"><span class="tsq sm" data-k="' + k + '" aria-hidden="true">' + tAvatar(t, L()) + '</span>' + '<span><span class="tn">' + esc(t.name[L()]) + '</span>' + (t.next ? '<br><span class="ta">' + esc(f(s.nextAvail, { t: t.next[L()] })) + '</span>' : '') + '</span><span class="tp">' + esc(s.from) + ' ' + money(minPrice(t)) + '</span></a>';
         }).join('');
       }
       prev.hidden = !sel;
@@ -1618,7 +1645,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       var bars = '';
       for (var h = 6; h <= 23; h++) { var on = t.times.indexOf(h) !== -1; bars += '<span' + (on ? ' class="on"' : '') + ' style="height:' + (on ? 16 + (h * 7 + hash(t.id)) % 18 : 8) + 'px"></span>'; }
       var times = t.times.slice().sort(function (a, b) { return a - b; }).map(hh).join(', ');
-      html += '<a class="trow" href="#teacher-' + t.id + '"><span class="tsq" data-k="' + k + '" aria-hidden="true">' + esc(t.ini[l]) + '</span>'
+      html += '<a class="trow" href="#teacher-' + t.id + '"><span class="tsq" data-k="' + k + '" aria-hidden="true">' + tAvatar(t, l) + '</span>'
         + '<span><span class="t-name">' + esc(t.name[l]) + '</span><p class="t-head">' + esc(t.head[l]) + '</p>' + (t.country[l] ? '<p class="t-meta">' + esc(f(s.basedL, { c: t.country[l], l: t.langs[l] || '—' })) + '</p>' : '') + '</span>'
         + '<span class="bars-col">' + (t.times.length ? '<span class="bars" role="img" aria-label="' + esc(s.freeToday + ': ' + times) + '">' + bars + '</span><span class="t-av">' + esc(s.freeToday) + '</span>' : '') + '</span>'
         + '<span class="price-col"><span class="t-price">' + esc(money(minPrice(t))) + ' <small>/ ' + t.lengths[0] + ' ' + esc(s.min) + '</small></span>' + (t.next ? '<span class="t-next"><span class="dot" aria-hidden="true"></span>' + esc(f(s.nextAvail, { t: t.next[l] })) + '</span>' : '') + '</span>'
@@ -1650,7 +1677,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     var o = opts[b.opt] || opts[0];
     var when = b.time != null ? (dl[b.day].wd + ' ' + dl[b.day].n + (state.lang === 'ar' ? '، ' : ', ') + fmtTime(b.time)) : '—';
     html += '<div>' + backLink('#teachers-' + k) + '</div><div class="prof"><div class="prof-main">';
-    html += '<section class="prof-hero"><span class="tsq big" data-k="' + k + '" aria-hidden="true">' + esc(t.ini[l]) + '</span>' + '<div style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:240px"><h1 class="name">' + esc(t.name[l]) + '</h1><p class="lead">' + esc(t.head[l]) + '</p></div></section>';
+    html += '<section class="prof-hero"><span class="tsq big" data-k="' + k + '" aria-hidden="true">' + tAvatar(t, l) + '</span>' + '<div style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:240px"><h1 class="name">' + esc(t.name[l]) + '</h1><p class="lead">' + esc(t.head[l]) + '</p></div></section>';
     html += '<ul class="verif" aria-label="' + esc(s.verifiedL) + '"><li>' + ICON.shield + esc(s.approvedL) + '</li></ul>';
     var prow = function (lab, v) { return v ? '<div><span>' + esc(lab) + '</span><span>' + esc(v) + '</span></div>' : ''; };
     html += '<section class="sec"><div class="rows">' + prow(s.basedIn, t.country[l]) + prow(s.speaksL, t.langs[l]) + prow(s.whoL, t.who[l]) + prow(s.yearsL, t.years ? f(s.yearsV, { n: t.years }) : '') + prow(s.lengthsL, t.lengths.join(', ') + ' ' + s.min) + '</div></section>';
@@ -1765,7 +1792,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     var s = S(), d = state.wiz.data, name = d.name || s.yourName, bio = (d.bio || '').trim();
     var head = bio ? (bio.length > 90 ? bio.slice(0, 87) + '…' : bio) : s.headlinePh;
     var lines = subjLines().concat(d.langs ? [d.langs] : []);
-    return '<div class="pcard"><div class="who">' + orb(name, 'all', 92, ' id="pvOrb"') + '<div><div class="nm" id="pvName">' + esc(name) + '</div><div class="hl" id="pvHead">' + esc(head) + '</div></div></div>'
+    return '<div class="pcard"><div class="who">' + '<span class="pav" id="pvAv" aria-hidden="true">' + avIcon(d.gender) + '</span>' + '<div><div class="nm" id="pvName">' + esc(name) + '</div><div class="hl" id="pvHead">' + esc(head) + '</div></div></div>'
       + '<div class="tags" id="pvTags">' + (lines.length ? lines.map(esc).join('<br>') : '&nbsp;') + '</div>'
       + '<div class="pr"><span>' + esc(s.perHour) + '</span><b id="pvPrice">' + fmtC(previewPrice()) + '</b></div>'
       + '<div class="status"><i></i>' + esc(s.statusReview) + '</div></div>';
@@ -1778,7 +1805,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     var lines = subjLines().concat(d.langs ? [d.langs] : []);
     document.getElementById('pvTags').innerHTML = lines.length ? lines.map(esc).join('<br>') : '&nbsp;';
     document.getElementById('pvPrice').textContent = fmtC(previewPrice());
-    document.getElementById('pvOrb').style.setProperty('--g', orbGrad(name, 'all'));
+    var av = document.getElementById('pvAv'); if (av) av.innerHTML = avIcon(d.gender);
   }
   function updateCalc() {
     var pr = localPrice(state.price), you = pr * 0.85, mon = you * state.perWeek * 4;
@@ -1792,6 +1819,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   function viewTeach() {
     var s = S(), w = state.wiz, d = w.data, html = '';
     if (!d.country) d.country = s.countries[0];
+    if (!d.gender && state.me && state.me.profile && state.me.profile.gender) d.gender = state.me.profile.gender;
     if (state.me && state.me.role === 'teacher') { d.name = d.name || state.me.name; d.email = state.me.email; }
     html += '<section class="teach-top"><div style="display:flex;flex-direction:column;gap:28px"><h1 class="mega2" style="font-size:clamp(42px,6.4vw,84px)">' + esc(s.tSet) + '<br>' + esc(s.tKeep) + '</h1><p class="lead" style="max-width:520px">' + esc(s.tSub) + '</p>'
       + '<div style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn btn-primary btn-lg" href="#apply" data-act="toApply">' + esc(s.tApply) + '</a><a class="btn btn-ghost btn-lg" href="#join" data-act="toJoin">' + esc(s.tHow) + '</a></div></div>'
@@ -1814,7 +1842,8 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
           + '<div class="field"><label for="wEmail">' + esc(s.wEmail) + '</label><input class="input" id="wEmail" data-w="email" type="email" inputmode="email" dir="ltr" autocomplete="email" value="' + esc(d.email || '') + '"' + (state.me ? ' readonly' : '') + '><span class="err" id="wEmail-e" hidden></span></div>'
           + (state.me ? '' : '<div class="field"><label for="wPw">' + esc(s.wPassword) + '</label><input class="input" id="wPw" data-w="pw" type="password" autocomplete="new-password" value="' + esc(d.pw || '') + '" aria-describedby="wPw-h"><span class="note" id="wPw-h">' + esc(s.pwHint) + '</span><span class="err" id="wPw-e" hidden></span></div>')
           + dd('w-country', s.wCountry, s.countries.map(function (c) { return { v: c, l: c }; }), d.country)
-          + '<div class="field"><label for="wLangs">' + esc(s.wLangs) + '</label><input class="input" id="wLangs" data-w="langs" placeholder="' + esc(s.wLangsPh) + '" value="' + esc(d.langs || '') + '"></div></div>'
+          + '<div class="field"><label for="wLangs">' + esc(s.wLangs) + '</label><input class="input" id="wLangs" data-w="langs" placeholder="' + esc(s.wLangsPh) + '" value="' + esc(d.langs || '') + '"></div>'
+          + '<fieldset class="gender" aria-describedby="wGender-h"><legend>' + esc(s.wGender) + '</legend><div class="gopts">' + [['m', s.gMan], ['f', s.gWoman]].map(function (g, i) { return '<label class="gopt"><input type="radio" name="wGender"' + (i === 0 ? ' id="wGender"' : '') + ' data-w="gender" value="' + g[0] + '"' + (d.gender === g[0] ? ' checked' : '') + '><span class="pav sm" aria-hidden="true">' + AV[g[0]] + '</span><span>' + esc(g[1]) + '</span></label>'; }).join('') + '</div><span class="note" id="wGender-h">' + esc(s.wGenderHint) + '</span><span class="err" id="wGender-e" hidden></span></fieldset></div>'
           + '<div class="field"><label for="wBio">' + esc(s.wBio) + '</label><textarea class="input" id="wBio" data-w="bio" placeholder="' + esc(s.wBioPh) + '">' + esc(d.bio || '') + '</textarea></div>'
           + '<div class="field"><span class="lbl">' + esc(s.wSubjects) + '</span><span class="note">' + esc(s.wSubjectsHint) + '</span></div><div class="grid2">'
           + KEYS.map(function (k) {
@@ -2116,7 +2145,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     var d = state.wiz.data, r = d.rates, lens = [30, 45, 60, 90].filter(function (len) { return r[len].on && parseFloat(r[len].p) > 0; });
     var base = lens.indexOf(60) !== -1 ? 60 : lens[0], rate = Math.round(parseFloat(r[base].p) * 60 / base);
     var subj = KEYS.filter(function (k) { return d.subjects[k]; });
-    var body = { subjects: subj, offers: d.subjects, lengths: lens, rate: rate, currency: shownCur(), country: d.country, langs: d.langs || '', years: d.years || 0, bio: (d.bio || '').trim(), qualifications: (d.quals || '').trim(), levels: subjLines().join('; ').slice(0, 300) };
+    var body = { gender: d.gender || '', subjects: subj, offers: d.subjects, lengths: lens, rate: rate, currency: shownCur(), country: d.country, langs: d.langs || '', years: d.years || 0, bio: (d.bio || '').trim(), qualifications: (d.quals || '').trim(), levels: subjLines().join('; ').slice(0, 300) };
     if (!state.me) { body.agreedTerms = true; body.lang = state.lang; body.name = (d.name || '').trim(); body.email = (d.email || '').trim(); body.password = d.pw || ''; body.role = 'teacher'; }
     return body;
   }
@@ -2128,6 +2157,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       chk('wName', (d.name || '').trim().length > 1, s.errName);
       chk('wEmail', EMAIL.test((d.email || '').trim()), s.errEmail);
       if (!state.me) chk('wPw', (d.pw || '').length >= 10, s.errPw);
+      chk('wGender', d.gender === 'm' || d.gender === 'f', s.errGender);
       chk('wBio', (d.bio || '').trim().length >= 40, s.errBio);
       chk('wSubj', KEYS.some(function (k) { return d.subjects[k] && d.subjects[k].length; }), s.errSubject);
     } else if (w.step === 1) chk('wQual', (d.quals || '').trim().length >= 10, s.errQual);
