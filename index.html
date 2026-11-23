@@ -897,16 +897,69 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
 .gopt:has(input:checked){border-color:#22C3A6;background:rgba(34,195,166,.14);box-shadow:inset 0 0 0 1px #22C3A6}
 .gopt:has(input:focus-visible){outline:2px solid #22C3A6;outline-offset:2px}
 .teach-top>div:first-child::after{content:none}
+
+/* ======== Loading sequence: poster chips, colour wipe, skeletons, progress bar ======== */
+.intro{animation:introOut .01s linear 2.3s forwards}
+.intro .intro-word{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;animation:none;letter-spacing:0;font-weight:600;font-size:clamp(20px,3.4vw,28px)}
+.intro-word b{font-weight:inherit;padding:3px 14px;border-radius:3px;background:var(--c);color:#fff;white-space:nowrap;animation:chipIn .42s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(.5s + var(--i) * .14s)}
+.intro-word b:nth-child(1){--c:#2447C7;--i:0}
+.intro-word b:nth-child(2){--c:#101114;--i:1}
+.intro-word b:nth-child(3){--c:#22C3A6;--i:2;color:#0B1014}
+html[data-theme="dark"] .intro-word b:nth-child(2){--c:#F6F4EE;color:#101114}
+@keyframes chipIn{from{clip-path:inset(0 100% 0 0);opacity:0}to{clip-path:inset(0);opacity:1}}
+[dir="rtl"] .intro-word b{animation-name:chipInR}
+@keyframes chipInR{from{clip-path:inset(0 0 0 100%);opacity:0}to{clip-path:inset(0);opacity:1}}
+.wipe{position:fixed;inset:0;z-index:61;pointer-events:none;display:flex;flex-direction:column}
+.wipe i{flex:1;transform:translateX(-101%);animation:wipe .95s cubic-bezier(.7,0,.25,1) both}
+.wipe i:nth-child(1){background:#2447C7;animation-delay:1.6s}
+.wipe i:nth-child(2){background:#101114;animation-delay:1.7s}
+.wipe i:nth-child(3){background:#22C3A6;animation-delay:1.8s}
+@keyframes wipe{0%{transform:translateX(-101%)}45%,55%{transform:none}100%{transform:translateX(101%)}}
+[dir="rtl"] .wipe i{animation-name:wipeR;transform:translateX(101%)}
+@keyframes wipeR{0%{transform:translateX(101%)}45%,55%{transform:none}100%{transform:translateX(-101%)}}
+.d1{animation-delay:2.25s}.d2{animation-delay:2.35s}.d3{animation-delay:2.45s}.d4{animation-delay:2.9s}
+.c0{animation-delay:2.5s}.c1{animation-delay:2.62s}.c2{animation-delay:2.74s}
+body.no-intro .rise{animation-delay:0s!important}
+@keyframes blockIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+[dir="rtl"] .hs-blue,[dir="rtl"] .hs-strip .st{animation-name:blockInR}
+@keyframes blockInR{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0)}}
+.home-split .hs-blue{animation:blockIn .7s cubic-bezier(.7,0,.2,1) 2.35s both}
+.hs-strip .st{animation:blockIn .55s cubic-bezier(.7,0,.2,1) both}
+.hs-strip .st0{animation-delay:2.6s}.hs-strip .st1{animation-delay:2.72s}.hs-strip .st2{animation-delay:2.84s}
+body.no-intro .home-split .hs-blue{animation-delay:.05s}
+body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{animation-delay:.3s}body.no-intro .hs-strip .st2{animation-delay:.4s}
+[dir="rtl"] .home-split .hs-blue{animation-name:blockInR}
+.tlist>.trow{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.tlist>.trow:nth-child(2){animation-delay:.07s}.tlist>.trow:nth-child(3){animation-delay:.14s}.tlist>.trow:nth-child(4){animation-delay:.21s}.tlist>.trow:nth-child(5){animation-delay:.28s}.tlist>.trow:nth-child(n+6){animation-delay:.35s}
+.topbar{position:fixed;inset:0 0 auto 0;height:3px;z-index:70;pointer-events:none}
+.topbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2447C7,#22C3A6);opacity:0;transform-origin:left}
+[dir="rtl"] .topbar i{margin-inline-start:auto}
+.topbar i.run{opacity:1;width:85%;transition:width 8s cubic-bezier(.1,.6,.2,1)}
+.topbar i.fin{opacity:0;width:100%;transition:width .25s ease-out,opacity .4s ease .25s}
+.sk-l{display:block;height:14px;margin:9px 0;border-radius:3px;background:linear-gradient(90deg,var(--line) 20%,rgba(128,128,128,.28) 45%,var(--line) 70%);background-size:220% 100%;animation:shim 1.25s linear infinite}
+.sk-l.w40{width:40%}.sk-l.w60{width:60%}.sk-l.w90{width:90%}
+.sk-l.pill{display:inline-block;width:64px;height:12px;margin:0}
+.sk-b{background:var(--line)!important;animation:shimB 1.25s ease-in-out infinite alternate}
+.trow.sk{pointer-events:none}
+@keyframes shim{from{background-position:120% 0}to{background-position:-100% 0}}
+@keyframes shimB{from{opacity:.55}to{opacity:1}}
+.btn{position:relative;overflow:hidden}
+.btn.busy{pointer-events:none;opacity:.85}
+.btn.busy::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-100%);animation:sweep .9s linear infinite}
+@keyframes sweep{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.wipe,.topbar{display:none}.sk-l,.sk-b,.btn.busy::before,.tlist>.trow,.home-split .hs-blue,.hs-strip .st{animation:none}}
 </style>
 </head>
 <body>
 <div class="intro" id="intro" aria-hidden="true">
   <div class="intro-inner">
     <svg class="intro-icon" viewBox="40 80 432 420" aria-hidden="true" focusable="false"><defs><clipPath id="tzci"><path d="M58 178 Q58 152 82 158 L250 214 Q276 222 276 248 L276 404 Q276 420 260 420 L240 420 C130 420 58 360 58 270 Z"/></clipPath></defs><path class="pl" d="M58 178 Q58 152 82 158 L250 214 Q276 222 276 248 L276 404 Q276 420 260 420 L240 420 C130 420 58 360 58 270 Z" fill="#4A7DFF"/><path class="pr" d="M454 178 Q454 152 430 158 L262 214 Q236 222 236 248 L236 468 Q236 488 250 474 L304 420 C396 414 454 356 454 270 Z" fill="#22C3A6"/><path class="pm" d="M454 178 Q454 152 430 158 L262 214 Q236 222 236 248 L236 468 Q236 488 250 474 L304 420 C396 414 454 356 454 270 Z" fill="#7FE6D8" clip-path="url(#tzci)"/><path class="pd" d="M218 98 L244 124 L218 150 L192 124 Z M294 98 L320 124 L294 150 L268 124 Z" fill="var(--text)"/></svg>
-    <span class="intro-word" data-t="tag">Learn it. Say it. Own it.</span>
-    <span class="intro-track"><span class="intro-bar"></span></span>
+    <span class="intro-word" id="introWord">Learn it. Say it. Own it.</span>
   </div>
 </div>
+<div class="wipe" id="wipe" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="topbar" id="topbar" aria-hidden="true"><i></i></div>
+<script>try{if(sessionStorage.getItem('tadriis-intro')&&!/[?&]intro/.test(location.search)){document.getElementById('intro').remove();document.getElementById('wipe').remove();document.body.classList.add('no-intro')}else{sessionStorage.setItem('tadriis-intro','1')}}catch(e){}</script>
 <div class="stage" id="stage" aria-hidden="true"></div>
 <div class="wrap">
   <header class="rise d1">
@@ -1540,10 +1593,21 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   /* ================= API ================= */
   var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? (new URLSearchParams(location.search).get('api') || 'http://127.0.0.1:8787') : 'https://api.tadriis.com';
   var tState = 'loading';
+  var pend = 0, lastBtn = null, topI = document.querySelector('#topbar i'), topT = 0;
+  function barStart() { if (!topI) return; clearTimeout(topT); topI.className = ''; void topI.offsetWidth; topI.className = 'run'; }
+  function barDone() { if (!topI) return; topI.className = 'fin'; topT = setTimeout(function () { topI.className = ''; }, 700); }
+  document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('button,.btn'); if (b) lastBtn = b; }, true);
+  document.addEventListener('submit', function (e) { var b = e.submitter || (e.target.querySelector && e.target.querySelector('button[type=submit]')); if (b) lastBtn = b; }, true);
+  window.addEventListener('hashchange', function () { if (!pend) { barStart(); setTimeout(function () { if (!pend) barDone(); }, 380); } });
   function api(method, path, body) {
+    var btn = method !== 'GET' && lastBtn && document.contains(lastBtn) ? lastBtn : null;
+    if (!pend++) barStart();
+    if (btn) btn.classList.add('busy');
+    var end = function () { if (btn) btn.classList.remove('busy'); if (!--pend) barDone(); };
     return fetch(API + path, { method: method, credentials: 'include', headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'tadriis' }, body: body === undefined ? undefined : JSON.stringify(body) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || ''); e.status = r.status; throw e; } return j; }); },
-        function () { var e = new Error('network'); e.status = 0; throw e; });
+        function () { var e = new Error('network'); e.status = 0; throw e; })
+      .then(function (j) { end(); return j; }, function (e) { end(); throw e; });
   }
   function apiMsg(e) {
     var s = S(); if (!e || e.status === 0) return s.errNet;
@@ -1587,7 +1651,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
     var rows = KEYS.map(function (k) {
       var c = s.cols[k], mp = null;
       TEACHERS.forEach(function (t) { if (t.k === k) { var m = minPrice(t); if (mp === null || m < mp) mp = m; } });
-      return '<a class="srow" data-k="' + k + '" href="#' + (mp !== null ? 'teachers-' : 'notify-') + k + '"><span class="sn">' + esc(c.title) + '</span><span class="sp">' + (mp !== null ? esc(s.from) + ' ' + money(mp) : esc(s.notifyMe)) + '</span></a>';
+      return '<a class="srow" data-k="' + k + '" href="#' + (mp !== null ? 'teachers-' : 'notify-') + k + '"><span class="sn">' + esc(c.title) + '</span><span class="sp">' + (mp !== null ? esc(s.from) + ' ' + money(mp) : tState === 'loading' ? '<i class="sk-l w60 pill"></i>' : esc(s.notifyMe)) + '</span></a>';
     }).join('');
     html += '<section class="home-split rise d2"><div class="hs-blue"><h1>' + esc(s.h1) + '</h1><p class="sub">' + esc(s.sub) + '</p></div>'
       + '<div class="hs-side"><div class="search-wrap"><form class="search" role="search" id="searchForm"><label for="q" class="sr-only">' + esc(s.searchLabel) + '</label>'
@@ -1637,7 +1701,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
       + '<button type="button" class="btn btn-ghost" data-act="resetf">' + esc(s.reset) + '</button></aside>';
     html += '<section>' + (few ? '<nav class="chips" aria-label="' + esc(s.fSubject) + '">' + KEYS.map(function (x) { return '<a href="#teachers-' + x + '"' + (x === k ? ' aria-current="page"' : '') + '>' + esc(s.cols[x].title) + '</a>'; }).join('') + '</nav>' : '') + '<div class="res-title"><h1 class="mega2">' + (opt ? esc(optLabel(k, opt)) + '<br>' + esc(c.subject) : esc(c.title)) + '</h1>'
       + '<p class="lead">' + esc(list.length === 1 ? s.count1 : f(s.count, { n: list.length })) + '</p></div><div class="tlist">';
-    if (tState === 'loading') html += '<p class="empty">' + esc(s.loadingT) + '</p>';
+    if (tState === 'loading') html += '<p class="sr-only" role="status">' + esc(s.loadingT) + '</p>' + [0, 1, 2].map(function () { return '<div class="trow sk" aria-hidden="true"><span class="tsq sk-b"></span><span><i class="sk-l w60"></i><i class="sk-l w90"></i><i class="sk-l w40"></i></span><span class="price-col"><i class="sk-l w60"></i></span></div>'; }).join('');
     else if (tState === 'error') html += '<p class="empty">' + esc(s.loadFail) + '</p>';
     else if (!TEACHERS.length) html += '<div class="empty"><p style="margin:0 0 6px;color:var(--text);font-size:22px">' + esc(s.noneYet) + '</p><p style="margin:0 0 20px">' + esc(s.noneYetSub) + '</p><p class="empty-acts"><a class="btn btn-primary" href="#notify-' + k + '">' + esc(s.notifyMe) + '</a><span>' + esc(s.ntTeacher) + ' <a href="#teach">' + esc(s.noneYetCta) + '</a></span></p></div>';
     else if (!list.length) html += '<div class="empty"><p style="margin:0 0 16px">' + esc(s.none) + '</p><p class="empty-acts"><a class="btn btn-primary" href="#notify-' + k + '">' + esc(s.notifyMe) + '</a></p></div>';
@@ -2441,8 +2505,10 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   setCountry(guessCountry());
   render(true);
   loadTeachers(); restoreSession();
-  var intro = document.getElementById('intro');
-  setTimeout(function () { if (intro && intro.parentNode) intro.parentNode.removeChild(intro); document.body.classList.add('no-intro'); }, 2300);
+  var intro = document.getElementById('intro'), wipe = document.getElementById('wipe');
+  (function () { var w = document.getElementById('introWord'), p = (S().tag || '').match(/[^.]+\./g); if (w && p && p.length === 3) w.innerHTML = p.map(function (x) { return '<b>' + esc(x.trim()) + '</b>'; }).join(''); })();
+  setTimeout(function () { if (intro && intro.parentNode) intro.parentNode.removeChild(intro); if (wipe && wipe.parentNode) wipe.parentNode.removeChild(wipe); }, 3000);
+  setTimeout(function () { document.body.classList.add('no-intro'); }, 4000);
   setTimeout(function () { var br = document.getElementById('brand'); if (br) br.classList.add('min'); }, 4800);
 
 })();
