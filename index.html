@@ -2037,7 +2037,7 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
   function submitReset() {
     var s = S(), pw = document.getElementById('rsPw').value, m = (location.hash || '').match(/^#reset=(.+)$/);
     if (!setErr('rsPw', pw.length >= 10 ? '' : s.errPw)) return document.getElementById('rsPw').focus();
-    api('POST', '/api/reset/complete', { token: m ? m[1] : '', password: pw }).then(function () {
+    api('POST', '/api/reset/complete', { token: m ? m[1] : '', password: pw, lang: state.lang }).then(function () {
       state.rs.done = true; try { history.replaceState(null, '', location.pathname + location.search + '#reset-done'); } catch (e) {} render();
     }).catch(function (e) { if (e.status === 400) { state.rs.bad = true; render(); } else setErr('rsPw', apiMsg(e)); });
   }
