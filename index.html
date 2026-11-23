@@ -638,6 +638,100 @@ footer .foot{padding-bottom:max(20px,env(safe-area-inset-bottom))}
   html{background:#131418}
   html[data-theme="light"]{background:#F6F4EE}
 }
+
+/* ======== Poster system: flat blocks, one cropped letter per subject, action bars ======== */
+html[data-theme="dark"]{--bg:#101114;--panel:#101114;--btn:#22C3A6;--on:#0B1014;
+  --ar:#5C86F2;--ar-rgb:92,134,242;--ar-btn:#2447C7;--ar-on:#FFFFFF;
+  --qu:#2DB872;--qu-rgb:45,184,114;--qu-btn:#2DB872;--qu-on:#0B1014;
+  --ma:#F6F4EE;--ma-rgb:246,244,238;--ma-btn:#F6F4EE;--ma-on:#101114;--glow:0}
+html[data-theme="light"]{--bg:#F6F4EE;--panel:#F6F4EE;--btn:#22C3A6;--on:#0B1014;
+  --ar:#2447C7;--ar-rgb:36,71,199;--ar-btn:#2447C7;--ar-on:#FFFFFF;
+  --qu:#14804A;--qu-rgb:45,184,114;--qu-btn:#2DB872;--qu-on:#0B1014;
+  --ma:#101114;--ma-rgb:16,17,20;--ma-btn:#101114;--ma-on:#F6F4EE;--glow:0}
+html[data-theme="dark"][data-sj="ma"],html[data-theme="dark"][data-sj="qu"]{--bg:#101114}
+.stage{display:none}
+[data-k="ar"]{--pb:#2447C7;--pf:#FFFFFF;--pfr:255,255,255;--pm:#E3EAFF;--pbar:#22C3A6;--paf:#0B1014}
+[data-k="qu"]{--pb:#2DB872;--pf:#0B1014;--pfr:11,16,20;--pm:#0F3F2A;--pbar:#2447C7;--paf:#FFFFFF}
+html[data-theme="dark"] [data-k="ma"]{--pb:#F6F4EE;--pf:#101114;--pfr:16,17,20;--pm:#3B3E48;--pbar:#22C3A6;--paf:#0B1014}
+html[data-theme="light"] [data-k="ma"]{--pb:#101114;--pf:#F6F4EE;--pfr:246,244,238;--pm:#B3B7C2;--pbar:#22C3A6;--paf:#0B1014}
+
+/* hero: type-led, left aligned */
+.hero{align-items:flex-start;text-align:start;gap:12px;padding-block:8px 4px}
+h1.mega{font-size:clamp(34px,6.2vw,72px);line-height:1.02}
+.hero .sub{max-width:52ch}
+.search{border-radius:0;background:transparent;border:0;border-bottom:2px solid var(--text);padding-inline:2px 0;max-width:none}
+.search:focus-within{border-color:var(--btn)}
+.search button{border-radius:0;background:var(--btn);color:#0B1014;min-height:50px}
+.search-wrap{align-items:stretch}
+
+/* subject blocks */
+.grid{gap:0;border-radius:6px;overflow:hidden}
+.grid>div{display:flex;min-width:0}
+.panel{flex:1;border:0;border-radius:0;gap:16px;padding:22px 22px 0;background:var(--pb);color:var(--pf);--c:var(--pf);--rgb:var(--pfr);box-shadow:none;position:relative;overflow:hidden}
+.panel:hover,.panel.matched{box-shadow:none;border:0}
+.panel.matched{outline:3px solid var(--text);outline-offset:-3px}
+.panel h2{color:var(--pf)}
+.panel .desc{color:var(--pm)}
+.panel .online{color:var(--pm)}
+.panel .online .dot{background:var(--pf);box-shadow:none}
+.panel .art{height:170px;border-radius:0}
+.panel .dd-btn{background:rgba(var(--pfr),.08);border:1px solid rgba(var(--pfr),.55);border-radius:4px;color:var(--pf)}
+.panel .dd-btn:hover,.panel .dd-btn[aria-expanded="true"]{border-color:var(--pf);box-shadow:none}
+.panel .dd-list{color:var(--text);--rgb:74,125,255}
+.panel .pv a{border-top:1px solid rgba(var(--pfr),.3);color:var(--pf)}
+.panel .pv .ta{color:var(--pm)}
+.panel .pv{margin-bottom:4px}
+.panel .cta{margin:4px -22px 0;border-radius:0;min-height:56px;justify-content:space-between;padding:0 22px;background:var(--pbar);color:var(--paf);font-size:15px}
+.panel .cta::after{content:"→";font-weight:500}
+[dir="rtl"] .panel .cta::after{content:"←"}
+.panel .cta:hover{filter:brightness(1.06)}
+.panel .orb{box-shadow:none}
+
+/* orbs: flat */
+.orb{box-shadow:none}
+.trust li i{box-shadow:none!important}
+
+/* buttons and fields: square, honest */
+.btn{border-radius:4px}
+.dd-btn,.input,.field select,textarea.input{border-radius:4px}
+.dd-list{border-radius:6px}
+.trow{border-radius:0}
+.trust{border-block:1px solid var(--line)}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.panel .art{height:150px}}
+
+/* ======== Poster system, part 2: subject pages, Teach, forms ======== */
+[data-k="all"]{--pb:#2447C7;--pf:#FFFFFF;--pfr:255,255,255;--pm:#E3EAFF;--pbar:#22C3A6;--paf:#0B1014}
+.panel .dd label,.panel .dd .dd-lab,.panel .dd>span:first-child{color:var(--pm)}
+.trust{justify-content:flex-start;margin-inline:0;width:100%}
+.trust li{color:var(--soft)}
+
+.res-title{background:var(--pb);color:var(--pf);padding:24px 24px 26px;position:relative;overflow:hidden;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;border-radius:6px;margin-bottom:6px}
+.res-title::after{position:absolute;right:-6px;bottom:-34px;font-size:170px;line-height:.8;color:rgba(var(--pfr),.17);pointer-events:none;font-family:var(--font)}
+[data-k="ar"] .res-title::after{content:"علم"}
+[data-k="qu"] .res-title::after{content:"ق"}
+[data-k="ma"] .res-title::after{content:"π";font-family:var(--display);font-weight:700}
+[dir="rtl"] .res-title::after{right:auto;left:-6px}
+.res-title h1,.res-title .mega2{color:var(--pf);position:relative;z-index:1;font-size:clamp(26px,4vw,44px)}
+.res-title .lead{color:var(--pm);position:relative;z-index:1;margin:0}
+.trow{border-top-color:var(--line)}
+
+.teach-top{align-items:stretch;gap:0;border-radius:6px;overflow:hidden}
+.teach-top>div:first-child{background:#2447C7;color:#fff;padding:36px 32px;position:relative;overflow:hidden;justify-content:space-between}
+.teach-top>div:first-child::after{content:"85%";position:absolute;right:-10px;bottom:-26px;font-family:var(--display);font-weight:700;font-size:150px;line-height:.8;color:rgba(255,255,255,.17);pointer-events:none}
+[dir="rtl"] .teach-top>div:first-child::after{right:auto;left:-10px}
+.teach-top>div:first-child .mega2,.teach-top>div:first-child .lead{color:#fff;position:relative;z-index:1}
+.teach-top>div:first-child .lead{color:#E3EAFF}
+.teach-top>div:first-child>div{position:relative;z-index:1}
+.teach-top .btn-ghost{color:#fff;border-color:rgba(255,255,255,.6);background:transparent}
+.teach-top .btn-primary{background:#22C3A6;color:#0B1014}
+.calc{border-radius:0;border:1px solid var(--line);border-inline-start:0;background:transparent}
+@media (max-width:900px){.teach-top>div:first-child{padding:28px 20px}.calc{border-inline-start:1px solid var(--line);border-top:0}.teach-top>div:first-child::after{font-size:110px}}
+
+.wizard,.card,.auth,.form{border-radius:6px}
+.btn-primary.btn-lg,.wizard .btn-primary,.card .btn-primary{border-radius:4px}
+
+.panel .lbl{color:var(--pm)!important}
+.panel .dd-btn .dd-val{color:var(--pf)}
 </style>
 </head>
 <body>
