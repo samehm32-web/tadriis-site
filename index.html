@@ -732,6 +732,14 @@ h1.mega{font-size:clamp(34px,6.2vw,72px);line-height:1.02}
 
 .panel .lbl{color:var(--pm)!important}
 .panel .dd-btn .dd-val{color:var(--pf)}
+
+/* hero block: headline on its own deep-blue area, letter tinted in the corner, never overlapping */
+.hero-block{background:#2447C7;color:#fff;border-radius:6px;padding:40px 36px 120px;position:relative;overflow:hidden;min-height:300px;justify-content:flex-start;gap:14px}
+.hero-block::after{content:"علم";position:absolute;inset-inline-end:-8px;bottom:-46px;font-size:230px;line-height:.8;color:#4B78F5;opacity:.38;pointer-events:none;font-family:var(--font)}
+.hero-block h1.mega,.hero-block .sub{position:relative;z-index:1;max-width:min(100%,760px)}
+.hero-block h1.mega{color:#fff}
+.hero-block .sub{color:#E3EAFF}
+@media (max-width:700px){.hero-block{padding:28px 20px 150px;min-height:340px}.hero-block::after{font-size:190px;bottom:-34px}}
 </style>
 </head>
 <body>
@@ -1402,7 +1410,7 @@ h1.mega{font-size:clamp(34px,6.2vw,72px);line-height:1.02}
   }
   function viewHome() {
     var s = S(), html = '';
-    html += '<div class="hero rise d2"><h1 class="mega">' + esc(s.h1) + '</h1><p class="sub">' + esc(s.sub) + '</p></div>';
+    html += '<div class="hero hero-block rise d2" data-k="ar"><h1 class="mega">' + esc(s.h1) + '</h1><p class="sub">' + esc(s.sub) + '</p></div>';
     html += '<div class="search-wrap rise d3"><form class="search" role="search" id="searchForm"><label for="q" class="sr-only">' + esc(s.searchLabel) + '</label>' + ICON.search
       + '<input id="q" type="search" autocomplete="off" placeholder="' + esc(s.searchPh) + '"><button type="submit">' + esc(s.searchBtn) + '</button></form><p class="search-msg" id="searchMsg" role="status"></p></div>';
     html += trustHtml();
