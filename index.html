@@ -831,6 +831,20 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
 .cell.f:hover{box-shadow:0 0 22px rgba(var(--rgb),.7);transform:translateY(-1px)}
 @media (max-width:900px){.tsq{width:56px;height:56px;font-size:24px}.tsq.big{width:120px;height:120px;font-size:60px}}
 @media (prefers-reduced-motion:reduce){.stage::after,.hs-blue::before,.blob{animation:none}}
+
+/* ======== Sign up / Log in / Reset: blue block + form ======== */
+.ask{position:relative;isolation:isolate;padding-inline-start:calc(36% + 44px);padding-block:8px;min-height:calc(100vh - 230px)}
+.ask::before{content:"";position:absolute;z-index:-1;inset-block:0;inset-inline-start:0;width:36%;background:var(--pb,#2447C7);border-radius:6px}
+.ask::after{content:"Hi";position:absolute;z-index:-1;inset-inline-start:0;inset-block:0;width:36%;overflow:hidden;white-space:nowrap;padding-inline-start:18px;display:flex;align-items:flex-end;font-family:var(--display);font-weight:700;font-size:210px;line-height:.52;color:#4B78F5;opacity:.5;border-radius:0 0 6px 6px;pointer-events:none}
+[dir="rtl"] .ask::after{content:"أهلاً";font-family:var(--font);font-size:170px}
+.ask:has(#rsForm)::after{content:"?"}
+.ask:hover::before{box-shadow:0 0 60px -12px rgba(36,71,199,.7)}
+.ask .progress div,.segs{max-width:680px}
+@media (max-width:900px){
+  .ask{padding-inline-start:0;padding-top:200px;min-height:0}
+  .ask::before{width:100%;inset-block:0 auto;height:170px}
+  .ask::after{width:100%;inset-block:0 auto;height:170px;font-size:150px}
+}
 </style>
 </head>
 <body>
