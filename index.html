@@ -955,20 +955,30 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
 ::view-transition-new(root){z-index:2}
 #themeBtn{position:relative;overflow:visible}
 #themeBtn .tg{position:relative;display:block;width:var(--ic,20px);height:var(--ic,20px)}
-#themeBtn .tg>span{position:absolute;inset:0;display:grid;place-items:center;transition:transform .7s cubic-bezier(.34,1.8,.5,1),opacity .25s ease,color .4s,filter .4s}
+#themeBtn{--ic:24px;transition:border-color .4s,box-shadow .4s}
+@media (max-width:420px){#themeBtn{--ic:20px}}
+#themeBtn .tg>span{position:absolute;inset:0;display:grid;place-items:center;transition:transform .95s cubic-bezier(.3,2.4,.5,1),opacity .25s ease,color .4s,filter .4s}
 #themeBtn .tg svg{width:100%;height:100%}
 #themeBtn[data-mode="dark"] .tg-moon{transform:rotate(-130deg) scale(.2);opacity:0}
 #themeBtn[data-mode="light"] .tg-sun{transform:rotate(130deg) scale(.2);opacity:0}
-#themeBtn[data-mode="dark"] .tg-sun{color:#FFD36E;filter:drop-shadow(0 0 6px rgba(255,200,90,.75))}
-#themeBtn.pop{animation:tgPop .6s cubic-bezier(.3,1.5,.5,1)}
-#themeBtn.pop::after{content:"";position:absolute;inset:-2px;border-radius:inherit;border:2px solid currentColor;opacity:.55;pointer-events:none;animation:tgRing .65s ease-out forwards}
-@keyframes tgPop{0%{transform:scale(1)}28%{transform:scale(.82)}62%{transform:scale(1.1)}100%{transform:scale(1)}}
-@keyframes tgRing{to{transform:scale(1.55);opacity:0}}
+#themeBtn[data-mode="dark"] .tg-sun{color:#FFD36E;filter:drop-shadow(0 0 8px rgba(255,200,90,.9))}
+#themeBtn[data-mode="light"] .tg-moon{color:#2447C7}
+#themeBtn[data-mode="dark"]{border-color:rgba(255,211,110,.6);box-shadow:0 0 18px rgba(255,200,90,.3),inset 0 0 10px rgba(255,200,90,.14)}
+#themeBtn[data-mode="light"]{border-color:rgba(36,71,199,.5);box-shadow:0 0 16px rgba(36,71,199,.2),inset 0 0 8px rgba(36,71,199,.08)}
+#themeBtn.pop{animation:tgPop .85s ease-out}
+#themeBtn.pop::after{content:"";position:absolute;inset:-2px;border-radius:inherit;border:3px solid currentColor;opacity:.7;pointer-events:none;animation:tgRing .75s ease-out forwards}
+#themeBtn.pop::before{content:"";position:absolute;inset:-2px;border-radius:inherit;border:2px solid currentColor;opacity:.5;pointer-events:none;animation:tgRing .75s ease-out .12s forwards}
+@keyframes tgPop{0%{transform:scale(1) rotate(0)}16%{transform:scale(.68) rotate(-14deg)}40%{transform:scale(1.32) rotate(10deg)}60%{transform:scale(.9) rotate(-5deg)}78%{transform:scale(1.09) rotate(2deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes tgRing{to{transform:scale(2.1);opacity:0}}
 .tglow{position:fixed;z-index:90;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%) scale(0);opacity:1;animation:tgBloom 1s cubic-bezier(.4,0,.2,1) forwards}
-.tglow.light{background:radial-gradient(circle,rgba(255,236,176,.95) 0,rgba(255,236,176,.55) 22%,rgba(255,236,176,0) 62%)}
-.tglow.dark{background:radial-gradient(circle,rgba(6,8,16,.9) 0,rgba(6,8,16,.5) 24%,rgba(6,8,16,0) 62%)}
+.tglow.light{background:radial-gradient(circle,rgba(255,226,140,1) 0,rgba(255,226,140,.7) 20%,rgba(255,226,140,0) 64%)}
+.tglow.dark{background:radial-gradient(circle,rgba(4,6,14,1) 0,rgba(4,6,14,.65) 22%,rgba(4,6,14,0) 64%)}
+.tring{position:fixed;z-index:91;pointer-events:none;border-radius:50%;box-sizing:border-box;transform:translate(-50%,-50%) scale(0);animation:tgRingWave .8s cubic-bezier(.5,0,.2,1) forwards}
+.tring.light{border:4px solid rgba(255,214,110,.95);box-shadow:0 0 28px 6px rgba(255,214,110,.7),inset 0 0 28px 4px rgba(255,214,110,.5)}
+.tring.dark{border:4px solid rgba(110,140,255,.9);box-shadow:0 0 28px 6px rgba(70,100,255,.6),inset 0 0 28px 4px rgba(70,100,255,.4)}
+@keyframes tgRingWave{0%{transform:translate(-50%,-50%) scale(0);opacity:1}80%{opacity:1}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
 @keyframes tgBloom{0%{transform:translate(-50%,-50%) scale(0);opacity:1}70%{opacity:.8}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
-@media (prefers-reduced-motion:reduce){#themeBtn .tg>span{transition:none}#themeBtn.pop,#themeBtn.pop::after,.tglow{animation:none}.tglow{display:none}}
+@media (prefers-reduced-motion:reduce){#themeBtn .tg>span{transition:none}#themeBtn.pop,#themeBtn.pop::after,#themeBtn.pop::before,.tglow,.tring{animation:none}.tglow,.tring{display:none}}
 </style>
 </head>
 <body>
@@ -2493,19 +2503,29 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
 
   document.getElementById('ctryBtn').addEventListener('click', openCountry);
   // The theme change starts at the button: light blooms out of the sun, dark spreads out of the moon.
+  // Clicking again mid-animation finishes the old one at once and starts the new one from the latest choice.
+  var wantTheme = state.theme, themeVT = null, themeSeq = 0, themeFlips = 0;
   document.getElementById('themeBtn').addEventListener('click', function () {
-    var btn = this, next = state.theme === 'dark' ? 'light' : 'dark';
+    var btn = this, seq = ++themeSeq; if (!themeFlips) wantTheme = state.theme;
+    var next = wantTheme === 'dark' ? 'light' : 'dark'; wantTheme = next; themeFlips++;
     var r = btn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
     var R = Math.ceil(Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)));
-    function flip() { state.theme = next; store('theme', next); renderChrome(); }
+    function flip() { themeFlips = Math.max(0, themeFlips - 1); state.theme = next; store('theme', next); renderChrome(); }
     btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+    document.querySelectorAll('.tglow,.tring').forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
+    if (themeVT) { try { themeVT.skipTransition(); } catch (e) {} themeVT = null; }
     if (reduceMotion) { flip(); return; }
-    var g = document.createElement('div'); g.className = 'tglow ' + next; g.setAttribute('aria-hidden', 'true');
-    g.style.cssText = 'left:' + x + 'px;top:' + y + 'px;width:' + (R * 2) + 'px;height:' + (R * 2) + 'px';
-    document.body.appendChild(g); setTimeout(function () { if (g.parentNode) g.parentNode.removeChild(g); }, 1100);
+    ['tglow', 'tring'].forEach(function (c) {
+      var g = document.createElement('div'); g.className = c + ' ' + next; g.setAttribute('aria-hidden', 'true');
+      g.style.cssText = 'left:' + x + 'px;top:' + y + 'px;width:' + (R * 2) + 'px;height:' + (R * 2) + 'px';
+      document.body.appendChild(g); setTimeout(function () { if (g.parentNode) g.parentNode.removeChild(g); }, 1100);
+    });
     if (document.startViewTransition) {
-      var vt = document.startViewTransition(flip);
+      var vt = document.startViewTransition(flip); themeVT = vt;
+      var done = function () { if (themeVT === vt) themeVT = null; };
+      vt.finished.then(done, done);
       vt.ready.then(function () {
+        if (seq !== themeSeq) return;
         document.documentElement.animate({ clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + R + 'px at ' + x + 'px ' + y + 'px)'] }, { duration: 800, easing: 'cubic-bezier(.5,0,.2,1)', pseudoElement: '::view-transition-new(root)' });
       }, function () {});
     } else flip();
