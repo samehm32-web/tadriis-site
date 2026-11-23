@@ -445,7 +445,7 @@ header.rise{position:relative;z-index:30}
 .acct.open .acct-menu>*{opacity:1;transform:none}
 .acct.open .acct-menu>:nth-child(1){transition-delay:.05s}.acct.open .acct-menu>:nth-child(2){transition-delay:.09s}.acct.open .acct-menu>:nth-child(3){transition-delay:.13s}.acct.open .acct-menu>:nth-child(4){transition-delay:.17s}
 .acct-who{display:flex;align-items:center;gap:var(--s3);padding:var(--s3) var(--s3) var(--s4);border-bottom:1px solid var(--line);margin-bottom:var(--s2)}
-.acct-who b{display:block;font-weight:600;font-size:15.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acct-who b{display:block;color:var(--text);font-weight:600;font-size:15.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acct-who>div span{display:block;font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acct-who>div{min-width:0}
 .mi{display:flex;align-items:center;gap:var(--s3);width:100%;padding:var(--s3) var(--s3);border-radius:10px;background:none;border:0;color:var(--text);text-decoration:none;font-size:15.5px;text-align:start}
@@ -606,7 +606,7 @@ footer .foot{padding-bottom:max(var(--s5),env(safe-area-inset-bottom))}
   nav.top:has(.brand:not(.min)) .nav-links #acct .nav-link,
   nav.top:has(.brand.min:hover) .nav-links #langBtn,
   nav.top:has(.brand.min:hover) .nav-links #acct .nav-link{max-width:0;opacity:0;padding-inline:0}
-  nav.top{overflow:hidden}
+  nav.top{overflow-x:clip}
 }
 
 .nav-links .sh{display:none}
