@@ -988,6 +988,15 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
 .lc-empty h2{margin:0;font-size:22px}
 .lc-empty p{margin:0;color:var(--soft)}
 @media (max-width:640px){.lc{padding:18px}.lc-h{flex-direction:column}}
+.gcs{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.gc{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 18px;border:1px solid var(--panel-b);background:var(--panel);border-radius:14px}
+.gc h3{margin:0 0 4px;font-size:17px;font-weight:600}
+.gc p{margin:0;color:var(--soft);font-size:15px}
+.gc .gc-m{margin-top:4px;color:var(--muted);font-size:14px}
+.gc-b{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
+.gc-b b{font-family:var(--display);font-size:20px}
+.gc-b .btn{min-height:42px;padding:0 18px;font-size:15px}
+@media (max-width:560px){.gc{flex-direction:column;align-items:stretch}.gc-b{flex-direction:row;justify-content:space-between;align-items:center}}
 @media (prefers-reduced-motion:reduce){.wipe,.topbar{display:none}.sk-l,.sk-b,.btn.busy::before,.tlist>.trow,.home-split .hs-blue,.hs-strip .st{animation:none}}
 
 /* ======== Theme button: bouncy swap, light blooms from the sun, dark spreads from the moon ======== */
@@ -1275,6 +1284,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     faqH: 'Questions families ask', faq: [['How are teachers checked?', 'Every teacher sends academic certificates (and an ijazah for Quran), a government ID and a selfie. Our team reviews them before a profile goes live.'], ['How do lessons work?', 'Lessons are live video in your browser, with screen sharing and a shared whiteboard. There is nothing to install.'], ['What does a lesson cost?', 'Each teacher sets their own price, and you see it in your own currency before you book. Cancellation and refund rules are shown before you confirm.'], ['When can I book?', 'Online booking and payment are being set up. Join the waiting list and we will email you when teachers are live.']], faqCta: 'Join the waiting list',
     stripT: [['Choose', 'Pick a subject, a level and a time that suits you.'], ['Book', 'See times in your own timezone and pay by card.'], ['Learn live', 'Join the lesson in your browser. Nothing to install.']], trustT: ['ID and credentials checked for every teacher', 'Secure card payments', 'Registered UAE company'],
     onlineNone: 'First teachers joining soon', onlineN: '{n} {s} teachers', onlineN1: '1 {s} teacher', loadingT: 'Loading…', loadFail: 'Could not load teachers. Refresh the page to try again.',
+    gcH: 'Group classes', gcSub: 'Learn alongside other students. You only pay for your own seat.', gcLeft1: '1 seat left', gcLeft: '{n} seats left', gcJoin: 'Join class', gcJoinSign: 'Sign up to join', gcTeacherBy: 'Group class',
     openSoon: 'Opening soon', countSoon: 'These teachers are setting up their calendars. Booking opens soon.',
     bkH: 'Book a lesson', bkLen: 'Lesson length', bkDay: 'Day', bkTime: 'Time', bkTz: 'Times are in your time zone: {tz}.', bkLoading: 'Finding free times…', bkNone: 'No free times in the next four weeks. Check back soon.', bkNotYet: 'This teacher has not opened their calendar yet. Check back soon.', bkFor: 'Who is the lesson for?', bkPay: 'You pay', bkPayNote: 'Tadriis holds your payment until the lesson is done.', bkGo: 'Reserve lesson', bkPick: 'Pick a time to continue.', bkSign: 'Sign up to book', bkHave: 'Already have an account?', bkOnlyStu: 'Only student and parent accounts can book lessons.', bkTaken: 'We could not book that. The time may have just been taken, or you may have unpaid reservations. Check My lessons and try again.', bkDoneH: 'Lesson reserved', bkDoneP: 'We emailed you how to pay. Your time is held until {t}. When your payment is confirmed you get the lesson link.', bkDoneC: 'Lesson booked', bkDoneCT: 'Your lesson is confirmed. The lesson link is in My lessons.', bkMine: 'Open My lessons', bkAgain: 'Book another time', bkRetry: 'Try again',
     lsH: 'My lessons', lsSub: 'Your upcoming and past lessons in one place.', lsUp: 'Upcoming', lsPast: 'Past', lsNoUp: 'No upcoming lessons', lsNoUpT: 'Find a teacher and pick a time that suits you.', lsNoPast: 'Your finished lessons will show up here.', lsFind: 'Find a teacher', lsWith: 'with {n}', lsFor: 'For {n}', stPend: 'Awaiting payment', stConf: 'Confirmed', stDone: 'Completed', stCanc: 'Cancelled', stExp: 'Reservation expired', lsHeld: 'Held for you until {t}. We emailed you payment details.', lsJoin: 'Open lesson link', lsCopy: 'Copy link', lsCopied: 'Copied', lsCancel: 'Cancel lesson', lsCancelFree: 'Cancel this lesson? You will get a full refund.', lsCancelLate: 'Cancel this lesson? It starts in less than {h} hours, so it will not be refunded.', lsCancelRes: 'Release this reservation? The time will be opened up for others.', lsYes: 'Yes, cancel', lsKeep: 'Keep lesson', lsRepBtn: 'Report a problem', lsRepQ: 'What went wrong?', lsRepSend: 'Send report', lsRepHint: 'Tell us in a few words (at least 10 characters). The teacher is not paid until we have looked at it.', lsReported: 'You reported a problem. We are looking into it.', lsResolved: 'We reviewed your report.', lsRefDue: 'Your refund is on its way. We will email you when it is sent.', lsRefDone: 'Refunded.', lsNoRef: 'Not refunded: cancelled less than {h} hours before the lesson.', lsTCanc: 'The teacher cancelled this lesson.', lsMsgCanc: 'Lesson cancelled.', lsMsgRep: 'Report sent. Thank you.', lsSignIn: 'Sign in to see your lessons.', lsMenu: 'My lessons', lsPaid: 'Paid',
@@ -1296,6 +1306,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     faqH: 'أسئلة تطرحها العائلات', faq: [['كيف يتم التحقق من المعلّمين؟', 'يرسل كل معلّم شهاداته الأكاديمية (وإجازة للقرآن) وهوية حكومية وصورة شخصية. يراجعها فريقنا قبل نشر الملف.'], ['كيف تتم الدروس؟', 'الدروس فيديو مباشر في متصفحك، مع مشاركة الشاشة وسبورة مشتركة. لا حاجة لتثبيت أي شيء.'], ['كم يكلّف الدرس؟', 'يحدد كل معلّم سعره بنفسه، وتراه بعملتك قبل الحجز. تظهر قواعد الإلغاء والاسترداد قبل أن تؤكد.'], ['متى يمكنني الحجز؟', 'نجهّز الآن الحجز والدفع عبر الإنترنت. انضم إلى قائمة الانتظار وسنراسلك عندما يبدأ المعلّمون.']], faqCta: 'انضم إلى قائمة الانتظار',
     stripT: [['اختر', 'اختر المادة والمستوى والوقت المناسب لك.'], ['احجز', 'شاهد المواعيد بتوقيتك وادفع بالبطاقة.'], ['تعلّم مباشرة', 'انضم إلى الدرس من متصفحك دون تثبيت أي شيء.']], trustT: ['التحقق من هوية كل معلّم وشهاداته', 'مدفوعات آمنة بالبطاقة', 'شركة مسجّلة في الإمارات'],
     onlineNone: 'أول المعلّمين ينضمّون قريباً', onlineN: '{n} معلّم {s}', onlineN1: 'معلّم {s} واحد', loadingT: 'جارٍ التحميل…', loadFail: 'تعذّر تحميل المعلّمين. أعد تحميل الصفحة للمحاولة مرة أخرى.',
+    gcH: 'الحصص الجماعية', gcSub: 'تعلّم مع طلاب آخرين. تدفع ثمن مقعدك فقط.', gcLeft1: 'بقي مقعد واحد', gcLeft: 'بقي {n} مقاعد', gcJoin: 'انضم للحصة', gcJoinSign: 'سجّل للانضمام', gcTeacherBy: 'حصة جماعية',
     openSoon: 'يبدأ قريباً', countSoon: 'يجهّز هؤلاء المعلّمون جداولهم. يُفتح الحجز قريباً.',
     bkH: 'احجز درساً', bkLen: 'مدة الدرس', bkDay: 'اليوم', bkTime: 'الوقت', bkTz: 'الأوقات بتوقيتك: {tz}.', bkLoading: 'نبحث عن الأوقات المتاحة…', bkNone: 'لا توجد أوقات متاحة خلال الأسابيع الأربعة القادمة. عاود التحقق قريباً.', bkNotYet: 'لم يفتح هذا المعلّم جدوله بعد. عاود التحقق قريباً.', bkFor: 'لمن هذا الدرس؟', bkPay: 'تدفع', bkPayNote: 'تحتفظ تدريس بالمبلغ حتى ينتهي الدرس.', bkGo: 'احجز الدرس', bkPick: 'اختر وقتاً للمتابعة.', bkSign: 'سجّل لتحجز', bkHave: 'لديك حساب؟', bkOnlyStu: 'الحجز متاح لحسابات الطلاب وأولياء الأمور فقط.', bkTaken: 'تعذّر الحجز. ربما حُجز الوقت للتو، أو لديك حجوزات غير مدفوعة. راجع «دروسي» وحاول مجدداً.', bkDoneH: 'تم حجز الدرس', bkDoneP: 'أرسلنا إليك طريقة الدفع بالبريد. وقتك محجوز حتى {t}. عند تأكيد الدفع تصلك رابط الدرس.', bkDoneC: 'تم تأكيد الحجز', bkDoneCT: 'تم تأكيد درسك. رابط الدرس في «دروسي».', bkMine: 'افتح دروسي', bkAgain: 'احجز وقتاً آخر', bkRetry: 'حاول مجدداً',
     lsH: 'دروسي', lsSub: 'دروسك القادمة والسابقة في مكان واحد.', lsUp: 'القادمة', lsPast: 'السابقة', lsNoUp: 'لا توجد دروس قادمة', lsNoUpT: 'ابحث عن معلّم واختر وقتاً يناسبك.', lsNoPast: 'ستظهر هنا دروسك المنتهية.', lsFind: 'ابحث عن معلّم', lsWith: 'مع {n}', lsFor: 'لـ {n}', stPend: 'بانتظار الدفع', stConf: 'مؤكَّد', stDone: 'مكتمل', stCanc: 'ملغى', stExp: 'انتهى الحجز', lsHeld: 'محجوز لك حتى {t}. أرسلنا إليك تفاصيل الدفع بالبريد.', lsJoin: 'افتح رابط الدرس', lsCopy: 'انسخ الرابط', lsCopied: 'تم النسخ', lsCancel: 'إلغاء الدرس', lsCancelFree: 'هل تريد إلغاء هذا الدرس؟ ستسترد المبلغ كاملاً.', lsCancelLate: 'هل تريد إلغاء هذا الدرس؟ يبدأ خلال أقل من {h} ساعة، لذلك لن يُسترد المبلغ.', lsCancelRes: 'هل تريد إلغاء هذا الحجز؟ سيُفتح الوقت لغيرك.', lsYes: 'نعم، ألغِ', lsKeep: 'أبقِ الدرس', lsRepBtn: 'أبلغ عن مشكلة', lsRepQ: 'ما الذي حدث؟', lsRepSend: 'أرسل البلاغ', lsRepHint: 'اشرح لنا بكلمات قليلة (10 أحرف على الأقل). لا يُدفع للمعلّم قبل أن نراجع البلاغ.', lsReported: 'أرسلت بلاغاً عن مشكلة. نحن نراجعه.', lsResolved: 'راجعنا بلاغك.', lsRefDue: 'استرداد المبلغ في الطريق. سنراسلك عند إرساله.', lsRefDone: 'تم استرداد المبلغ.', lsNoRef: 'لا استرداد: أُلغي قبل الدرس بأقل من {h} ساعة.', lsTCanc: 'ألغى المعلّم هذا الدرس.', lsMsgCanc: 'تم إلغاء الدرس.', lsMsgRep: 'تم إرسال البلاغ. شكراً لك.', lsSignIn: 'سجّل الدخول لترى دروسك.', lsMenu: 'دروسي', lsPaid: 'مدفوع',
@@ -1345,7 +1356,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     sel: { ar: '', qu: '', ma: '' }, matched: null, user: null, me: null, app: null, rs: { done: false, bad: false }, pending: null, keep: false, flood: null,
     filt: { lang: '', sort: 'soon' },
     book: { id: null, opt: 0, day: null, time: null, done: false },
-    bk: { cfg: null, cfgErr: false, sl: {}, tid: null, min: null, day: null, start: null, learner: null, busy: false, err: '', done: null, list: null, loading: false, tab: 'up', cx: null, rep: null, msg: '' },
+    bk: { cfg: null, cfgErr: false, sl: {}, cls: {}, tid: null, min: null, day: null, start: null, learner: null, busy: false, err: '', done: null, list: null, loading: false, tab: 'up', cx: null, rep: null, msg: '' },
     su: { step: 0, parent: false, agree: false, country: '', age: '', d: {}, done: false },
     li: { done: false, forgot: false, showPw: false, showPwS: false },
     nt: { done: false },
@@ -1829,6 +1840,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     html += '<section class="sec"><div class="rows">' + prow(s.basedIn, t.country[l]) + prow(s.speaksL, t.langs[l]) + prow(s.whoL, t.who[l]) + prow(s.yearsL, t.years ? f(s.yearsV, { n: t.years }) : '') + prow(s.lengthsL, t.lengths.join(', ') + ' ' + s.min) + '</div></section>';
     html += '<section class="sec"><h2>' + esc(s.about) + '</h2><p>' + esc(t.about[l]) + '</p></section>';
     html += '<section class="sec"><h2>' + esc(s.teachesL) + '</h2><p>' + esc(s.cols[k].title + (t.offers.length ? ': ' + t.offers.map(function (id) { return optLabel(k, id); }).join(', ') : '')) + '</p></section>';
+    html += classesSection(t);
     html += '<section class="sec"><h2>' + esc(s.lessonsH) + '</h2><div class="rows">' + opts.map(function (x, i) { return '<div' + (i === b.opt ? ' class="cur"' : '') + '><span style="color:var(--text)">' + esc(x.label) + '<br><small style="color:var(--muted);font-size:13.5px">' + esc(x.sub) + '</small></span><span class="p">' + esc(money(x.total)) + '</span></div>'; }).join('') + '</div></section>';
     if (t.creds[l].length) html += '<section class="sec"><h2>' + esc(s.creds) + '</h2><ul class="verif">' + t.creds[l].map(function (c) { return '<li>' + ICON.shield + '<span>' + esc(c) + '</span></li>'; }).join('') + '</ul></section>';
     html += '<section class="sec"><h2>' + esc(s.reviewsH) + '</h2><p>' + esc(s.noReviews) + '</p></section></div>';
@@ -1863,6 +1875,36 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     B.sl[key] = { loading: true, at: Date.now() };
     api('GET', '/api/slots?teacher=' + t.aid + '&minutes=' + m).then(function (j) { B.sl[key] = { data: j, at: Date.now() }; }, function () { B.sl[key] = { err: true, at: Date.now() }; })
       .then(function () { var r = route(); if (r.v === 'teacher' && r.t.aid === t.aid) render(true); });
+  }
+  function loadClasses(t, force) {
+    var B = state.bk; if (!B.cfg || !B.cfg.open || !t.aid) return;
+    var c = B.cls[t.aid];
+    if (c && !force && (c.loading || Date.now() - c.at < 120000)) return;
+    B.cls[t.aid] = { loading: true, at: Date.now() };
+    api('GET', '/api/classes?teacher=' + t.aid).then(function (j) { B.cls[t.aid] = { list: j.classes || [], at: Date.now() }; }, function () { B.cls[t.aid] = { list: [], at: Date.now() }; })
+      .then(function () { var r = route(); if (r.v === 'teacher' && r.t.aid === t.aid) render(true); });
+  }
+  function classesSection(t) {
+    var s = S(), c = state.bk.cls[t.aid];
+    if (!c || !c.list || !c.list.length) return '';
+    var h = '<section class="sec"><h2>' + esc(s.gcH) + '</h2><p>' + esc(s.gcSub) + '</p><div class="gcs">';
+    c.list.forEach(function (x) {
+      var me = state.me, ok = me && (me.role === 'student' || me.role === 'parent');
+      h += '<article class="gc"><div><h3>' + esc(x.title) + '</h3><p>' + esc(bkLong(x.startsAt)) + '</p><p class="gc-m">' + esc(x.minutes + ' ' + s.min + ' · ' + (x.left === 1 ? s.gcLeft1 : f(s.gcLeft, { n: x.left }))) + '</p></div>'
+        + '<div class="gc-b"><b>' + esc(bkAmt(x.price, x.currency)) + '</b>'
+        + (!me ? '<a class="btn btn-primary" href="#signup" data-act="bksign">' + esc(s.gcJoinSign) + '</a>' : ok ? '<button type="button" class="btn btn-primary" data-act="gcjoin" data-id="' + x.id + '">' + esc(s.gcJoin) + '</button>' : '')
+        + '</div></article>';
+    });
+    return h + '</div></section>';
+  }
+  function gcJoin(id) {
+    var B = state.bk, t = route().t, li = document.getElementById('bkLearner');
+    if (B.busy) return; B.busy = true; B.err = '';
+    var body = { classId: id, tz: state.tz || 'Asia/Dubai', lang: state.lang };
+    if (li && li.value.trim()) body.learner = B.learner = li.value.trim(); else if (B.learner) body.learner = B.learner;
+    api('POST', '/api/bookings', body).then(function (j) { B.done = j; B.list = null; B.sl = {}; B.cls = {}; }, function (e) {
+      B.err = e.status === 0 ? S().errNet : e.status === 429 ? S().errBusy : e.status === 401 ? S().errLogin : state.lang === 'en' && e.message ? e.message : S().bkTaken; B.cls = {};
+    }).then(function () { B.busy = false; var r = route(); if (r.v === 'teacher') { render(true); loadClasses(r.t, true); var a = document.getElementById('bookH'); if (a && a.scrollIntoView) a.scrollIntoView({ block: 'center', behavior: 'smooth' }); } });
   }
   function soonPanel(o) {
     var s = S();
@@ -1930,7 +1972,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
   }
   function lessonCard(b) {
     var s = S(), B = state.bk, now = Date.now(), end = b.startsAt + b.minutes * 60000, st = lcStatus(b), free = B.free || 24, wait = B.wait || 48;
-    var h = '<article class="lc"><div class="lc-h"><div><h3>' + esc(bkLong(b.startsAt)) + '</h3><p>' + esc(f(s.lsWith, { n: b.teacherName || '' }) + ' · ' + b.minutes + ' ' + s.min) + '</p>'
+    var h = '<article class="lc"><div class="lc-h"><div><h3>' + esc((b.classId ? b.lessonTitle + ' · ' : '') + bkLong(b.startsAt)) + '</h3><p>' + esc((b.classId ? s.gcTeacherBy + ' ' : '') + f(s.lsWith, { n: b.teacherName || '' }) + ' · ' + b.minutes + ' ' + s.min) + '</p>'
       + (b.learner ? '<p>' + esc(f(s.lsFor, { n: b.learner })) + '</p>' : '') + '</div><span class="lc-st ' + st[1] + '">' + esc(st[0]) + '</span></div>';
     if (b.status === 'pending_payment' && b.holdUntil) h += '<p class="note">' + esc(f(s.lsHeld, { t: bkFmt(b.holdUntil, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) })) + '</p>';
     if (b.status === 'cancelled') {
@@ -2336,7 +2378,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     if (r.scroll) { var el = document.getElementById(r.scroll); if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50); }
     else if (!keep) window.scrollTo(0, 0);
     if (!keep && (r.v === 'signup' || r.v === 'login') && lastView !== null) { var a = document.getElementById('suAns') || document.getElementById('liEmail'); if (a) a.focus({ preventScroll: true }); }
-    if (r.v === 'teacher') loadSlots(r.t);
+    if (r.v === 'teacher') { loadSlots(r.t); loadClasses(r.t); }
     lastView = r.v;
   }
   function renderChrome() {
@@ -2591,6 +2633,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     else if (act === 'bkday') { state.bk.day = a.getAttribute('data-v'); state.bk.start = null; render(true); }
     else if (act === 'bkslot') { state.bk.start = Number(a.getAttribute('data-v')); state.bk.err = ''; render(true); }
     else if (act === 'bkgo') bkSubmit(route().t);
+    else if (act === 'gcjoin') gcJoin(Number(a.getAttribute('data-id')));
     else if (act === 'bkagain') { state.bk.done = null; render(true); loadSlots(route().t, true); }
     else if (act === 'bkretry') { loadSlots(route().t, true); render(true); }
     else if (act === 'bksign') { state.pending = route().t.id; state.su.done = false; state.su.step = 0; }
