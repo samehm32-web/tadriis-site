@@ -947,6 +947,46 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
 .btn.busy{pointer-events:none;opacity:.85}
 .btn.busy::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-100%);animation:sweep .9s linear infinite}
 @keyframes sweep{to{transform:translateX(100%)}}
+/* booking + my lessons */
+.book{min-width:0}
+.prof>*{min-width:0}
+.book .field{gap:10px;min-width:0}
+.bkd,.bkt,.seg{max-width:100%}
+.seg,.bkd,.bkt{display:flex;flex-wrap:wrap;gap:8px}
+.seg button,.bkd button,.bkt button{min-height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text);font:inherit;font-size:15px;font-weight:500;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+.seg button:hover,.bkd button:hover,.bkt button:hover{border-color:var(--text)}
+.seg button.on,.bkd button.on,.bkt button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.bkt button{min-width:92px;padding:0 12px}
+.bkd{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:8px;margin-inline:-4px;padding-inline:4px;scrollbar-width:thin}
+.bkd button{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:56px;min-width:68px;padding:0 12px;border-radius:14px;scroll-snap-align:start;line-height:1.25}
+.bkd button b{font-size:17px;font-weight:600}
+.bkd button span{font-size:12.5px;opacity:.75}
+.book .btn[disabled]{opacity:.45;pointer-events:none}
+.book .btn{width:100%}
+.lsn{display:flex;flex-direction:column;gap:22px;max-width:780px}
+.lsn header h1{margin:0;font-family:var(--display);font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.02em}
+.lsn header p{margin:8px 0 0;color:var(--soft);font-size:17px}
+.lt{display:flex;gap:6px;border-bottom:1px solid var(--line)}
+.lt button{padding:12px 16px;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;color:var(--soft);font:inherit;font-size:16px;cursor:pointer}
+.lt button[aria-current="true"]{color:var(--text);font-weight:600;border-bottom-color:var(--btn,var(--text))}
+.lt .n{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--track);font-size:13px;margin-inline-start:4px}
+.lcs{display:flex;flex-direction:column;gap:16px}
+.lc{display:flex;flex-direction:column;gap:14px;padding:22px;border:1px solid var(--panel-b);background:var(--panel);border-radius:18px}
+.lc-h{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.lc h3{margin:0;font-size:18px;font-weight:600;line-height:1.35}
+.lc-h p{margin:4px 0 0;color:var(--soft);font-size:15.5px;overflow-wrap:anywhere}
+.lc-st{flex:none;padding:5px 12px;border-radius:999px;font-size:13.5px;font-weight:600;border:1px solid var(--line)}
+.lc-st.st-ok{background:rgba(var(--qu-rgb),.14);border-color:rgba(var(--qu-rgb),.55)}
+.lc-st.st-wait{background:rgba(255,190,70,.14);border-color:rgba(255,190,70,.6)}
+.lc-st.st-off{color:var(--muted)}
+.lc-a{display:flex;flex-wrap:wrap;gap:10px}
+.lc-a .btn{min-height:44px;padding:0 18px;font-size:15px}
+.lc-box{display:flex;flex-direction:column;gap:14px;padding:16px;border-radius:12px;background:var(--track)}
+.lc-box p{margin:0;font-size:16px;line-height:1.55}
+.lc-empty{padding:36px 0;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.lc-empty h2{margin:0;font-size:22px}
+.lc-empty p{margin:0;color:var(--soft)}
+@media (max-width:640px){.lc{padding:18px}.lc-h{flex-direction:column}}
 @media (prefers-reduced-motion:reduce){.wipe,.topbar{display:none}.sk-l,.sk-b,.btn.busy::before,.tlist>.trow,.home-split .hs-blue,.hs-strip .st{animation:none}}
 
 /* ======== Theme button: bouncy swap, light blooms from the sun, dark spreads from the moon ======== */
@@ -1234,6 +1274,8 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     faqH: 'Questions families ask', faq: [['How are teachers checked?', 'Every teacher sends academic certificates (and an ijazah for Quran), a government ID and a selfie. Our team reviews them before a profile goes live.'], ['How do lessons work?', 'Lessons are live video in your browser, with screen sharing and a shared whiteboard. There is nothing to install.'], ['What does a lesson cost?', 'Each teacher sets their own price, and you see it in your own currency before you book. Cancellation and refund rules are shown before you confirm.'], ['When can I book?', 'Online booking and payment are being set up. Join the waiting list and we will email you when teachers are live.']], faqCta: 'Join the waiting list',
     stripT: [['Choose', 'Pick a subject, a level and a time that suits you.'], ['Book', 'See times in your own timezone and pay by card.'], ['Learn live', 'Join the lesson in your browser. Nothing to install.']], trustT: ['ID and credentials checked for every teacher', 'Secure card payments', 'Registered UAE company'],
     onlineNone: 'First teachers joining soon', onlineN: '{n} {s} teachers', onlineN1: '1 {s} teacher', loadingT: 'Loading…', loadFail: 'Could not load teachers. Refresh the page to try again.',
+    bkH: 'Book a lesson', bkLen: 'Lesson length', bkDay: 'Day', bkTime: 'Time', bkTz: 'Times are in your time zone: {tz}.', bkLoading: 'Finding free times…', bkNone: 'No free times in the next four weeks. Check back soon.', bkNotYet: 'This teacher has not opened their calendar yet. Check back soon.', bkFor: 'Who is the lesson for?', bkPay: 'You pay', bkPayNote: 'Tadriis holds your payment until the lesson is done.', bkGo: 'Reserve lesson', bkPick: 'Pick a time to continue.', bkSign: 'Sign up to book', bkHave: 'Already have an account?', bkOnlyStu: 'Only student and parent accounts can book lessons.', bkTaken: 'We could not book that. The time may have just been taken, or you may have unpaid reservations. Check My lessons and try again.', bkDoneH: 'Lesson reserved', bkDoneP: 'We emailed you how to pay. Your time is held until {t}. When your payment is confirmed you get the lesson link.', bkDoneC: 'Lesson booked', bkDoneCT: 'Your lesson is confirmed. The lesson link is in My lessons.', bkMine: 'Open My lessons', bkAgain: 'Book another time', bkRetry: 'Try again',
+    lsH: 'My lessons', lsSub: 'Your upcoming and past lessons in one place.', lsUp: 'Upcoming', lsPast: 'Past', lsNoUp: 'No upcoming lessons', lsNoUpT: 'Find a teacher and pick a time that suits you.', lsNoPast: 'Your finished lessons will show up here.', lsFind: 'Find a teacher', lsWith: 'with {n}', lsFor: 'For {n}', stPend: 'Awaiting payment', stConf: 'Confirmed', stDone: 'Completed', stCanc: 'Cancelled', stExp: 'Reservation expired', lsHeld: 'Held for you until {t}. We emailed you payment details.', lsJoin: 'Open lesson link', lsCopy: 'Copy link', lsCopied: 'Copied', lsCancel: 'Cancel lesson', lsCancelFree: 'Cancel this lesson? You will get a full refund.', lsCancelLate: 'Cancel this lesson? It starts in less than {h} hours, so it will not be refunded.', lsCancelRes: 'Release this reservation? The time will be opened up for others.', lsYes: 'Yes, cancel', lsKeep: 'Keep lesson', lsRepBtn: 'Report a problem', lsRepQ: 'What went wrong?', lsRepSend: 'Send report', lsRepHint: 'Tell us in a few words (at least 10 characters). The teacher is not paid until we have looked at it.', lsReported: 'You reported a problem. We are looking into it.', lsResolved: 'We reviewed your report.', lsRefDue: 'Your refund is on its way. We will email you when it is sent.', lsRefDone: 'Refunded.', lsNoRef: 'Not refunded: cancelled less than {h} hours before the lesson.', lsTCanc: 'The teacher cancelled this lesson.', lsMsgCanc: 'Lesson cancelled.', lsMsgRep: 'Report sent. Thank you.', lsSignIn: 'Sign in to see your lessons.', lsMenu: 'My lessons', lsPaid: 'Paid',
     bookSoonH: 'Booking opens soon', bookSoonText: 'Online scheduling and payment are being set up. You can already see who is joining Tadriis.',
     approvedL: 'Reviewed and approved by Tadriis', yearsL: 'Experience', yearsV: '{n} years',
     errLogin: 'Email or password is incorrect.', errExists: 'An account with this email already exists. Log in instead.', errBusy: 'Too many attempts. Wait a few minutes and try again.',
@@ -1252,6 +1294,8 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     faqH: 'أسئلة تطرحها العائلات', faq: [['كيف يتم التحقق من المعلّمين؟', 'يرسل كل معلّم شهاداته الأكاديمية (وإجازة للقرآن) وهوية حكومية وصورة شخصية. يراجعها فريقنا قبل نشر الملف.'], ['كيف تتم الدروس؟', 'الدروس فيديو مباشر في متصفحك، مع مشاركة الشاشة وسبورة مشتركة. لا حاجة لتثبيت أي شيء.'], ['كم يكلّف الدرس؟', 'يحدد كل معلّم سعره بنفسه، وتراه بعملتك قبل الحجز. تظهر قواعد الإلغاء والاسترداد قبل أن تؤكد.'], ['متى يمكنني الحجز؟', 'نجهّز الآن الحجز والدفع عبر الإنترنت. انضم إلى قائمة الانتظار وسنراسلك عندما يبدأ المعلّمون.']], faqCta: 'انضم إلى قائمة الانتظار',
     stripT: [['اختر', 'اختر المادة والمستوى والوقت المناسب لك.'], ['احجز', 'شاهد المواعيد بتوقيتك وادفع بالبطاقة.'], ['تعلّم مباشرة', 'انضم إلى الدرس من متصفحك دون تثبيت أي شيء.']], trustT: ['التحقق من هوية كل معلّم وشهاداته', 'مدفوعات آمنة بالبطاقة', 'شركة مسجّلة في الإمارات'],
     onlineNone: 'أول المعلّمين ينضمّون قريباً', onlineN: '{n} معلّم {s}', onlineN1: 'معلّم {s} واحد', loadingT: 'جارٍ التحميل…', loadFail: 'تعذّر تحميل المعلّمين. أعد تحميل الصفحة للمحاولة مرة أخرى.',
+    bkH: 'احجز درساً', bkLen: 'مدة الدرس', bkDay: 'اليوم', bkTime: 'الوقت', bkTz: 'الأوقات بتوقيتك: {tz}.', bkLoading: 'نبحث عن الأوقات المتاحة…', bkNone: 'لا توجد أوقات متاحة خلال الأسابيع الأربعة القادمة. عاود التحقق قريباً.', bkNotYet: 'لم يفتح هذا المعلّم جدوله بعد. عاود التحقق قريباً.', bkFor: 'لمن هذا الدرس؟', bkPay: 'تدفع', bkPayNote: 'تحتفظ تدريس بالمبلغ حتى ينتهي الدرس.', bkGo: 'احجز الدرس', bkPick: 'اختر وقتاً للمتابعة.', bkSign: 'سجّل لتحجز', bkHave: 'لديك حساب؟', bkOnlyStu: 'الحجز متاح لحسابات الطلاب وأولياء الأمور فقط.', bkTaken: 'تعذّر الحجز. ربما حُجز الوقت للتو، أو لديك حجوزات غير مدفوعة. راجع «دروسي» وحاول مجدداً.', bkDoneH: 'تم حجز الدرس', bkDoneP: 'أرسلنا إليك طريقة الدفع بالبريد. وقتك محجوز حتى {t}. عند تأكيد الدفع تصلك رابط الدرس.', bkDoneC: 'تم تأكيد الحجز', bkDoneCT: 'تم تأكيد درسك. رابط الدرس في «دروسي».', bkMine: 'افتح دروسي', bkAgain: 'احجز وقتاً آخر', bkRetry: 'حاول مجدداً',
+    lsH: 'دروسي', lsSub: 'دروسك القادمة والسابقة في مكان واحد.', lsUp: 'القادمة', lsPast: 'السابقة', lsNoUp: 'لا توجد دروس قادمة', lsNoUpT: 'ابحث عن معلّم واختر وقتاً يناسبك.', lsNoPast: 'ستظهر هنا دروسك المنتهية.', lsFind: 'ابحث عن معلّم', lsWith: 'مع {n}', lsFor: 'لـ {n}', stPend: 'بانتظار الدفع', stConf: 'مؤكَّد', stDone: 'مكتمل', stCanc: 'ملغى', stExp: 'انتهى الحجز', lsHeld: 'محجوز لك حتى {t}. أرسلنا إليك تفاصيل الدفع بالبريد.', lsJoin: 'افتح رابط الدرس', lsCopy: 'انسخ الرابط', lsCopied: 'تم النسخ', lsCancel: 'إلغاء الدرس', lsCancelFree: 'هل تريد إلغاء هذا الدرس؟ ستسترد المبلغ كاملاً.', lsCancelLate: 'هل تريد إلغاء هذا الدرس؟ يبدأ خلال أقل من {h} ساعة، لذلك لن يُسترد المبلغ.', lsCancelRes: 'هل تريد إلغاء هذا الحجز؟ سيُفتح الوقت لغيرك.', lsYes: 'نعم، ألغِ', lsKeep: 'أبقِ الدرس', lsRepBtn: 'أبلغ عن مشكلة', lsRepQ: 'ما الذي حدث؟', lsRepSend: 'أرسل البلاغ', lsRepHint: 'اشرح لنا بكلمات قليلة (10 أحرف على الأقل). لا يُدفع للمعلّم قبل أن نراجع البلاغ.', lsReported: 'أرسلت بلاغاً عن مشكلة. نحن نراجعه.', lsResolved: 'راجعنا بلاغك.', lsRefDue: 'استرداد المبلغ في الطريق. سنراسلك عند إرساله.', lsRefDone: 'تم استرداد المبلغ.', lsNoRef: 'لا استرداد: أُلغي قبل الدرس بأقل من {h} ساعة.', lsTCanc: 'ألغى المعلّم هذا الدرس.', lsMsgCanc: 'تم إلغاء الدرس.', lsMsgRep: 'تم إرسال البلاغ. شكراً لك.', lsSignIn: 'سجّل الدخول لترى دروسك.', lsMenu: 'دروسي', lsPaid: 'مدفوع',
     bookSoonH: 'الحجز يبدأ قريباً', bookSoonText: 'نجهّز الآن الجدولة والدفع عبر الإنترنت. يمكنك منذ الآن رؤية من ينضم إلى تدريس.',
     approvedL: 'تمت مراجعته والموافقة عليه من تدريس', yearsL: 'الخبرة', yearsV: '{n} سنوات',
     errLogin: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.', errExists: 'يوجد حساب بهذا البريد الإلكتروني. سجّل الدخول بدلاً من ذلك.', errBusy: 'محاولات كثيرة. انتظر بضع دقائق ثم أعد المحاولة.',
@@ -1298,6 +1342,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     sel: { ar: '', qu: '', ma: '' }, matched: null, user: null, me: null, app: null, rs: { done: false, bad: false }, pending: null, keep: false, flood: null,
     filt: { lang: '', sort: 'soon' },
     book: { id: null, opt: 0, day: null, time: null, done: false },
+    bk: { cfg: null, cfgErr: false, sl: {}, tid: null, min: null, day: null, start: null, learner: null, busy: false, err: '', done: null, list: null, loading: false, tab: 'up', cx: null, rep: null, msg: '' },
     su: { step: 0, parent: false, agree: false, country: '', age: '', d: {}, done: false },
     li: { done: false, forgot: false, showPw: false, showPwS: false },
     nt: { done: false },
@@ -1430,6 +1475,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
   }
 
   var ICON = {
+    cal: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>',
     user: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>',
     out: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4"/><path d="M16 8l4 4-4 4M20 12H9"/></svg>',
     sun: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
@@ -1654,7 +1700,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     return a.subjects.map(function (k) {
       return { id: 't' + a.id + k, k: k, gender: a.gender || '', name: [a.name, a.name], ini: [a.name.charAt(0), a.name.charAt(0)], country: [a.country || '', a.country || ''], langs: [a.langs || '', a.langs || ''],
         head: [head, head], about: [a.bio, a.bio], creds: [[], []], who: [a.levels || '', a.levels || ''], offers: (a.offers && a.offers[k]) || [], lengths: a.lengths && a.lengths.length ? a.lengths : [60],
-        rate: rate, pk: [], next: null, times: [], soon: 0, lc: lc, years: a.years || 0, live: true };
+        rate: rate, pk: [], next: null, times: [], soon: 0, lc: lc, years: a.years || 0, live: true, aid: a.id };
     });
   }
   function liveCount(k) { return TEACHERS.filter(function (t) { return t.k === k; }).length; }
@@ -1768,6 +1814,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
   function viewTeacher(t) {
     var s = S(), l = L(), k = t.k, opts = lessonOptions(t), b = state.book;
     if (b.id !== t.id) state.book = b = { id: t.id, opt: 0, day: null, time: null, done: false };
+    if (state.bk.tid !== t.id) { var B0 = state.bk; B0.tid = t.id; B0.min = null; B0.day = null; B0.start = null; B0.err = ''; B0.done = null; B0.busy = false; }
     var dl = days(), html = '';
     var o = opts[b.opt] || opts[0];
     var when = b.time != null ? (dl[b.day].wd + ' ' + dl[b.day].n + (state.lang === 'ar' ? '، ' : ', ') + fmtTime(b.time)) : '—';
@@ -1781,10 +1828,161 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     html += '<section class="sec"><h2>' + esc(s.lessonsH) + '</h2><div class="rows">' + opts.map(function (x, i) { return '<div' + (i === b.opt ? ' class="cur"' : '') + '><span style="color:var(--text)">' + esc(x.label) + '<br><small style="color:var(--muted);font-size:13.5px">' + esc(x.sub) + '</small></span><span class="p">' + esc(money(x.total)) + '</span></div>'; }).join('') + '</div></section>';
     if (t.creds[l].length) html += '<section class="sec"><h2>' + esc(s.creds) + '</h2><ul class="verif">' + t.creds[l].map(function (c) { return '<li>' + ICON.shield + '<span>' + esc(c) + '</span></li>'; }).join('') + '</ul></section>';
     html += '<section class="sec"><h2>' + esc(s.reviewsH) + '</h2><p>' + esc(s.noReviews) + '</p></section></div>';
-    html += '<aside class="book" aria-labelledby="bookH"><h2 id="bookH">' + esc(s.bookSoonH) + '</h2><p class="note" style="font-size:16px;color:var(--soft)">' + esc(s.bookSoonText) + '</p>'
-      + '<div class="sum"><div><span>' + esc(s.lessonL) + '</span><small>' + esc(o.sub.split(',')[0]) + '</small></div><span class="tot">' + esc(money(o.total)) + '</span></div></aside></div>';
+    html += bookPanel(t, o) + '</div>';
     if (shownCur() !== 'USD') html += '<p class="note">' + esc(f(s.curNote, { c: shownCur() })) + '</p>';
     return html;
+  }
+
+
+  /* ================= Booking ================= */
+  function bkLoc() { return state.lang === 'ar' ? 'ar-AE-u-nu-arab' : 'en-GB'; }
+  function bkFmt(ms, o) {
+    var tzv = state.tz || undefined;
+    try { return new Intl.DateTimeFormat(bkLoc(), Object.assign({ timeZone: tzv }, o)).format(ms); } catch (e) { return new Intl.DateTimeFormat(bkLoc(), o).format(ms); }
+  }
+  function bkKey(ms) { try { return new Intl.DateTimeFormat('en-CA', { timeZone: state.tz || undefined, year: 'numeric', month: '2-digit', day: '2-digit' }).format(ms); } catch (e) { return new Date(ms).toISOString().slice(0, 10); } }
+  function bkDay(ms) { return bkFmt(ms, { weekday: 'short', day: 'numeric', month: 'short' }); }
+  function bkClock(ms) { return bkFmt(ms, { hour: '2-digit', minute: '2-digit' }); }
+  function bkLong(ms) { return bkFmt(ms, { weekday: 'long', day: 'numeric', month: 'long' }) + (state.lang === 'ar' ? '، ' : ' · ') + bkClock(ms); }
+  function bkAmt(minor, cur) {
+    var num = (minor / 100).toLocaleString(state.lang === 'ar' ? 'ar-AE-u-nu-arab' : 'en-US', { maximumFractionDigits: 2 });
+    return state.lang === 'ar' ? num + ' ' + curName(cur) : cur + ' ' + num;
+  }
+  function bkMin(t) { var m = state.bk.min; return t.lengths.indexOf(m) >= 0 ? m : (t.lengths.indexOf(60) >= 0 ? 60 : t.lengths[0]); }
+  function loadConfig() {
+    api('GET', '/api/booking/config').then(function (j) { state.bk.cfg = j; }, function () { state.bk.cfgErr = true; }).then(function () { var r = route(); if (r.v === 'teacher') render(true); });
+  }
+  function loadSlots(t, force) {
+    var B = state.bk; if (!B.cfg || !B.cfg.open || !t.aid) return;
+    var m = bkMin(t), key = t.aid + ':' + m, c = B.sl[key];
+    if (c && !force && (c.loading || Date.now() - c.at < 120000)) return;
+    B.sl[key] = { loading: true, at: Date.now() };
+    api('GET', '/api/slots?teacher=' + t.aid + '&minutes=' + m).then(function (j) { B.sl[key] = { data: j, at: Date.now() }; }, function () { B.sl[key] = { err: true, at: Date.now() }; })
+      .then(function () { var r = route(); if (r.v === 'teacher' && r.t.aid === t.aid) render(true); });
+  }
+  function soonPanel(o) {
+    var s = S();
+    return '<aside class="book" aria-labelledby="bookH"><h2 id="bookH">' + esc(s.bookSoonH) + '</h2><p class="note" style="font-size:16px;color:var(--soft)">' + esc(s.bookSoonText) + '</p>'
+      + '<div class="sum"><div><span>' + esc(s.lessonL) + '</span><small>' + esc(o.sub.split(',')[0]) + '</small></div><span class="tot">' + esc(money(o.total)) + '</span></div></aside>';
+  }
+  function bookPanel(t, o) {
+    var s = S(), B = state.bk, cfg = B.cfg;
+    if (B.cfgErr || !t.aid || (cfg && !cfg.open)) return soonPanel(o);
+    var h = '<aside class="book" aria-labelledby="bookH"><h2 id="bookH">' + esc(s.bkH) + '</h2>';
+    if (!cfg) return h + '<p class="note" role="status">' + esc(s.bkLoading) + '</p></aside>';
+    if (B.done) {
+      var bk = B.done.booking, pend = bk.status === 'pending_payment';
+      return h.replace(esc(s.bkH), esc(pend ? s.bkDoneH : s.bkDoneC)) + '<p class="note" style="font-size:16px;color:var(--soft)" role="status">' + esc(pend ? f(s.bkDoneP, { t: bkFmt(bk.holdUntil, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) }) : s.bkDoneCT) + '</p>'
+        + '<div class="sum"><div><span>' + esc(bkDay(bk.startsAt)) + '</span><small>' + esc(bkClock(bk.startsAt) + ' · ' + bk.minutes + ' ' + s.min) + '</small></div><span class="tot">' + esc(bkAmt(bk.price, bk.currency)) + '</span></div>'
+        + '<a class="btn btn-primary" href="#lessons">' + esc(s.bkMine) + '</a><button type="button" class="btn btn-ghost" data-act="bkagain">' + esc(s.bkAgain) + '</button></aside>';
+    }
+    var m = bkMin(t), c = B.sl[t.aid + ':' + m], d = c && c.data;
+    if (t.lengths.length > 1) h += '<div class="field"><span class="lbl" id="bkLenL">' + esc(s.bkLen) + '</span><div class="seg" role="group" aria-labelledby="bkLenL">' + t.lengths.map(function (len) { return '<button type="button" class="' + (len === m ? 'on' : '') + '" data-act="bkmin" data-v="' + len + '" aria-pressed="' + (len === m) + '">' + len + ' ' + esc(s.min) + '</button>'; }).join('') + '</div></div>';
+    if (!c || c.loading) return h + '<p class="note" role="status">' + esc(s.bkLoading) + '</p></aside>';
+    if (c.err) return h + '<p class="err" role="alert">' + esc(s.errNet) + '</p><button type="button" class="btn btn-ghost" data-act="bkretry">' + esc(s.bkRetry) + '</button></aside>';
+    if (!d.open) return soonPanel(o);
+    if (!d.bookable) return h + '<p class="note" style="font-size:16px;color:var(--soft)">' + esc(s.bkNotYet) + '</p></aside>';
+    if (!d.slots.length) return h + '<p class="note" style="font-size:16px;color:var(--soft)">' + esc(s.bkNone) + '</p></aside>';
+    var groups = [], idx = {};
+    d.slots.forEach(function (ms) { var k = bkKey(ms); if (!(k in idx)) { idx[k] = groups.length; groups.push({ k: k, ms: ms, list: [] }); } groups[idx[k]].list.push(ms); });
+    if (!(B.day in idx)) B.day = groups[0].k;
+    if (B.start != null && d.slots.indexOf(B.start) < 0) B.start = null;
+    var g = groups[idx[B.day]];
+    h += '<div class="field"><span class="lbl" id="bkDayL">' + esc(s.bkDay) + '</span><div class="bkd" role="group" aria-labelledby="bkDayL">' + groups.map(function (x) { return '<button type="button" class="' + (x.k === B.day ? 'on' : '') + '" data-act="bkday" data-v="' + x.k + '" aria-pressed="' + (x.k === B.day) + '" aria-label="' + esc(bkDay(x.ms)) + '"><span>' + esc(bkFmt(x.ms, { weekday: 'short' })) + '</span><b>' + esc(bkFmt(x.ms, { day: 'numeric' })) + '</b><span>' + esc(bkFmt(x.ms, { month: 'short' })) + '</span></button>'; }).join('') + '</div></div>';
+    h += '<div class="field"><span class="lbl" id="bkTimeL">' + esc(s.bkTime) + '</span><div class="bkt" role="group" aria-labelledby="bkTimeL">' + g.list.map(function (ms) { return '<button type="button" class="' + (ms === B.start ? 'on' : '') + '" data-act="bkslot" data-v="' + ms + '" aria-pressed="' + (ms === B.start) + '">' + esc(bkClock(ms)) + '</button>'; }).join('') + '</div><span class="note">' + esc(f(s.bkTz, { tz: (state.tz || '').replace(/_/g, ' ') || 'UTC' })) + '</span></div>';
+    var me = state.me;
+    if (me && me.role === 'parent') {
+      var cn = B.learner != null ? B.learner : ((me.profile || {}).childName || '');
+      h += '<div class="field"><label for="bkLearner">' + esc(s.bkFor) + '</label><input class="input" id="bkLearner" maxlength="60" value="' + esc(cn) + '" autocomplete="off"></div>';
+    }
+    h += '<div class="sum"><div><span>' + esc(s.bkPay) + '</span><small>' + esc(s.bkPayNote) + '</small></div><span class="tot">' + esc(bkAmt(d.price, d.currency)) + '</span></div>';
+    if (B.err) h += '<p class="err" role="alert">' + esc(B.err) + '</p>';
+    if (!me) h += '<a class="btn btn-primary" href="#signup" data-act="bksign">' + esc(s.bkSign) + '</a><p class="note">' + esc(s.bkHave) + ' <a href="#login" style="color:var(--text)">' + esc(s.login) + '</a></p>';
+    else if (me.role !== 'student' && me.role !== 'parent') h += '<p class="note">' + esc(s.bkOnlyStu) + '</p>';
+    else h += '<button type="button" class="btn btn-primary" data-act="bkgo"' + (B.start == null ? ' disabled' : '') + '>' + esc(s.bkGo) + '</button>' + (B.start == null ? '<p class="note">' + esc(s.bkPick) + '</p>' : '<p class="note" role="status">' + esc(bkLong(B.start)) + '</p>');
+    return h + '</aside>';
+  }
+  function bkSubmit(t) {
+    var B = state.bk, m = bkMin(t), li = document.getElementById('bkLearner');
+    if (B.busy || B.start == null) return;
+    B.busy = true; B.err = '';
+    var body = { teacher: t.aid, subject: t.k, minutes: m, startsAt: B.start, tz: state.tz || 'Asia/Dubai', lang: state.lang };
+    if (li) { B.learner = li.value.trim(); if (B.learner) body.learner = B.learner; }
+    api('POST', '/api/bookings', body).then(function (j) { B.done = j; B.list = null; B.sl = {}; B.start = null; }, function (e) {
+      B.err = e.status === 0 ? S().errNet : e.status === 429 ? S().errBusy : e.status === 401 ? S().errLogin : state.lang === 'en' && e.message ? e.message : S().bkTaken;
+      if (e.status === 409) { delete B.sl[t.aid + ':' + m]; B.start = null; }
+    }).then(function () { B.busy = false; var r = route(); if (r.v === 'teacher') { render(true); if (B.err) loadSlots(r.t, true); } });
+  }
+
+  /* ---- My lessons ---- */
+  function loadList() {
+    var B = state.bk; if (B.loading) return; B.loading = true;
+    api('GET', '/api/bookings').then(function (j) { B.list = j.bookings; B.free = j.freeCancelHours || 24; B.wait = j.payoutWaitHours || 48; }, function () { B.list = []; B.listErr = true; })
+      .then(function () { B.loading = false; if (route().v === 'lessons') render(true); });
+  }
+  function lcStatus(b) {
+    var s = S(), st = b.status;
+    return st === 'pending_payment' ? [s.stPend, 'st-wait'] : st === 'confirmed' ? [s.stConf, 'st-ok'] : st === 'completed' ? [s.stDone, 'st-ok'] : st === 'expired' ? [s.stExp, 'st-off'] : [s.stCanc, 'st-off'];
+  }
+  function lessonCard(b) {
+    var s = S(), B = state.bk, now = Date.now(), end = b.startsAt + b.minutes * 60000, st = lcStatus(b), free = B.free || 24, wait = B.wait || 48;
+    var h = '<article class="lc"><div class="lc-h"><div><h3>' + esc(bkLong(b.startsAt)) + '</h3><p>' + esc(f(s.lsWith, { n: b.teacherName || '' }) + ' · ' + b.minutes + ' ' + s.min) + '</p>'
+      + (b.learner ? '<p>' + esc(f(s.lsFor, { n: b.learner })) + '</p>' : '') + '</div><span class="lc-st ' + st[1] + '">' + esc(st[0]) + '</span></div>';
+    if (b.status === 'pending_payment' && b.holdUntil) h += '<p class="note">' + esc(f(s.lsHeld, { t: bkFmt(b.holdUntil, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) })) + '</p>';
+    if (b.status === 'cancelled') {
+      if (b.cancelledBy === 'teacher') h += '<p class="note">' + esc(s.lsTCanc) + '</p>';
+      if (b.refundStatus === 'due') h += '<p class="note">' + esc(s.lsRefDue) + '</p>';
+      else if (b.refundStatus === 'refunded') h += '<p class="note">' + esc(s.lsRefDone) + '</p>';
+      else if (b.paidAt && b.cancelLate) h += '<p class="note">' + esc(f(s.lsNoRef, { h: free })) + '</p>';
+    }
+    if (b.refundStatus === 'due' && b.status !== 'cancelled') h += '<p class="note">' + esc(s.lsRefDue) + '</p>';
+    if (b.problem) h += '<p class="note">' + esc(b.problemResolved ? s.lsResolved : s.lsReported) + '</p>';
+    var acts = '';
+    if (b.meetingUrl && b.status === 'confirmed') acts += '<a class="btn btn-primary" href="' + esc(b.meetingUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(s.lsJoin) + '</a><button type="button" class="btn btn-ghost" data-act="lccopy" data-u="' + esc(b.meetingUrl) + '">' + esc(s.lsCopy) + '</button>';
+    var canCancel = (b.status === 'pending_payment' || b.status === 'confirmed') && end > now;
+    if (canCancel && B.cx !== b.id) acts += '<button type="button" class="btn btn-ghost" data-act="lccx" data-id="' + b.id + '">' + esc(s.lsCancel) + '</button>';
+    var canReport = !b.problem && ((b.status === 'confirmed' && now >= b.startsAt + 600000) || (b.status === 'completed' && b.completedAt && now <= b.completedAt + wait * 3600000));
+    if (canReport && B.rep !== b.id) acts += '<button type="button" class="btn btn-ghost" data-act="lcrep" data-id="' + b.id + '">' + esc(s.lsRepBtn) + '</button>';
+    if (acts) h += '<div class="lc-a">' + acts + '</div>';
+    if (B.cx === b.id) {
+      var late = b.status === 'confirmed' && b.startsAt - now < free * 3600000;
+      h += '<div class="lc-box" role="alert"><p>' + esc(b.status === 'pending_payment' ? s.lsCancelRes : late ? f(s.lsCancelLate, { h: free }) : s.lsCancelFree) + '</p><div class="lc-a"><button type="button" class="btn btn-primary" data-act="lcyes" data-id="' + b.id + '">' + esc(s.lsYes) + '</button><button type="button" class="btn btn-ghost" data-act="lcno">' + esc(s.lsKeep) + '</button></div></div>';
+    }
+    if (B.rep === b.id) {
+      h += '<div class="lc-box"><div class="field"><label for="lcRep">' + esc(s.lsRepQ) + '</label><textarea class="input" id="lcRep" maxlength="600"></textarea><span class="note">' + esc(s.lsRepHint) + '</span></div>' + (B.err ? '<p class="err" role="alert">' + esc(B.err) + '</p>' : '')
+        + '<div class="lc-a"><button type="button" class="btn btn-primary" data-act="lcsend" data-id="' + b.id + '">' + esc(s.lsRepSend) + '</button><button type="button" class="btn btn-ghost" data-act="lcno">' + esc(s.lsKeep) + '</button></div></div>';
+    }
+    return h + '</article>';
+  }
+  function viewLessons() {
+    var s = S(), B = state.bk;
+    if (!state.me) return state.booted ? '<section class="success"><h1 class="q">' + esc(s.lsSignIn) + '</h1><a class="btn btn-primary btn-lg" href="#login">' + esc(s.login) + '</a></section>' : '<p class="empty">' + esc(s.loadingT) + '</p>';
+    if (B.list === null) { loadList(); return '<p class="empty">' + esc(s.loadingT) + '</p>'; }
+    var now = Date.now(), up = [], past = [];
+    B.list.forEach(function (b) { ((b.status === 'pending_payment' || b.status === 'confirmed') && b.startsAt + b.minutes * 60000 > now ? up : past).push(b); });
+    up.sort(function (a, b) { return a.startsAt - b.startsAt; });
+    var list = B.tab === 'past' ? past : up;
+    function tb(id, label, n) { return '<button type="button" data-act="lctab" data-v="' + id + '" aria-current="' + (B.tab === id) + '">' + esc(label) + (n ? ' <span class="n">' + n + '</span>' : '') + '</button>'; }
+    var h = '<section class="lsn" data-k="all"><header><h1>' + esc(s.lsH) + '</h1><p>' + esc(s.lsSub) + '</p></header>';
+    if (B.msg) h += '<p class="pf-msg" role="status">' + esc(B.msg) + '</p>';
+    h += '<nav class="lt" aria-label="' + esc(s.lsH) + '">' + tb('up', s.lsUp, up.length) + tb('past', s.lsPast, 0) + '</nav>';
+    if (B.listErr) h += '<p class="err" role="alert">' + esc(s.errNet) + '</p>';
+    if (!list.length) h += '<div class="lc-empty"><h2>' + esc(B.tab === 'past' ? s.lsPast : s.lsNoUp) + '</h2><p>' + esc(B.tab === 'past' ? s.lsNoPast : s.lsNoUpT) + '</p>' + (B.tab === 'past' ? '' : '<a class="btn btn-primary" href="#home">' + esc(s.lsFind) + '</a>') + '</div>';
+    else h += '<div class="lcs">' + list.map(lessonCard).join('') + '</div>';
+    return h + '</section>';
+  }
+  function lessonsDo(act, a) {
+    var B = state.bk, s = S(), id = Number(a.getAttribute('data-id'));
+    if (act === 'lctab') { B.tab = a.getAttribute('data-v'); B.cx = null; B.rep = null; B.msg = ''; render(true); }
+    else if (act === 'lccx') { B.cx = id; B.rep = null; B.err = ''; render(true); }
+    else if (act === 'lcrep') { B.rep = id; B.cx = null; B.err = ''; render(true); var ta = document.getElementById('lcRep'); if (ta) ta.focus(); }
+    else if (act === 'lcno') { B.cx = null; B.rep = null; B.err = ''; render(true); }
+    else if (act === 'lccopy') { var u = a.getAttribute('data-u'); try { navigator.clipboard.writeText(u); a.textContent = s.lsCopied; setTimeout(function () { a.textContent = s.lsCopy; }, 1600); } catch (e) {} }
+    else if (act === 'lcyes') api('POST', '/api/bookings/cancel', { id: id }).then(function () { B.cx = null; B.msg = s.lsMsgCanc; B.list = null; render(true); }, function (e) { B.cx = null; B.msg = ''; B.err = apiMsg(e); B.list = null; render(true); });
+    else if (act === 'lcsend') {
+      var txt = val('lcRep'); if (txt.length < 10) { B.err = s.lsRepHint; render(true); return; }
+      api('POST', '/api/bookings/report', { id: id, message: txt }).then(function () { B.rep = null; B.err = ''; B.msg = s.lsMsgRep; B.list = null; render(true); }, function (e) { B.err = state.lang === 'en' && e.message ? e.message : apiMsg(e); render(true); });
+    }
   }
 
   function bigInput(f2, type, auto, value, label, extra) {
@@ -2094,7 +2292,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     if ((m = h.match(/^notify(?:-(ar|qu|ma))?$/))) return { v: 'notify', k: m[1] || '' };
     if (h === 'terms' || h === 'privacy') return { v: 'legal', k: h };
     if (h === 'about' || h === 'contact') return { v: h };
-    if (h === 'signup' || h === 'login' || h === 'teach' || h === 'profile') return { v: h };
+    if (h === 'signup' || h === 'login' || h === 'teach' || h === 'profile' || h === 'lessons') return { v: h };
     if (h === 'apply' || h === 'join') return { v: 'teach', scroll: h };
     return { v: 'home' };
   }
@@ -2102,6 +2300,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
   function render(keep) {
     var r = route(), html;
     if (r.v !== 'notify') state.nt.done = false;
+    if (r.v === 'lessons' && lastView !== 'lessons' && !state.bk.loading) state.bk.list = null;
     var sj = r.v === 'teachers' ? r.k : (r.v === 'teacher' ? r.t.k : '');
     root.setAttribute('data-sj', sj); setStage(sj);
     if (r.v === 'home') html = viewHome();
@@ -2112,6 +2311,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     else if (r.v === 'notify') html = viewNotify(r.k);
     else if (r.v === 'reset') html = viewReset();
     else if (r.v === 'profile') html = viewProfile();
+    else if (r.v === 'lessons') html = viewLessons();
     else if (r.v === 'legal') html = viewLegal(r.k);
     else if (r.v === 'about') html = viewAbout();
     else if (r.v === 'contact') html = viewContact();
@@ -2132,6 +2332,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     if (r.scroll) { var el = document.getElementById(r.scroll); if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50); }
     else if (!keep) window.scrollTo(0, 0);
     if (!keep && (r.v === 'signup' || r.v === 'login') && lastView !== null) { var a = document.getElementById('suAns') || document.getElementById('liEmail'); if (a) a.focus({ preventScroll: true }); }
+    if (r.v === 'teacher') loadSlots(r.t);
     lastView = r.v;
   }
   function renderChrome() {
@@ -2150,6 +2351,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
       var u = state.me;
       acct.innerHTML = '<div class="acct" id="acctBox"><button type="button" class="acct-btn" data-act="menu" aria-haspopup="menu" aria-expanded="false" aria-controls="acctMenu" aria-label="' + esc(s.acctMenu) + '">' + avatarEl(u, '') + '<span class="nm">' + esc(state.user) + '</span><span class="chev">' + ICON.chev + '</span></button>'
         + '<div class="acct-menu" id="acctMenu" role="menu"><div class="acct-who">' + avatarEl(u, 'md') + '<div><b>' + esc(u.name) + '</b><span dir="ltr">' + esc(u.email) + '</span></div></div>'
+        + (u.role === 'student' || u.role === 'parent' ? '<a class="mi" role="menuitem" href="#lessons" data-act="menuLink">' + ICON.cal + '<span>' + esc(s.lsMenu) + '</span></a>' : '')
         + '<a class="mi" role="menuitem" href="#profile" data-act="menuLink">' + ICON.user + '<span>' + esc(s.viewProfile) + '</span></a>'
         + '<button type="button" class="mi" role="menuitem" data-act="logout">' + ICON.out + '<span>' + esc(s.logout) + '</span></button></div></div>';
     }
@@ -2381,7 +2583,15 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     if (dead && !a) { e.preventDefault(); return; }
     if (!a) return;
     var act = a.getAttribute('data-act');
-    if (act === 'cell') { state.book.day = Number(a.getAttribute('data-d')); state.book.time = Number(a.getAttribute('data-h')); state.book.done = false; render(true); }
+    if (act === 'bkmin') { state.bk.min = Number(a.getAttribute('data-v')); state.bk.day = null; state.bk.start = null; state.bk.err = ''; render(true); loadSlots(route().t); }
+    else if (act === 'bkday') { state.bk.day = a.getAttribute('data-v'); state.bk.start = null; render(true); }
+    else if (act === 'bkslot') { state.bk.start = Number(a.getAttribute('data-v')); state.bk.err = ''; render(true); }
+    else if (act === 'bkgo') bkSubmit(route().t);
+    else if (act === 'bkagain') { state.bk.done = null; render(true); loadSlots(route().t, true); }
+    else if (act === 'bkretry') { loadSlots(route().t, true); render(true); }
+    else if (act === 'bksign') { state.pending = route().t.id; state.su.done = false; state.su.step = 0; }
+    else if (/^lc(tab|cx|rep|no|copy|yes|send)$/.test(act)) lessonsDo(act, a);
+    else if (act === 'cell') { state.book.day = Number(a.getAttribute('data-d')); state.book.time = Number(a.getAttribute('data-h')); state.book.done = false; render(true); }
     else if (act === 'book') {
       if (state.book.time == null) return;
       if (!state.user) { state.pending = state.book.id; state.su.done = false; state.su.step = 0; location.hash = 'signup'; }
@@ -2477,6 +2687,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
 
   document.addEventListener('input', function (e) {
     var t = e.target;
+    if (t.id === 'bkLearner') state.bk.learner = t.value;
     if (t.id === 'suAns') { var fld = t.getAttribute('data-f'); if (fld && fld !== 'pw') state.su.d[fld] = t.value; }
     if (t.hasAttribute('data-w')) { state.wiz.data[t.getAttribute('data-w')] = t.value; updatePreview(); }
     if (t.hasAttribute('data-price')) {
@@ -2562,7 +2773,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     .observe(document.body, { childList: true, characterData: true, subtree: true });
   setCountry(guessCountry());
   render(true);
-  loadTeachers(); restoreSession();
+  loadTeachers(); loadConfig(); restoreSession();
   var intro = document.getElementById('intro'), wipe = document.getElementById('wipe');
   (function () { var w = document.getElementById('introWord'), p = (S().tag || '').match(/[^.]+\./g); if (w && p && p.length === 3) w.innerHTML = p.map(function (x) { return '<b>' + esc(x.trim()) + '</b>'; }).join(''); })();
   setTimeout(function () { if (intro && intro.parentNode) intro.parentNode.removeChild(intro); if (wipe && wipe.parentNode) wipe.parentNode.removeChild(wipe); }, 3000);
