@@ -740,6 +740,43 @@ h1.mega{font-size:clamp(34px,6.2vw,72px);line-height:1.02}
 .hero-block h1.mega{color:#fff}
 .hero-block .sub{color:#E3EAFF}
 @media (max-width:700px){.hero-block{padding:28px 20px 150px;min-height:340px}.hero-block::after{font-size:190px;bottom:-34px}}
+
+/* ======== Home split (agreed mockup) ======== */
+.home-split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);border-radius:6px 6px 0 0;overflow:hidden;min-height:460px}
+.hs-blue{background:#2447C7;color:#fff;padding:40px 36px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:420px}
+.hs-blue::after{content:"علم";position:absolute;inset-inline-end:-10px;bottom:-50px;font-size:250px;line-height:.8;color:#4B78F5;opacity:.45;pointer-events:none}
+.hs-blue h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,58px);line-height:1.04;letter-spacing:-.03em;margin:0;color:#fff;position:relative;z-index:1}
+[dir="rtl"] .hs-blue h1{font-family:var(--font);letter-spacing:0;line-height:1.2}
+.hs-blue .sub{position:relative;z-index:1;margin:0;max-width:22ch;color:#E3EAFF;font-size:17px;line-height:1.5;align-self:flex-start}
+.hs-side{padding:32px 32px 28px;display:flex;flex-direction:column;gap:28px;background:var(--bg);border:1px solid var(--line);border-inline-start:0}
+.hs-side .search-wrap{margin:0}
+.srows{display:flex;flex-direction:column}
+.srow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text);transition:padding .2s}
+.srow:first-child{border-top:0}
+.srow:hover{padding-inline-start:8px}
+.srow .sn{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,28px);letter-spacing:-.02em}
+[dir="rtl"] .srow .sn{font-family:var(--font);letter-spacing:0}
+.srow .sp{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:14px;color:var(--muted);white-space:nowrap}
+.hs-bar{display:flex;justify-content:space-between;align-items:center;min-height:64px;padding:0 36px;background:#22C3A6;color:#0B1014;font-weight:600;font-size:17px;text-decoration:none}
+.hs-bar:hover{filter:brightness(1.06)}
+.hs-strip{display:grid;grid-template-columns:repeat(3,1fr);border-radius:0 0 6px 6px;overflow:hidden}
+.hs-strip .st{padding:30px 36px 34px;display:flex;flex-direction:column;gap:8px;min-height:150px}
+.hs-strip h3{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,34px);letter-spacing:-.02em;margin:0}
+[dir="rtl"] .hs-strip h3{font-family:var(--font);letter-spacing:0}
+.hs-strip p{margin:0;font-size:15px}
+.hs-strip .st0{background:#F6F4EE;color:#101114}
+html[data-theme="light"] .hs-strip .st0{background:#101114;color:#F6F4EE}
+.hs-strip .st1{background:#2447C7;color:#fff}
+.hs-strip .st2{background:#22C3A6;color:#0B1014}
+@media (max-width:900px){
+  .home-split{grid-template-columns:1fr}
+  .hs-blue{min-height:400px;padding:28px 20px}
+  .hs-blue::after{font-size:200px;bottom:-36px}
+  .hs-side{border-inline-start:1px solid var(--line);border-top:0;padding:24px 20px}
+  .hs-bar{padding:0 20px}
+  .hs-strip{grid-template-columns:1fr}
+  .hs-strip .st{min-height:0;padding:22px 20px}
+}
 </style>
 </head>
 <body>
@@ -1409,25 +1446,20 @@ h1.mega{font-size:clamp(34px,6.2vw,72px);line-height:1.02}
     return '<div class="trust" role="list"><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="17" r="2.2"/></svg>' + T[0] + '</span><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>' + T[1] + '</span><span role="listitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-5h4v5"/></svg>' + T[2] + '</span></div>';
   }
   function viewHome() {
-    var s = S(), html = '';
-    html += '<div class="hero hero-block rise d2" data-k="ar"><h1 class="mega">' + esc(s.h1) + '</h1><p class="sub">' + esc(s.sub) + '</p></div>';
-    html += '<div class="search-wrap rise d3"><form class="search" role="search" id="searchForm"><label for="q" class="sr-only">' + esc(s.searchLabel) + '</label>' + ICON.search
-      + '<input id="q" type="search" autocomplete="off" placeholder="' + esc(s.searchPh) + '"><button type="submit">' + esc(s.searchBtn) + '</button></form><p class="search-msg" id="searchMsg" role="status"></p></div>';
+    var s = S(), ar = state.lang === 'ar', html = '';
+    var rows = KEYS.map(function (k) {
+      var c = s.cols[k], mp = null;
+      TEACHERS.forEach(function (t) { if (t.k === k) { var m = minPrice(t); if (mp === null || m < mp) mp = m; } });
+      return '<a class="srow" data-k="' + k + '" href="#teachers-' + k + '"><span class="sn">' + esc(c.title) + '</span><span class="sp">' + (mp !== null ? esc(s.from) + ' ' + money(mp) : (ar ? 'قريباً' : 'Soon')) + '</span></a>';
+    }).join('');
+    html += '<section class="home-split rise d2"><div class="hs-blue"><h1>' + esc(s.h1) + '</h1><p class="sub">' + esc(s.sub) + '</p></div>'
+      + '<div class="hs-side"><div class="search-wrap"><form class="search" role="search" id="searchForm"><label for="q" class="sr-only">' + esc(s.searchLabel) + '</label>'
+      + '<input id="q" type="search" autocomplete="off" placeholder="' + esc(s.searchPh) + '"><button type="submit">' + esc(s.searchBtn) + '</button></form><p class="search-msg" id="searchMsg" role="status"></p></div>'
+      + '<div class="srows">' + rows + '</div></div></section>';
+    html += '<a class="hs-bar" href="#teachers-ar"><span>' + (ar ? 'ابحث عن معلّم' : 'Find a teacher') + '</span><span class="ar-go">' + (ar ? '←' : '→') + '</span></a>';
+    var T = ar ? [['اختر', 'المادة والمستوى والوقت.'], ['احجز', 'بتوقيتك وبالدفع بالبطاقة.'], ['تعلّم مباشرة', 'في متصفحك.']] : [['Choose', 'Subject, level, time.'], ['Book', 'Your timezone, card pay.'], ['Learn live', 'In your browser.']];
+    html += '<div class="hs-strip rise d3">' + T.map(function (t, i) { return '<div class="st st' + i + '"><h3>' + esc(t[0]) + '</h3><p>' + esc(t[1]) + '</p></div>'; }).join('') + '</div>';
     html += trustHtml();
-    html += '<div class="grid" id="grid">';
-    KEYS.forEach(function (k, i) {
-      var c = s.cols[k];
-      var opts = [{ v: '', l: s.any[k] }].concat(c.options.map(function (o) { return { v: o.id, l: o.aria || o.label }; }));
-      html += '<div class="rise c' + i + '" data-k="' + k + '" data-col="' + k + '"><section class="panel" aria-labelledby="h-' + k + '">'
-        + artHtml(k)
-        + '<div><h2 id="h-' + k + '">' + esc(c.title) + '</h2><p class="desc">' + esc(c.desc) + '</p>'
-        + '<p class="online"><span class="dot" aria-hidden="true"></span>' + esc(liveCount(k) ? f(liveCount(k) === 1 ? s.onlineN1 : s.onlineN, { n: liveCount(k), s: c.subject }) : s.onlineNone) + '</p></div>'
-        + dd('home-' + k, c.prompt, opts, state.sel[k], { ph: s.choose, cols: !!c.grid })
-        + '<div class="pv" hidden></div>'
-        + '<a href="#teachers-' + k + '" class="btn btn-primary cta">' + esc(c.cta) + '</a></section></div>';
-    });
-    html += '</div>';
-    html += '<ul class="trust rise d4"><li><i style="background:var(--ar);box-shadow:0 0 10px var(--ar)"></i>' + esc(s.trust1) + '</li><li><i style="background:var(--qu);box-shadow:0 0 10px var(--qu)"></i>' + esc(s.trust2) + '</li><li><i style="background:var(--ma);box-shadow:0 0 10px var(--ma)"></i>' + esc(s.trust3) + '</li></ul>';
     return html;
   }
   function syncHome() {
@@ -2144,13 +2176,7 @@ h1.mega{font-size:clamp(34px,6.2vw,72px);line-height:1.02}
       var s = S(), r = parse(document.getElementById('q').value), msg = document.getElementById('searchMsg');
       if (!r) { msg.textContent = ''; return; }
       if (!r.k) { state.matched = null; msg.textContent = s.hint; syncHome(); return; }
-      var c = s.cols[r.k], o = c.options.filter(function (x) { return x.id === r.id; })[0];
-      state.sel[r.k] = r.id; state.matched = r.k;
-      msg.textContent = s.match + ' ' + c.title + (o ? s.comma + (o.aria || o.label) : '');
-      var dEl = document.querySelector('.dd[data-dd="home-' + r.k + '"]'); if (dEl) ddSync(dEl, r.id);
-      syncHome();
-      var col = document.querySelector('[data-col="' + r.k + '"]');
-      if (col && col.getBoundingClientRect().top > window.innerHeight * 0.6) col.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      state.sel[r.k] = r.id; location.hash = 'teachers-' + r.k + (r.id ? '-' + r.id : '');
     } else if (id === 'suForm') { e.preventDefault(); submitSignup(); }
     else if (id === 'liForm') { e.preventDefault(); submitLogin(); }
     else if (id === 'pfInfoForm') { e.preventDefault(); submitPfInfo(); }
