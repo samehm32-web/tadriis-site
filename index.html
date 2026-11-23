@@ -777,6 +777,60 @@ html[data-theme="light"] .hs-strip .st0{background:#101114;color:#F6F4EE}
   .hs-strip{grid-template-columns:1fr}
   .hs-strip .st{min-height:0;padding:22px 20px}
 }
+
+/* ======== Glow: ambient background + hover light ======== */
+html[data-theme="dark"]{--glow:1;--blob-a:.38}
+html[data-theme="light"]{--blob-a:.22}
+.stage{display:block}
+.stage .mesh,.stage .deco{display:none}
+.blob{filter:blur(46px)}
+.stage::after{content:"";position:absolute;width:38vw;height:38vw;right:6vw;bottom:-12vw;border-radius:50%;background:radial-gradient(circle,rgba(34,195,166,.28),rgba(34,195,166,0) 65%);filter:blur(40px);animation:pulseGlow 9s ease-in-out infinite alternate}
+@keyframes pulseGlow{from{opacity:.35;transform:scale(.9) translate(0,0)}to{opacity:.8;transform:scale(1.12) translate(-4vw,-3vh)}}
+html[data-theme="light"] .stage::after{opacity:.3}
+.nav,.app,main,footer{position:relative;z-index:1}
+
+/* hover light: a soft spotlight that follows the pointer */
+.srow,.hs-strip .st,.hs-bar,.hs-blue,.hs-side,.trow,.perk,.calc,.res-title,.tsq,.cell.f{--mx:50%;--my:50%}
+.srow:hover,.trow:hover,.perk:hover,.hs-side:hover{background-image:radial-gradient(420px circle at var(--mx) var(--my),rgba(34,195,166,.16),transparent 60%)}
+.hs-strip .st:hover,.hs-bar:hover,.hs-blue:hover,.res-title:hover,.teach-top>div:first-child:hover{background-image:radial-gradient(360px circle at var(--mx) var(--my),rgba(255,255,255,.28),rgba(255,255,255,0) 62%)}
+.hs-strip .st0:hover{background-image:radial-gradient(360px circle at var(--mx) var(--my),rgba(34,195,166,.35),rgba(34,195,166,0) 62%)}
+.hs-strip,.hs-bar,.hs-blue{transition:box-shadow .3s,filter .3s}
+.hs-bar:hover{filter:none;box-shadow:0 0 38px rgba(34,195,166,.55),inset 0 0 0 1px rgba(255,255,255,.25)}
+.hs-bar .ar-go{transition:transform .25s}
+.hs-bar:hover .ar-go{transform:translateX(8px)}
+[dir="rtl"] .hs-bar:hover .ar-go{transform:translateX(-8px)}
+.hs-strip .st{transition:box-shadow .3s,transform .3s}
+.hs-strip .st:hover{box-shadow:0 0 40px rgba(var(--g,34,195,166),.45);transform:translateY(-3px);position:relative;z-index:2}
+.hs-strip .st1{--g:75,120,245}
+.hs-blue::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;left:-120px;top:-140px;background:radial-gradient(circle,rgba(255,255,255,.18),rgba(255,255,255,0) 65%);animation:pulseGlow 8s ease-in-out infinite alternate;pointer-events:none}
+.srow .sn{transition:text-shadow .25s}
+.srow:hover .sn{text-shadow:0 0 22px rgba(34,195,166,.55)}
+html[data-theme="light"] .srow:hover .sn{text-shadow:none}
+.btn-primary,.search button{transition:box-shadow .25s,transform .2s}
+.btn-primary:hover,.search button:hover{box-shadow:0 0 26px rgba(34,195,166,.6);transform:translateY(-1px)}
+.btn-ghost:hover{box-shadow:0 0 20px rgba(var(--rgb,74,125,255),.35)}
+.search:focus-within{box-shadow:0 8px 24px -12px rgba(34,195,166,.7)}
+.logo:hover,.brand:hover{filter:drop-shadow(0 0 10px rgba(34,195,166,.7))}
+.calc:hover{box-shadow:0 0 50px -10px rgba(34,195,166,.35)}
+.range::-webkit-slider-thumb{transition:box-shadow .2s}
+.range:hover::-webkit-slider-thumb{box-shadow:0 0 0 6px rgba(34,195,166,.25),0 0 20px rgba(34,195,166,.6)}
+.perk{transition:background .3s}
+.trow{transition:background .3s,padding .2s}
+.trow:hover{padding-inline-start:16px}
+
+/* teacher square: initial in the subject colour */
+.tsq{width:80px;height:80px;display:grid;place-items:center;background:var(--pb);color:var(--pf);font-family:var(--display);font-weight:700;font-size:34px;border-radius:4px;flex:none;transition:box-shadow .3s,transform .25s}
+.tsq.big{width:190px;height:190px;font-size:96px}
+.tsq.sm{width:44px;height:44px;font-size:20px}
+.trow:hover .tsq,.tsq.big:hover{box-shadow:0 0 34px rgba(var(--pfr,34,195,166),.0),0 0 34px var(--pb);transform:scale(1.04)}
+.panel .pv .tsq{box-shadow:none}
+
+/* profile: chosen slot is a solid block with a tick */
+.cell.s{position:relative;background:var(--text);box-shadow:0 0 0 3px var(--c),0 0 26px rgba(var(--rgb),.7)}
+.cell.s::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:var(--bg);font-weight:700;font-size:16px}
+.cell.f:hover{box-shadow:0 0 22px rgba(var(--rgb),.7);transform:translateY(-1px)}
+@media (max-width:900px){.tsq{width:56px;height:56px;font-size:24px}.tsq.big{width:120px;height:120px;font-size:60px}}
+@media (prefers-reduced-motion:reduce){.stage::after,.hs-blue::before,.blob{animation:none}}
 </style>
 </head>
 <body>
@@ -1471,7 +1525,7 @@ html[data-theme="light"] .hs-strip .st0{background:#101114;color:#F6F4EE}
       var prev = col.querySelector('.pv');
       if (sel) {
         prev.innerHTML = matchT(k, sel).slice(0, 3).map(function (t) {
-          return '<a href="#teacher-' + t.id + '">' + orb(t.id, k, 44) + '<span><span class="tn">' + esc(t.name[L()]) + '</span>' + (t.next ? '<br><span class="ta">' + esc(f(s.nextAvail, { t: t.next[L()] })) + '</span>' : '') + '</span><span class="tp">' + esc(s.from) + ' ' + money(minPrice(t)) + '</span></a>';
+          return '<a href="#teacher-' + t.id + '"><span class="tsq sm" data-k="' + k + '" aria-hidden="true">' + esc(t.ini[L()]) + '</span>' + '<span><span class="tn">' + esc(t.name[L()]) + '</span>' + (t.next ? '<br><span class="ta">' + esc(f(s.nextAvail, { t: t.next[L()] })) + '</span>' : '') + '</span><span class="tp">' + esc(s.from) + ' ' + money(minPrice(t)) + '</span></a>';
         }).join('');
       }
       prev.hidden = !sel;
@@ -1507,7 +1561,7 @@ html[data-theme="light"] .hs-strip .st0{background:#101114;color:#F6F4EE}
       var bars = '';
       for (var h = 6; h <= 23; h++) { var on = t.times.indexOf(h) !== -1; bars += '<span' + (on ? ' class="on"' : '') + ' style="height:' + (on ? 16 + (h * 7 + hash(t.id)) % 18 : 8) + 'px"></span>'; }
       var times = t.times.slice().sort(function (a, b) { return a - b; }).map(hh).join(', ');
-      html += '<a class="trow" href="#teacher-' + t.id + '">' + orb(t.id, k, 80)
+      html += '<a class="trow" href="#teacher-' + t.id + '"><span class="tsq" data-k="' + k + '" aria-hidden="true">' + esc(t.ini[l]) + '</span>'
         + '<span><span class="t-name">' + esc(t.name[l]) + '</span><p class="t-head">' + esc(t.head[l]) + '</p>' + (t.country[l] ? '<p class="t-meta">' + esc(f(s.basedL, { c: t.country[l], l: t.langs[l] || '—' })) + '</p>' : '') + '</span>'
         + '<span class="bars-col">' + (t.times.length ? '<span class="bars" role="img" aria-label="' + esc(s.freeToday + ': ' + times) + '">' + bars + '</span><span class="t-av">' + esc(s.freeToday) + '</span>' : '') + '</span>'
         + '<span class="price-col"><span class="t-price">' + esc(money(minPrice(t))) + ' <small>/ ' + t.lengths[0] + ' ' + esc(s.min) + '</small></span>' + (t.next ? '<span class="t-next"><span class="dot" aria-hidden="true"></span>' + esc(f(s.nextAvail, { t: t.next[l] })) + '</span>' : '') + '</span>'
@@ -1539,7 +1593,7 @@ html[data-theme="light"] .hs-strip .st0{background:#101114;color:#F6F4EE}
     var o = opts[b.opt] || opts[0];
     var when = b.time != null ? (dl[b.day].wd + ' ' + dl[b.day].n + (state.lang === 'ar' ? '، ' : ', ') + fmtTime(b.time)) : '—';
     html += '<div>' + backLink('#teachers-' + k) + '</div><div class="prof"><div class="prof-main">';
-    html += '<section class="prof-hero">' + orb(t.id, k, 190) + '<div style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:240px"><h1 class="name">' + esc(t.name[l]) + '</h1><p class="lead">' + esc(t.head[l]) + '</p></div></section>';
+    html += '<section class="prof-hero"><span class="tsq big" data-k="' + k + '" aria-hidden="true">' + esc(t.ini[l]) + '</span>' + '<div style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:240px"><h1 class="name">' + esc(t.name[l]) + '</h1><p class="lead">' + esc(t.head[l]) + '</p></div></section>';
     html += '<ul class="verif" aria-label="' + esc(s.verifiedL) + '"><li>' + ICON.shield + esc(s.approvedL) + '</li></ul>';
     var prow = function (lab, v) { return v ? '<div><span>' + esc(lab) + '</span><span>' + esc(v) + '</span></div>' : ''; };
     html += '<section class="sec"><div class="rows">' + prow(s.basedIn, t.country[l]) + prow(s.speaksL, t.langs[l]) + prow(s.whoL, t.who[l]) + prow(s.yearsL, t.years ? f(s.yearsV, { n: t.years }) : '') + prow(s.lengthsL, t.lengths.join(', ') + ' ' + s.min) + '</div></section>';
@@ -2280,6 +2334,14 @@ html[data-theme="light"] .hs-strip .st0{background:#101114;color:#F6F4EE}
   setTimeout(function () { var br = document.getElementById('brand'); if (br) br.classList.add('min'); }, 4800);
 
 })();
+
+  /* pointer-tracked light on hover */
+  document.addEventListener('pointermove', function (e) {
+    var el = e.target.closest && e.target.closest('.srow,.hs-strip .st,.hs-bar,.hs-blue,.hs-side,.trow,.perk,.calc,.btn,.tsq,.cell.f,.res-title,.teach-top>div:first-child');
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px'); el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
 </script>
 </body>
 </html>
