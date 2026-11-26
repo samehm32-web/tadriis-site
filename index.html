@@ -886,6 +886,13 @@ html[data-theme="light"] .srow:hover .sn{text-shadow:none}
 .chips{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s6)}
 .chips a{padding:var(--s2) var(--s5);border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-weight:500}
 .chips a:hover{border-color:var(--text)}
+.chips button{font:inherit;cursor:pointer;background:transparent;padding:var(--s2) var(--s5);border:1px solid var(--line);border-radius:999px;color:var(--text);font-weight:500}
+.chips button:hover{border-color:var(--text)}
+.chips button[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.chips button:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.choose .chq{margin:0 0 var(--s6)}.choose .chq h2{font-size:18px;font-weight:500;margin:0 0 var(--s3)}.choose .chq .chips{margin-bottom:0}
+.choose .chh{font-size:20px;font-weight:500;margin:var(--s7) 0 var(--s3)}.choose .chnote{margin-top:var(--s6)}
+.choose-cta{margin:var(--s4) 0 0}
 .chips a[aria-current="page"]{background:var(--text);color:var(--bg);border-color:var(--text)}
 .empty-acts{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4) var(--s6);margin:0}
 .empty-acts span{font-size:16px}
@@ -1267,6 +1274,11 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     samplesNote: 'These are sample profiles to show how the platform will look.',
     curNote: 'Prices are shown in {c}, converted at an approximate rate (rates by exchangerate-api.com). Each teacher sets their price in their own currency, and the exact amount is shown when you book.', ctryLabel: 'Country and currency', ctryH: 'Where are you?', ctryP: 'Choose your country and we will show prices in its currency.', ctrySearch: 'Search countries', ctryNone: 'No country found.', close: 'Close',
     any: { ar: 'Any level', qu: 'Any topic', ma: 'Any grade' },
+    chBtn: 'Help me choose', chH: 'Help me choose a teacher', chSub: 'Answer a few questions. The site matches teachers to your answers and lists them in order. You decide who to book.',
+    chQSubject: 'What do you want to learn?', chQLang: 'Language of the lesson', chQGender: 'Teacher', chQPri: 'What matters most?', chAnyL: 'Any', chNotSure: 'Not sure',
+    chGf: 'Female teacher', chGm: 'Male teacher', chPriSoon: 'Earliest lesson', chPriLow: 'Lowest price', chPriExp: 'Most experience',
+    chPick: 'Choose a subject to see matching teachers.', chMatchH: 'Match your answers', chOtherH: 'Other teachers in this subject', chNoMatch: 'No teacher matches every answer yet. You can change an answer, or look at the other teachers below.',
+    chTLang: 'Teaches in {l}', chTLvl: 'Teaches {l}', chTYears: '{n} years of teaching', chNote: 'Teachers are matched to your answers automatically by the site. Nobody advises or recommends a teacher for you. Open the profiles and choose the one you prefer.',
     filters: 'Filters', fSubject: 'Subject', fSort: 'Sort by', fLang: 'Teaches in', anyLang: 'Any language', reset: 'Reset filters',
     sortSoon: 'Soonest available', sortLow: 'Lowest price', sortHigh: 'Highest price',
     langs: { ar: 'Arabic', en: 'English', fr: 'French', ur: 'Urdu' },
@@ -1286,6 +1298,11 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     samplesNote: 'هذه ملفات تجريبية توضّح شكل المنصّة.',
     curNote: 'الأسعار معروضة بعملة {c}، محوَّلة بسعر تقريبي (الأسعار من exchangerate-api.com). يحدّد كل معلّم سعره بعملته، ويظهر المبلغ الدقيق عند الحجز.', ctryLabel: 'الدولة والعملة', ctryH: 'أين أنت؟', ctryP: 'اختر دولتك وسنعرض الأسعار بعملتها.', ctrySearch: 'ابحث عن دولة', ctryNone: 'لا توجد دولة بهذا الاسم.', close: 'إغلاق',
     any: { ar: 'أي مستوى', qu: 'أي موضوع', ma: 'أي صف' },
+    chBtn: 'ساعدني في الاختيار', chH: 'ساعدني في اختيار معلّم', chSub: 'أجب عن بضعة أسئلة. يطابق الموقع المعلّمين مع إجاباتك ويعرضهم بالترتيب. وأنت من يقرّر من تحجز معه.',
+    chQSubject: 'ماذا تريد أن تتعلّم؟', chQLang: 'لغة الدرس', chQGender: 'المعلّم', chQPri: 'ما الأهم لك؟', chAnyL: 'أي', chNotSure: 'لست متأكداً',
+    chGf: 'معلّمة', chGm: 'معلّم ذكر', chPriSoon: 'أقرب درس', chPriLow: 'أقل سعر', chPriExp: 'الأكثر خبرة',
+    chPick: 'اختر مادة لترى المعلّمين المطابقين.', chMatchH: 'يطابقون إجاباتك', chOtherH: 'معلّمون آخرون في هذه المادة', chNoMatch: 'لا يوجد معلّم يطابق كل إجاباتك حالياً. يمكنك تغيير إجابة، أو الاطّلاع على المعلّمين الآخرين أدناه.',
+    chTLang: 'يدرّس باللغة {l}', chTLvl: 'يدرّس: {l}', chTYears: '{n} سنوات من التدريس', chNote: 'يطابق الموقع المعلّمين مع إجاباتك تلقائياً. لا يقدّم أحد نصيحة أو يرشّح لك معلّماً. افتح الملفات واختر من تفضّله.',
     filters: 'التصفية', fSubject: 'المادة', fSort: 'الترتيب', fLang: 'لغة التدريس', anyLang: 'أي لغة', reset: 'إعادة ضبط',
     sortSoon: 'الأقرب موعداً', sortLow: 'الأقل سعراً', sortHigh: 'الأعلى سعراً',
     langs: { ar: 'العربية', en: 'الإنجليزية', fr: 'الفرنسية', ur: 'الأردية' },
@@ -1378,6 +1395,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
   var KEYS = ['ar', 'qu', 'ma'];
   var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
   var state = {
+    ch: { k: '', opt: '', lang: '', g: '', pri: 'soon' },
     lang: 'en', theme: 'dark', cur: 'USD', country: 'US', rates: { USD: 1, AED: 3.6725, SAR: 3.75, QAR: 3.64, BHD: 0.376, OMR: 0.3845, KWD: 0.307, JOD: 0.709, EGP: 48, EUR: 0.92, GBP: 0.79 }, tz: tz,
     sel: { ar: '', qu: '', ma: '' }, matched: null, user: null, me: null, app: null, rs: { done: false, bad: false }, pending: null, keep: false, flood: null,
     filt: { lang: '', sort: 'soon' },
@@ -1759,7 +1777,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
       tState = 'ready'; refreshBrowse();
     }).catch(function () { tState = 'error'; refreshBrowse(); });
   }
-  function refreshBrowse() { if (['home', 'teachers', 'teacher', 'loading'].indexOf(route().v) !== -1) render(true); }
+  function refreshBrowse() { if (['home', 'teachers', 'teacher', 'loading', 'choose'].indexOf(route().v) !== -1) render(true); }
   function restoreSession() {
     api('GET', '/api/me').then(function (j) { if (j.user) { state.me = j.user; state.user = firstName(j.user.name); state.app = j.application || null; renderChrome(); } }).catch(function () {}).then(function () { state.booted = true; if (route().v === 'profile') render(true); });
   }
@@ -1778,7 +1796,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     }).join('');
     html += '<section class="home-split rise d2"><div class="hs-blue"><h1>' + esc(s.h1) + '</h1><p class="sub">' + esc(s.sub) + '</p></div>'
       + '<div class="hs-side"><div class="search-wrap"><form class="search" role="search" id="searchForm"><label for="q" class="sr-only">' + esc(s.searchLabel) + '</label>'
-      + '<input id="q" type="search" autocomplete="off" placeholder="' + esc(s.searchPh) + '"><button type="submit">' + esc(s.searchBtn) + '</button></form><p class="search-msg" id="searchMsg" role="status"></p></div>'
+      + '<input id="q" type="search" autocomplete="off" placeholder="' + esc(s.searchPh) + '"><button type="submit">' + esc(s.searchBtn) + '</button></form><p class="search-msg" id="searchMsg" role="status"></p><p class="choose-cta"><a class="btn btn-ghost" href="#choose">' + esc(s.chBtn) + '</a></p></div>'
       + '<div class="srows">' + rows + '</div></div></section>';
     html += '<div class="hs-strip rise d3">' + s.stripT.map(function (t, i) { return '<div class="st st' + i + '"><h3>' + esc(t[0]) + '</h3><p>' + esc(t[1]) + '</p></div>'; }).join('') + '</div>';
     html += '<section class="faq" aria-labelledby="faqH"><h2 id="faqH">' + esc(s.faqH) + '</h2>' + s.faq.map(function (x) { return '<details><summary>' + esc(x[0]) + '</summary><p>' + esc(x[1]) + '</p></details>'; }).join('') + '<p class="faq-cta"><a class="btn btn-primary" href="#notify">' + esc(s.faqCta) + '</a></p></section>';
@@ -1841,6 +1859,47 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     });
     html += '</div>' + (shownCur() !== 'USD' ? '<p class="note" style="margin-top:var(--s4)">' + esc(f(s.curNote, { c: shownCur() })) + '</p>' : '') + '</section></div>';
     return html;
+  }
+
+  function viewChoose() {
+    var s = S(), l = L(), c = state.ch, html = '';
+    function chips(field, items, cur, optional) {
+      return '<div class="chips" role="group">' + items.map(function (x) { return '<button type="button" data-act="ch" data-f="' + field + '" data-v="' + esc(x.v) + '" aria-pressed="' + (cur === x.v) + '">' + esc(x.l) + '</button>'; }).join('') + '</div>';
+    }
+    html += '<div>' + backLink('#home') + '</div><article class="choose"><h1 class="mega2">' + esc(s.chH) + '</h1><p class="lead">' + esc(s.chSub) + '</p>';
+    html += '<section class="chq"><h2>' + esc(s.chQSubject) + '</h2>' + chips('k', KEYS.map(function (x) { return { v: x, l: s.cols[x].title }; }), c.k) + '</section>';
+    if (!c.k) return html + '<p class="note">' + esc(s.chPick) + '</p></article>';
+    var col = s.cols[c.k];
+    html += '<section class="chq"><h2>' + esc(col.prompt) + '</h2>' + chips('opt', [{ v: '', l: s.chNotSure }].concat(col.options.map(function (o) { return { v: o.id, l: o.aria || o.label }; })), c.opt) + '</section>';
+    html += '<section class="chq"><h2>' + esc(s.chQLang) + '</h2>' + chips('lang', [{ v: '', l: s.chAnyL }].concat(Object.keys(s.langs).map(function (x) { return { v: x, l: s.langs[x] }; })), c.lang) + '</section>';
+    html += '<section class="chq"><h2>' + esc(s.chQGender) + '</h2>' + chips('g', [{ v: '', l: s.chAnyL }, { v: 'f', l: s.chGf }, { v: 'm', l: s.chGm }], c.g) + '</section>';
+    html += '<section class="chq"><h2>' + esc(s.chQPri) + '</h2>' + chips('pri', [{ v: 'soon', l: s.chPriSoon }, { v: 'low', l: s.chPriLow }, { v: 'exp', l: s.chPriExp }], c.pri) + '</section>';
+    var all = TEACHERS.filter(function (t) { return t.k === c.k && (!c.opt || !t.offers.length || t.offers.indexOf(c.opt) !== -1); });
+    all.forEach(function (t) {
+      t.chLang = !c.lang || t.lc.indexOf(c.lang) !== -1; t.chG = !c.g || t.gender === c.g;
+      t.chOk = t.chLang && t.chG;
+    });
+    function key(t) { return c.pri === 'low' ? t.rate : c.pri === 'exp' ? -(t.years || 0) : t.soon; }
+    all.sort(function (a, b) { return (b.ready ? 1 : 0) - (a.ready ? 1 : 0) || key(a) - key(b); });
+    var good = all.filter(function (t) { return t.chOk; }), rest = all.filter(function (t) { return !t.chOk; });
+    function row(t) {
+      var tags = [];
+      if (c.opt && t.offers.indexOf(c.opt) !== -1) tags.push(f(s.chTLvl, { l: optLabel(c.k, c.opt) }));
+      if (c.lang && t.chLang) tags.push(f(s.chTLang, { l: s.langs[c.lang] }));
+      if (c.g && t.chG) tags.push(c.g === 'f' ? s.chGf : s.chGm);
+      if (c.pri === 'exp' && t.years) tags.push(f(s.chTYears, { n: t.years }));
+      return '<a class="trow" href="#teacher-' + t.id + '"><span class="tsq" data-k="' + c.k + '" aria-hidden="true">' + tAvatar(t, l) + '</span>'
+        + '<span><span class="t-name">' + esc(t.name[l]) + '</span><p class="t-head">' + esc(t.head[l]) + '</p>' + (tags.length ? '<p class="t-meta">' + tags.map(esc).join(' · ') + '</p>' : '') + '</span><span class="bars-col"></span>'
+        + '<span class="price-col"><span class="t-price">' + esc(money(minPrice(t))) + ' <small>/ ' + t.lengths[0] + ' ' + esc(s.min) + '</small></span>' + (t.next ? '<span class="t-next"><span class="dot" aria-hidden="true"></span>' + esc(f(s.nextAvail, { t: t.next[l] })) + '</span>' : '') + (t.ready ? '' : '<span class="t-soon">' + esc(s.openSoon) + '</span>') + '</span>'
+        + '<span class="open">' + esc(s.viewProfile) + '</span></a>';
+    }
+    if (tState === 'loading') html += '<p class="note" role="status">' + esc(s.loadingT) + '</p>';
+    else if (tState === 'error') html += '<p class="empty">' + esc(s.loadFail) + '</p>';
+    else {
+      html += '<h2 class="chh">' + esc(s.chMatchH) + '</h2><div class="tlist">' + (good.length ? good.map(row).join('') : '<p class="empty">' + esc(s.chNoMatch) + '</p>') + '</div>';
+      if (rest.length) html += '<h2 class="chh">' + esc(s.chOtherH) + '</h2><div class="tlist">' + rest.map(row).join('') + '</div>';
+    }
+    return html + '<p class="note chnote">' + esc(s.chNote) + '</p></article>';
   }
 
   function sched(t) {
@@ -2439,7 +2498,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     if (h === 'reset-done' && state.rs.done) return { v: 'reset' };
     if ((m = h.match(/^notify(?:-(ar|qu|ma))?$/))) return { v: 'notify', k: m[1] || '' };
     if (h === 'terms' || h === 'privacy') return { v: 'legal', k: h };
-    if (h === 'about' || h === 'contact') return { v: h };
+    if (h === 'about' || h === 'contact' || h === 'choose') return { v: h };
     if (h === 'signup' || h === 'login' || h === 'teach' || h === 'profile' || h === 'lessons') return { v: h };
     if (h === 'apply' || h === 'join') return { v: 'teach', scroll: h };
     return { v: 'home' };
@@ -2463,6 +2522,7 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
     else if (r.v === 'legal') html = viewLegal(r.k);
     else if (r.v === 'about') html = viewAbout();
     else if (r.v === 'contact') html = viewContact();
+    else if (r.v === 'choose') html = viewChoose();
     else if (r.v === 'loading') html = '<p class="empty">' + esc(S().loadingT) + '</p>';
     else html = viewTeach();
     app.className = 'container' + (!keep && r.v !== 'home' ? ' enter' : '');
@@ -2748,6 +2808,14 @@ body.no-intro .hs-strip .st0{animation-delay:.2s}body.no-intro .hs-strip .st1{an
       if (state.book.time == null) return;
       if (!state.user) { state.pending = state.book.id; state.su.done = false; state.su.step = 0; location.hash = 'signup'; }
       else { state.book.done = true; render(true); }
+    }
+    else if (act === 'ch') {
+      var fld = a.getAttribute('data-f'), v = a.getAttribute('data-v'), ch = state.ch;
+      if (fld === 'k') { if (ch.k !== v) { ch.k = v; ch.opt = ''; } }
+      else if (fld === 'pri') ch.pri = v;
+      else ch[fld] = ch[fld] === v ? '' : v;
+      render(true);
+      var nb = document.querySelector('[data-act="ch"][data-f="' + fld + '"][data-v="' + v + '"]'); if (nb) nb.focus({ preventScroll: true });
     }
     else if (act === 'resetf') { state.filt = { lang: '', sort: 'soon' }; state.keep = true; var r = route(); if (r.opt) location.hash = 'teachers-' + r.k; else render(true); }
     else if (act === 'pwS') { state.su.showPw = !state.su.showPw; var i1 = document.getElementById('suAns'); i1.type = state.su.showPw ? 'text' : 'password'; a.textContent = state.su.showPw ? S().pwHide : S().pwShow; }
